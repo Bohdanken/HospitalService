@@ -26,3 +26,10 @@ There will be 4 roles in this project: admin, hospital, doctor, patient.
 - Patients are registered by themselves.
 - Patients can manage their visits to doctors in certain hospitals on certain date and time.
 - Patients can access their prescriptions.
+
+
+#### Team - Primatization of Java
+
+- Bohdan Shevchenko
+- Maksym Polishuk
+- Ilya Dubov
