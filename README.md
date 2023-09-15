@@ -14,6 +14,7 @@ There will be 4 roles in this project: admin, hospital, doctor, patient.
 - Hospitals are registered by admins and given an API key that is used to perform different actions.
 - Hospital should be able to create/update/delete a visit for certain patient.
 - Hospital can also register a doctor or a patient in the service.
+- Same patient should be same across different hospitals
 
 ### Doctor
 
