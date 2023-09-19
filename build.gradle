@@ -17,6 +17,10 @@ configurations {
 	}
 }
 
+springBoot {
+	mainClass = 'ukma.edu.ua.HospitalApp.Application'
+}
+
 repositories {
 	mavenCentral()
 }
