@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Configuration
 public class Config {
-
     @Bean
     public Map<String, String> envVariables() {
         var variables = new HashMap<String, String>();
