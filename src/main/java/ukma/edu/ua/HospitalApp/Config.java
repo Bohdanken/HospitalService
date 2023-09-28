@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ComponentScan("ukma.edu.ua.HospitalApp.injection")
 public class Config {
 
     @Bean
