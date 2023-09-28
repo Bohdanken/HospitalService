@@ -24,9 +24,8 @@ public class AuthService {
     }
 
     @Autowired
-    public void setDatabaseURL(Map<String, String> envVars) {
-        var databaseURL = envVars.get("DATABASE_URL");
-
+    public void setDatabaseURL( @Autowired Map<String, String> envVars) {
+         databaseURL = envVars.get("DATABASE_URL");
     }
 
     public record TokenResponse(String accessToken, String refreshToken) {

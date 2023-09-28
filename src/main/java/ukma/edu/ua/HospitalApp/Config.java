@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Configuration
 @Conditional(DataBaseURLCondition.class)
-@ComponentScan("ukma.edu.ua.HospitalApp.injection")
 public class Config {
 
     @Bean
