@@ -1,12 +1,14 @@
 package ukma.edu.ua.HospitalApp.api.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.shared.JWTService;
 
 import java.util.Map;
 
 @Service
+@ConditionalOnBean(name = "envVariables")
 public class AuthService {
     @Autowired
     public JWTService jwtService;
