@@ -28,6 +28,13 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
+	// JPA (Hibernate as an example)
+	implementation 'javax.persistence:javax.persistence-api:2.2'
+	implementation 'org.hibernate:hibernate-core:5.6.3.Final'
+
+	// Hibernate Validator (for @NotBlank)
+	implementation 'org.hibernate.validator:hibernate-validator:7.0.2.Final'
+	implementation 'javax.el:javax.el-api:3.0.1-b06'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

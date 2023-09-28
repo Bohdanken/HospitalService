@@ -16,7 +16,6 @@ public class Config {
         var variables = new HashMap<String, String>();
         variables.put("PORT", "8081");
         variables.put("DATABASE_URL", "some-db-url");
-
         return variables;
     }
 }

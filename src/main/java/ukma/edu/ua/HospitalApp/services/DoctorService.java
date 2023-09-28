@@ -7,7 +7,7 @@ public interface DoctorService {
 
     void updateDoctor(Doctor doctor);
 
-    void killDoctor(Doctor doctor);
+    void deleteDoctor(Doctor doctor);
 
     Prescription createPrescription(double patientId);
 }
