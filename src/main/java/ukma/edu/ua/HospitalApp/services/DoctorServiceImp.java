@@ -23,7 +23,7 @@ public class DoctorServiceImp implements DoctorService {
     }
 
     @Override
-    public void killDoctor(Doctor doctor) {
+    public void deleteDoctor(Doctor doctor) {
         doctors.remove(doctor);
     }
 

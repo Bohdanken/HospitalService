@@ -1,6 +1,6 @@
 package ukma.edu.ua.HospitalApp.models;
 
-public class Drug {
+public class Drug extends BaseEntity{
     String name;
     String producer;
 }

@@ -6,7 +6,7 @@ enum DoctorType {
     DENTIST,
     COSMETOLOGIST
 } 
-public class Doctor {
+public class Doctor extends Person{
     String firstName;
     String lastName;
     String email;
