@@ -38,6 +38,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation files('libs/MySpringStarter-0.0.1-SNAPSHOT-plain.jar')
 }
 
 tasks.named('test') {
