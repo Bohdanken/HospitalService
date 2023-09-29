@@ -12,7 +12,6 @@ import java.util.Map;
 @Configuration
 @Conditional(DataBaseURLCondition.class)
 public class Config {
-
     @Bean
     @ConditionalOnSingleCandidate
     public Map<String, String> envVariables() {

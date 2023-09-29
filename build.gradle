@@ -36,6 +36,7 @@ dependencies {
 	implementation 'org.hibernate.validator:hibernate-validator:7.0.2.Final'
 	implementation 'javax.el:javax.el-api:3.0.1-b06'
 	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
