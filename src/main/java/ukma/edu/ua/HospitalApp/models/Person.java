@@ -1,6 +1,7 @@
 
 package ukma.edu.ua.HospitalApp.models;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import jakarta.persistence.Column;
@@ -17,21 +18,5 @@ public class Person extends BaseEntity {
 
 	@Column(name = "last_name")
 	private String lastName="None";
-
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 }
