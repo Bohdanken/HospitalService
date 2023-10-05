@@ -3,8 +3,8 @@ package ukma.edu.ua.HospitalApp.models;
 
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 
 /**
  * Simple JavaBean domain object representing an person.

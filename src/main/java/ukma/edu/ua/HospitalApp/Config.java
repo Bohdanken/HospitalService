@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@Conditional(DataBaseURLCondition.class)
+//@Conditional(DataBaseURLCondition.class)
 public class Config {
     @Bean
-    @ConditionalOnSingleCandidate
+  // @ConditionalOnSingleCandidate
     public Map<String, String> envVariables() {
         var variables = new HashMap<String, String>();
         variables.put("PORT", "8081");

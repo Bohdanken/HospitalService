@@ -8,7 +8,7 @@ import ukma.edu.ua.HospitalApp.shared.JWTService;
 import java.util.Map;
 
 @Service
-@ConditionalOnBean(name = "envVariables")
+//@ConditionalOnBean(name = "envVariables")
 public class AuthService {
     @Autowired
     public JWTService jwtService;
