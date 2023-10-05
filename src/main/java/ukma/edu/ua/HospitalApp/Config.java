@@ -1,11 +1,10 @@
 package ukma.edu.ua.HospitalApp;
 
 import org.springframework.boot.autoconfigure.condition.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import ukma.edu.ua.HospitalApp.Conditions.DataBaseURLCondition;
+
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 

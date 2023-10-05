@@ -4,27 +4,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.Database.DoctorRepository;
 import ukma.edu.ua.HospitalApp.models.*;
 
 import java.util.*;
 
 @Service
 public class DoctorServiceImp implements DoctorService {
-    private final Set<Doctor> doctors=new HashSet<Doctor>();
+
+
+    private DoctorRepository doctorRepository;
+/*
+    @Autowired
+    public DoctorServiceImp(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
+
+ */
 
     @Override
-    public void createDoctor(Doctor doctor) {
-        doctors.add(doctor);
+    public Doctor createDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
     }
 
     @Override
-    public void updateDoctor(Doctor doctor) {
-        doctors.add(doctor);
+    public Doctor updateDoctor(long id, Doctor doctor) {
+        Doctor depDB
+                = doctorRepository.findById(id)
+                .get();
+
+        if (Objects.nonNull(doctor.getFirstName())
+                && !"".equalsIgnoreCase(
+                doctor.getFirstName())) {
+            depDB.setFirstName(
+                    doctor.getFirstName());
+        }
+
+        return doctorRepository.save(depDB);
     }
 
     @Override
-    public void deleteDoctor(Doctor doctor) {
-        doctors.remove(doctor);
+    public void deleteDoctor(Doctor doctor)
+    {
+        doctorRepository.delete(doctor);
     }
 
     @Override

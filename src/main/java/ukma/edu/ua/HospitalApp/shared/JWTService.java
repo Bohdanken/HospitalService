@@ -11,6 +11,7 @@ public class JWTService {
     private int accessTokenLifetime;
     private int refreshTokenLifetime;
 
+
     @Autowired
     public void setTokens(Environment env) {
         accessTokenLifetime = Integer.parseInt(Objects.requireNonNull(env.getProperty("app.access-token-lifetime")));

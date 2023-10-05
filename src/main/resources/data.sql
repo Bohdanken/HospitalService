@@ -1,0 +1,1 @@
+//INSERT INTO doctor (first_name,last_name,email,age) VALUES ('Bohdan', 'Shevchenko','NN', '32'   );

@@ -29,8 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	//Database things
-	implementation group: 'com.h2database', name: 'h2', version: '2.2.224'
-	//implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.1.4'
+	runtimeOnly group: 'com.h2database', name: 'h2', version: '2.1.214'
+	implementation 'org.modelmapper:modelmapper:2.3.5'
 	implementation "org.springframework.data:spring-data-jpa"
 	implementation "org.springframework:spring-aspects"
 	// Hibernate Validator (for @NotBlank)
