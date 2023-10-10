@@ -1,1 +1,6 @@
-//INSERT INTO doctor (first_name,last_name,email,age) VALUES ('Bohdan', 'Shevchenko','NN', '32'   );
+select * from ADMIN;
+select * from DOCTOR;
+select * from DRUG;
+select * from HOSPITAL;
+select * from PATIENT;
+select * from PRESCRIPTION;

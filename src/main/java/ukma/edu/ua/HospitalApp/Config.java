@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.*;
 import ukma.edu.ua.HospitalApp.Conditions.DataBaseURLCondition;
@@ -11,6 +12,11 @@ import java.util.Map;
 @Configuration
 //@Conditional(DataBaseURLCondition.class)
 public class Config {
+    @Bean
+    public ModelMapper modelMapper()
+    {
+        return new ModelMapper();
+    }
     @Bean
   // @ConditionalOnSingleCandidate
     public Map<String, String> envVariables() {

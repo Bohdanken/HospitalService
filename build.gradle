@@ -30,11 +30,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	//Database things
 	runtimeOnly group: 'com.h2database', name: 'h2', version: '2.1.214'
+	implementation 'org.xerial:sqlite-jdbc:3.25.2'
 	implementation 'org.modelmapper:modelmapper:2.3.5'
 	implementation "org.springframework.data:spring-data-jpa"
 	implementation "org.springframework:spring-aspects"
-	// Hibernate Validator (for @NotBlank)
-	implementation 'org.hibernate.validator:hibernate-validator:7.0.2.Final'
 	implementation 'jakarta.platform:jakarta.jakartaee-web-api:9.0.0'
 	annotationProcessor 'org.projectlombok:lombok'
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
