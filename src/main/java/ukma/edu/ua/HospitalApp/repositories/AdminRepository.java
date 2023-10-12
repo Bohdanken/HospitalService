@@ -1,8 +1,7 @@
-package ukma.edu.ua.HospitalApp.Database;
+package ukma.edu.ua.HospitalApp.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ukma.edu.ua.HospitalApp.models.Admin;
-import ukma.edu.ua.HospitalApp.models.BaseEntity;
 
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 }

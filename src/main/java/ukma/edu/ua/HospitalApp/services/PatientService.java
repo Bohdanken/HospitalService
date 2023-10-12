@@ -1,4 +1,7 @@
 package ukma.edu.ua.HospitalApp.services;
 
-public interface PatientService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class PatientService {
 }

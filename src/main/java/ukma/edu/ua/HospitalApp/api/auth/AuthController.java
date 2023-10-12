@@ -8,25 +8,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final AuthService authService;
+  private final AuthService authService;
 
-    @Autowired
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+  @Autowired
+  public AuthController(AuthService authService) {
+    this.authService = authService;
+  }
 
-    @PostMapping("/login/patient")
-    public AuthService.TokenResponse loginPatient() {
-        return authService.login();
-    }
+  @PostMapping("/login/patient")
+  public AuthService.TokenResponse loginPatient() {
+    return authService.login();
+  }
 
-    @PostMapping("/login/doctor")
-    public AuthService.TokenResponse loginDoctor() {
-        return authService.login();
-    }
+  @PostMapping("/login/doctor")
+  public AuthService.TokenResponse loginDoctor() {
+    return authService.login();
+  }
 
-    @PostMapping("/login/admin")
-    public AuthService.TokenResponse loginAdmin() {
-        return authService.login();
-    }
+  @PostMapping("/login/admin")
+  public AuthService.TokenResponse loginAdmin() {
+    return authService.login();
+  }
 }
