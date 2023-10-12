@@ -1,9 +1,6 @@
 package ukma.edu.ua.HospitalApp.api.auth;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
+import org.apache.logging.log4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,19 +22,21 @@ public class AuthController {
 
   @PostMapping("/login/patient")
   public AuthService.TokenResponse loginPatient() {
-    logger.warn(loggerMarker, "Patient has logged in");
+    logger.info(loggerMarker, "Patient has logged in");
+
     return authService.login();
   }
 
   @PostMapping("/login/doctor")
   public AuthService.TokenResponse loginDoctor() {
-    logger.warn(loggerMarker, "Doctor has logged in");
+    logger.info(loggerMarker, "Doctor has logged in");
+    ThreadContext.clearAll();
     return authService.login();
   }
 
   @PostMapping("/login/admin")
   public AuthService.TokenResponse loginAdmin() {
-    logger.warn(loggerMarker, "Admin has logged in");
+    logger.info(loggerMarker, "Admin has logged in");
     return authService.login();
   }
 }

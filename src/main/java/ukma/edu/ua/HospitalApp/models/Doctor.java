@@ -7,6 +7,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.logging.log4j.ThreadContext;
 
 @SuppressWarnings("checkstyle:OneTopLevelClass")
 enum DoctorType {
@@ -18,6 +23,9 @@ enum DoctorType {
 }
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "doctor")
 public class Doctor extends BaseEntity {
   @Column(name = "first_name")
@@ -31,6 +39,16 @@ public class Doctor extends BaseEntity {
 
   @Column(name = "age")
   public int age;
+
+  public Doctor(String firstName, String lastName, String email, int age, DoctorType doctorType, Hospital hospital) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.age = age;
+    this.doctorType = doctorType;
+    this.hospital = hospital;
+    ThreadContext.put("ID", String.valueOf( this.getId()));
+  }
 
   @Column(name = "doctor_type")
   @Enumerated(EnumType.STRING)
