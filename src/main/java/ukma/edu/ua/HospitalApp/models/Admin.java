@@ -1,5 +1,9 @@
 package ukma.edu.ua.HospitalApp.models;
 
-public class Admin extends Person {
-    String fullName;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "admin")
+public class Admin extends BaseEntity {
 }
