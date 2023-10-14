@@ -16,6 +16,10 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+
+    configureEach {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 springBoot {
@@ -30,6 +34,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
     compileOnly 'org.projectlombok:lombok'
+
+    // Logger
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2:3.1.4'
 
     //Database
     runtimeOnly 'com.h2database:h2:2.2.224'
