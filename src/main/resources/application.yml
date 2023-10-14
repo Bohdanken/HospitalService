@@ -1,0 +1,14 @@
+server:
+  port: 8092
+
+spring:
+  application:
+    name: HospitalApp
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+
+app:
+  access-token-lifetime: 12000
+  refresh-token-lifetime: 24000

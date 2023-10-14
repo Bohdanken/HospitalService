@@ -1,7 +1,5 @@
 package ukma.edu.ua.HospitalApp;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -12,13 +10,11 @@ import org.springframework.context.annotation.ComponentScan;
 import ukma.edu.ua.HospitalApp.api.auth.AuthService;
 
 @SpringBootApplication
-@ComponentScan(basePackages ={"ukma.edu.ua.HospitalApp.Database", "ukma.edu.ua.HospitalApp.models"})
+@ComponentScan(basePackages ={"ukma.edu.ua.HospitalApp.services", "ukma.edu.ua.HospitalApp.models",
+        "ukma.edu.ua.HospitalApp.dto","ukma.edu.ua.HospitalApp.repositories"})
 @EnableConfigurationProperties
 public class Application {
-
-    public static void main(String[] args) {
-
-
-        SpringApplication.run(Application.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 }

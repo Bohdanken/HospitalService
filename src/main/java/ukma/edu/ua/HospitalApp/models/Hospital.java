@@ -4,13 +4,22 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-@Entity
 @Data
-public class Hospital extends BaseEntity{
-    String name;
-    String address;
+@Entity
+@Table(name = "hospital")
+public class Hospital extends BaseEntity {
+  @Column(name = "name")
+  public String name;
+
+  @Column(name = "address")
+  public String address;
+
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "doctor_id")
-    List<Doctor> doctorList;
+  @JoinColumn(name = "doctor_id")
+  public List<Doctor> doctorList;
 }

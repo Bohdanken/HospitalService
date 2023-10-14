@@ -4,6 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
-public class Admin extends Person {
+@Table(name = "admin")
+public class Admin extends BaseEntity {
 }

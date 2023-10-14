@@ -1,24 +1,60 @@
 package ukma.edu.ua.HospitalApp.models;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.logging.log4j.ThreadContext;
 
+@SuppressWarnings("checkstyle:OneTopLevelClass")
 enum DoctorType {
-    CARDIOLOGIST,
-    THERAPIST,
-    ORTHOPEDIST,
-    DENTIST,
-    COSMETOLOGIST
+  CARDIOLOGIST,
+  THERAPIST,
+  ORTHOPEDIST,
+  DENTIST,
+  COSMETOLOGIST
 }
 
 @Entity
-@Data
-@Table(name = "doctors")
-public class Doctor extends Person{
-    @Column(name = "email")
-    String email;
-    @Column(name = "age")
-    int age;
-    @Column(name = "doctorType")
-   DoctorType doctorType;
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "doctor")
+public class Doctor extends BaseEntity {
+  @Column(name = "first_name")
+  public String firstName;
+
+  @Column(name = "last_name")
+  public String lastName;
+
+  @Column(name = "email")
+  public String email;
+
+  @Column(name = "age")
+  public int age;
+
+  public Doctor(String firstName, String lastName, String email, int age, DoctorType doctorType, Hospital hospital) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.age = age;
+    this.doctorType = doctorType;
+    this.hospital = hospital;
+    ThreadContext.put("ID", String.valueOf( this.getId()));
+  }
+
+  @Column(name = "doctor_type")
+  @Enumerated(EnumType.STRING)
+  public DoctorType doctorType;
+
+  @ManyToOne(targetEntity = Hospital.class)
+  @JoinColumn(name = "hospital_id", nullable = false)
+  public Hospital hospital;
 }
