@@ -1,13 +1,11 @@
 package ukma.edu.ua.HospitalApp.services;
 
-import org.apache.logging.log4j.ThreadContext;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.models.Doctor;
 import ukma.edu.ua.HospitalApp.models.Prescription;
 import ukma.edu.ua.HospitalApp.repositories.DoctorRepository;
-
-import java.util.Objects;
 
 @Service
 public class DoctorService {
@@ -24,25 +22,23 @@ public class DoctorService {
 
   public Doctor updateDoctor(long id, Doctor doctor) {
     Doctor depDB
-            = doctorRepository.findById(id)
-            .get();
+        = doctorRepository.findById(id)
+        .get();
 
     if (Objects.nonNull(doctor.getFirstName())
-            && !"".equalsIgnoreCase(
-            doctor.getFirstName())) {
+        && !"".equalsIgnoreCase(
+        doctor.getFirstName())) {
       depDB.setFirstName(
-              doctor.getFirstName());
+          doctor.getFirstName());
     }
     return doctorRepository.save(depDB);
   }
 
-  public void deleteDoctor(Doctor doctor)
-  {
+  public void deleteDoctor(Doctor doctor) {
     doctorRepository.delete(doctor);
   }
 
   public Prescription createPrescription(double patientId) {
-    Prescription prescription= new Prescription();
-    return prescription;
+    return new Prescription();
   }
 }

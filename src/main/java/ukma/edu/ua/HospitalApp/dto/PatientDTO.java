@@ -1,21 +1,21 @@
 package ukma.edu.ua.HospitalApp.dto;
 
+import java.util.Date;
 import lombok.Data;
 
 @Data
 public class PatientDTO {
-  String firstName;
+  private Long id;
 
-  String lastName;
+  private String firstName;
 
-  String email;
+  private String lastName;
 
-  String address;
+  private String email;
 
-  String passportNumber;
+  private String address;
 
-  int yearOfBirth;
+  private String passportNumber;
 
-  private long id;
-
+  private Date birthDate;
 }

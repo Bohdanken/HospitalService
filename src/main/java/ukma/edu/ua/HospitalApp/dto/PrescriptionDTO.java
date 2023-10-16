@@ -7,5 +7,7 @@ import lombok.Data;
 public class PrescriptionDTO {
   private long id;
 
-  Date dateOfIssue;
+  private Date dateOfIssue;
+
+  private DrugDTO[] drugs;
 }

@@ -1,6 +1,7 @@
 package ukma.edu.ua.HospitalApp.dto;
 
 import lombok.Data;
+import ukma.edu.ua.HospitalApp.models.Doctor;
 
 @Data
 public class DoctorDTO {
@@ -10,7 +11,9 @@ public class DoctorDTO {
 
   private String lastName;
 
-  String email;
+  private String email;
 
-  int age;
+  private int age;
+
+  private Doctor.DoctorType doctorType;
 }

@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.shared;
+package ukma.edu.ua.HospitalApp.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ public class JWTService {
 
   @Value("${app.refresh-token-lifetime}")
   private int refreshTokenLifetime;
-  
+
   public String generateAccessToken() {
     System.out.println(accessTokenLifetime);
     return null;
