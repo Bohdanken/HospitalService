@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp.models;
 
+import lombok.Data;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,7 +13,6 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
@@ -29,9 +29,6 @@ public class Prescription extends BaseEntity {
   private Patient patient;
 
   @ManyToMany(targetEntity = Drug.class, fetch = FetchType.LAZY)
-  @JoinTable(
-      name = "prescription_drug_map",
-      joinColumns = @JoinColumn(name = "prescription_id"),
-      inverseJoinColumns = @JoinColumn(name = "drug_id"))
+  @JoinTable(name = "prescription_drug_map", joinColumns = @JoinColumn(name = "prescription_id"), inverseJoinColumns = @JoinColumn(name = "drug_id"))
   private List<Drug> drugs;
 }

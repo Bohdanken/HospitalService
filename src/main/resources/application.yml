@@ -8,6 +8,10 @@ spring:
     mode: HTML
   profiles:
     active: dev
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
 
 app:
   access-token-lifetime: 12000

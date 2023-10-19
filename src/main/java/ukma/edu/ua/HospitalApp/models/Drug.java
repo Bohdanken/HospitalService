@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.Data;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
+@Data
 @Table(name = "drug")
 public class Drug extends BaseEntity {
   @Column(name = "name")

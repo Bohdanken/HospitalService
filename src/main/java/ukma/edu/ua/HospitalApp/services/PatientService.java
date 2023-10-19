@@ -11,21 +11,21 @@ import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
 @Service
 @RequiredArgsConstructor
 public class PatientService {
-  private final PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
-  public PatientDTO updatePatient(UpdatePatientBody data, long id) {
-    Patient patient = patientRepository.findById(id).orElseThrow();
-    patient.setFirstName(data.getFirstName());
-    patient.setLastName(data.getLastName());
-    patient.setAddress(data.getAddress());
-    patient.setBirthDate(data.getBirthDate());
-    patient.setPassportNumber(data.getPassportNumber());
-    patient.setEmail(data.getEmail());
-    patientRepository.save(patient);
-    return toPatientDTO(patient);
-  }
+    public PatientDTO updatePatient(UpdatePatientBody data, long id) {
+        Patient patient = patientRepository.findById(id).orElseThrow();
+        patient.setFirstName(data.getFirstName());
+        patient.setLastName(data.getLastName());
+        patient.setAddress(data.getAddress());
+        patient.setBirthDate(data.getBirthDate());
+        patient.setPassportNumber(data.getPassportNumber());
+        patient.setEmail(data.getEmail());
+        patientRepository.save(patient);
+        return toPatientDTO(patient);
+    }
 
-  public PatientDTO toPatientDTO(Patient patient) {
-    return PatientMapper.INSTANCE.patientToPatientDTO(patient);
-  }
+    public PatientDTO toPatientDTO(Patient patient) {
+        return PatientMapper.INSTANCE.patientToPatientDTO(patient);
+    }
 }
