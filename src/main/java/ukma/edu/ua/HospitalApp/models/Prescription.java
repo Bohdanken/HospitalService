@@ -32,6 +32,7 @@ public class Prescription extends BaseEntity {
   @JoinTable(
       name = "prescription_drug_map",
       joinColumns = @JoinColumn(name = "prescription_id"),
-      inverseJoinColumns = @JoinColumn(name = "drug_id"))
+      inverseJoinColumns = @JoinColumn(name = "drug_id")
+  )
   private List<Drug> drugs;
 }

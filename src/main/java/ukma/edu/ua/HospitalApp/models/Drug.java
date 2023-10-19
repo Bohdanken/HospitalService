@@ -9,8 +9,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
+@Data
 @Table(name = "drug")
 public class Drug extends BaseEntity {
   @Column(name = "name")

@@ -1,7 +1,9 @@
 package ukma.edu.ua.HospitalApp.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Hospital extends BaseEntity {
   @Column(name = "address")
   private String address;
 
-  @OneToMany(targetEntity = Doctor.class)
-  private List<Doctor> doctorList;
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "doctor_id")
+  public List<Doctor> doctorList;
 }
