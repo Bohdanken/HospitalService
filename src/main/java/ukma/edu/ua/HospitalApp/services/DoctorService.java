@@ -1,10 +1,10 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import java.util.Objects;
-import org.springframework.stereotype.Service;
-
 import lombok.RequiredArgsConstructor;
-import ukma.edu.ua.HospitalApp.models.*;
+import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.models.Doctor;
+import ukma.edu.ua.HospitalApp.models.Prescription;
 import ukma.edu.ua.HospitalApp.repositories.DoctorRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class DoctorService {
 
     if (Objects.nonNull(doctor.getFirstName())
         && !"".equalsIgnoreCase(
-            doctor.getFirstName())) {
+        doctor.getFirstName())) {
       depDB.setFirstName(
           doctor.getFirstName());
     }

@@ -1,13 +1,13 @@
 package ukma.edu.ua.HospitalApp.models;
 
-import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.List;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
