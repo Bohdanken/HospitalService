@@ -32,6 +32,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.json:json:20210307'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.1.4'
 
@@ -51,6 +52,8 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+// API
+    implementation group: 'com.google.maps', name: 'google-maps-services', version: '2.2.0'
 }
 
 checkstyle {
@@ -58,6 +61,6 @@ checkstyle {
     configFile = file("./config/checkstyle/checkstyle.xml")
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
