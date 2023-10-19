@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.exceptionhandler.MyFirstException;
-import ukma.edu.ua.HospitalApp.exceptionhandler.MySecondException;
+import ukma.edu.ua.HospitalApp.exceptionhandler.IncorrectIDException;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
 @RestController
@@ -21,8 +20,8 @@ public class PrescriptionController {
     return ResponseEntity.ok().build();
   }
 
-  @ExceptionHandler(MethodArgumentNotValidException.class)
-  public void handleException() {
-    throw new MySecondException("Exception");
+  @ExceptionHandler
+  public void handleException(MethodArgumentNotValidException ex) {
+    throw new IncorrectIDException(ex);
   }
 }
