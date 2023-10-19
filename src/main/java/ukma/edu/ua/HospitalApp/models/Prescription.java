@@ -1,7 +1,5 @@
 package ukma.edu.ua.HospitalApp.models;
 
-import jakarta.persistence.*;
-import lombok.Data;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,20 +12,27 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Entity
-@Table
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class Prescription extends BaseEntity{
-    String name;
-    @ManyToOne
-    Patient patient;
-    @Temporal(TemporalType.DATE)
-    Date dateOfIssue;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Prescripted",
-            joinColumns = @JoinColumn(name = "prescription_id"),
-            inverseJoinColumns = @JoinColumn(name = "drug_id"))
-    private List<Drug> drugList;
+@Entity
+@Table(name = "prescription")
+public class Prescription extends BaseEntity {
+  @Column(name = "date_of_issue")
+  @Temporal(TemporalType.DATE)
+  private Date dateOfIssue;
+
+  @ManyToOne(targetEntity = Patient.class)
+  @JoinColumn(name = "patient_id", nullable = false)
+  private Patient patient;
+
+  @ManyToMany(targetEntity = Drug.class, fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "prescription_drug_map",
+      joinColumns = @JoinColumn(name = "prescription_id"),
+      inverseJoinColumns = @JoinColumn(name = "drug_id")
+  )
+  private List<Drug> drugs;
 }

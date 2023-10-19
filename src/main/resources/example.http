@@ -1,0 +1,27 @@
+###
+POST http://localhost:8092/auth/login/patient
+Content-Type: application/json
+
+{
+  "email": "andrew@gmail.com",
+  "password": "asadsd"
+}
+
+###
+GET http://localhost:8092/patient/1/prescriptions
+
+###
+PUT http://localhost:8092/patient/1
+Content-Type: application/json
+
+{
+  "email": "andrew@gmail.com",
+  "firstName": "Andrew",
+  "lastName": "Tate",
+  "address": "some address",
+  "passportNumber": "YU654321",
+  "birthDate": "1980-01-01"
+}
+
+###
+DELETE http://localhost:8092/prescription/1

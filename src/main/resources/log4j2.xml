@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" packages="ukma.edu.ua.HospitalApp.logger">
+<Configuration packages="ukma.edu.ua.HospitalApp.logger">
     <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"/>
+        </Console>
         <MapAppender name="MapAppender">
             <RequestHandlerLayout/>
             <MarkerFilter marker="REQUEST_STATUS" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -15,6 +19,7 @@
         <Root level="debug">
             <AppenderRef ref="FileRequestLogs"/>
             <AppenderRef ref="MapAppender"/>
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

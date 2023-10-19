@@ -6,7 +6,7 @@ import lombok.Data;
 public class DrugDTO {
   private long id;
 
-  String name;
+  private String name;
 
-  String producer;
+  private String producer;
 }

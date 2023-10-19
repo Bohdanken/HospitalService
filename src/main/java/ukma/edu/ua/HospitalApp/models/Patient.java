@@ -4,36 +4,37 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
-@Getter
-@Setter
 @Table(name = "patient")
 public class Patient extends BaseEntity {
   @Column(name = "first_name")
-  public String firstName;
+  private String firstName;
 
   @Column(name = "last_name")
-  public String lastName;
+  private String lastName;
 
   @Column(name = "email")
-  public String email;
+  private String email;
 
   @Column(name = "address")
-  public String address;
+  private String address;
 
   @Column(name = "passport_number")
-  public String passportNumber;
+  private String passportNumber;
 
   @Column(name = "birth_date")
-  public Date birthDate;
+  @Temporal(TemporalType.DATE)
+  private Date birthDate;
 
   @OneToMany(mappedBy = "patient")
-  public List<Prescription> prescriptions;
+  private List<Prescription> prescriptions;
 }
