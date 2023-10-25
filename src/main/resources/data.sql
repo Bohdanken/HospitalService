@@ -6,7 +6,7 @@ VALUES ('New clinic', 'Wall str. 12A');
 -- DOCTOR
 
 INSERT INTO doctor (first_name, last_name, email, age, doctor_type, hospital_id)
-VALUES ('Will', 'Smith', 'some@gmail.com', 32, 'CARDIOLOGIST', 1);
+VALUES ('Will', 'Smith', 'doc@gmail.com', 32, 'CARDIOLOGIST', 1);
 
 -- PATIENT
 

@@ -12,6 +12,15 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+  devtools:
+    restart:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger.html
+  api-docs:
+    path: /swagger-json
 
 app:
   access-token-lifetime: 12000
