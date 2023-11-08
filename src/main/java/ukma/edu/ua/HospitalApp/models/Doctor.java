@@ -7,20 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.logging.log4j.ThreadContext;
-
-@SuppressWarnings("checkstyle:OneTopLevelClass")
-enum DoctorType {
-  CARDIOLOGIST,
-  THERAPIST,
-  ORTHOPEDIST,
-  DENTIST,
-  COSMETOLOGIST
-}
 
 @Entity
 @Getter
@@ -39,6 +28,9 @@ public class Doctor extends BaseEntity {
 
   @Column(name = "age")
   public int age;
+  @Column(name = "doctor_type")
+  @Enumerated(EnumType.STRING)
+  public DoctorType doctorType;
 
   private final Role role = Role.DOCTOR;
 
@@ -52,11 +44,15 @@ public class Doctor extends BaseEntity {
     //ThreadContext.put(String.valueOf( this.getId()),"ID");
   }
 
-  @Column(name = "doctor_type")
-  @Enumerated(EnumType.STRING)
-  public DoctorType doctorType;
-
   @ManyToOne(targetEntity = Hospital.class)
   @JoinColumn(name = "hospital_id", nullable = false)
   public Hospital hospital;
+
+  public enum DoctorType {
+    CARDIOLOGIST,
+    THERAPIST,
+    ORTHOPEDIST,
+    DENTIST,
+    COSMETOLOGIST
+  }
 }
