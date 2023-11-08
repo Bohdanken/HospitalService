@@ -5,20 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.List;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@Data
 @Table(name = "drug")
 public class Drug extends BaseEntity {
   @Column(name = "name")
-  private String name;
+  public String name;
 
   @Column(name = "producer")
-  private String producer;
+  public String producer;
 
   @ManyToMany(mappedBy = "drugs")
-  private List<Prescription> prescriptions;
+  public List<Prescription> prescriptions;
 }

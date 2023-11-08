@@ -7,10 +7,20 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.logging.log4j.ThreadContext;
+
+@SuppressWarnings("checkstyle:OneTopLevelClass")
+enum DoctorType {
+  CARDIOLOGIST,
+  THERAPIST,
+  ORTHOPEDIST,
+  DENTIST,
+  COSMETOLOGIST
+}
 
 @Entity
 @Getter
@@ -19,41 +29,34 @@ import org.apache.logging.log4j.ThreadContext;
 @Table(name = "doctor")
 public class Doctor extends BaseEntity {
   @Column(name = "first_name")
-  private String firstName;
+  public String firstName;
 
   @Column(name = "last_name")
-  private String lastName;
+  public String lastName;
 
   @Column(name = "email")
-  private String email;
+  public String email;
 
   @Column(name = "age")
-  private int age;
+  public int age;
 
-  public Doctor(String firstName, String lastName, String email, int age, DoctorType doctorType,
-                Hospital hospital) {
+  private final Role role = Role.DOCTOR;
+
+  public Doctor(String firstName, String lastName, String email, int age, DoctorType doctorType, Hospital hospital) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.age = age;
     this.doctorType = doctorType;
     this.hospital = hospital;
-    ThreadContext.put("ID", String.valueOf(this.getId()));
+    //ThreadContext.put(String.valueOf( this.getId()),"ID");
   }
 
   @Column(name = "doctor_type")
   @Enumerated(EnumType.STRING)
-  private DoctorType doctorType;
+  public DoctorType doctorType;
 
   @ManyToOne(targetEntity = Hospital.class)
   @JoinColumn(name = "hospital_id", nullable = false)
-  private Hospital hospital;
-
-  public enum DoctorType {
-    CARDIOLOGIST,
-    THERAPIST,
-    ORTHOPEDIST,
-    DENTIST,
-    COSMETOLOGIST
-  }
+  public Hospital hospital;
 }
