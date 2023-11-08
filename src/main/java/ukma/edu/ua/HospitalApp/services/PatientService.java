@@ -15,6 +15,7 @@ import ukma.edu.ua.HospitalApp.mappers.PatientMapper;
 import ukma.edu.ua.HospitalApp.models.Patient;
 import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
 import ukma.edu.ua.HospitalApp.shared.JWTService;
+import ukma.edu.ua.HospitalApp.shared.JwtConfig;
 
 import java.io.IOException;
 
@@ -25,7 +26,6 @@ public class PatientService {
   public PatientService(PatientRepository patientRepository) {
     this.patientRepository = patientRepository;
   }
-
 
   public Patient createPatient(Patient patient) {
     return patientRepository.save(patient);
