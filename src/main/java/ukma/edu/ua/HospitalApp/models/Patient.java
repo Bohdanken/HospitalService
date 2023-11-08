@@ -4,11 +4,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "patient")
+@Data
 public class Patient extends BaseEntity {
   @Column(name = "first_name")
   public String firstName;

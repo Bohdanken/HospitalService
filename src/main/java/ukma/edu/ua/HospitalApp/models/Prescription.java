@@ -10,11 +10,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import lombok.Data;
+
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "prescription")
+@Data
 public class Prescription extends BaseEntity {
   @Column(name = "date_of_issue")
   @Temporal(TemporalType.DATE)
