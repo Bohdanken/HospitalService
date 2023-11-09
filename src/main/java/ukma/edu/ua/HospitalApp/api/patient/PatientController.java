@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ import ukma.edu.ua.HospitalApp.exceptionhandler.IncorrectIDException;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
-@RestController
+@Controller
 @RequestMapping("/patient")
 @RequiredArgsConstructor
 @Tag(name = "Patient", description = "Patient endpoints")
@@ -29,10 +31,22 @@ public class PatientController {
 
   private final PatientService patientService;
 
+//  @GetMapping("/{id}/prescriptions")
+//  public PrescriptionDTO[] getPatientPrescriptions(@Valid @PathVariable("id") Long id) {
+//    return prescriptionService.getPatientPrescriptions(id);
+//  }
+
   @GetMapping("/{id}/prescriptions")
-  public PrescriptionDTO[] getPatientPrescriptions(@Valid @PathVariable("id") Long id) {
-    return prescriptionService.getPatientPrescriptions(id);
+  public String getPatientPrescriptions(@Valid @PathVariable("id") Long id) {
+    prescriptionService.getPatientPrescriptions(id);
+    return "patient/index";
   }
+
+//  @GetMapping("/{id}/prescriptions")
+//  public String getPatientPrescriptions(@Valid @PathVariable("id") Long id, Model model) {
+//    model.addAttribute("message", "Привіт, це повідомлення з сервера!");
+//    return "patient/index";
+//  }
 
   @PutMapping("/{id}")
   public PatientDTO updatePatient(@Valid @PathVariable("id") Long id,

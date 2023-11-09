@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Operations</title>
+</head>
+<body>
+
+<label sec:authorize="hasRole('ROLE_ADMIN')">Тільки для адміністраторів</label>
+<label sec:authorize="hasRole('ROLE_USER')">Тільки для користувачів</label>
+
+</body>
+</html>

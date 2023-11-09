@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB BEKS</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="login-field">
+    <div class="login-background">
+      <div class="login-title">
+        <span>Sign In</span>
+      </div>
+      <div class="login-form">
+
+        <form id="staff-login-form" action="#" th:action="@{/login}" th:object="${mLoginBody}" method="post">
+
+          <div class="field username-field">
+            <input type="text" id="email" name="email" placeholder="Email" th:field="*{email}">
+          </div>
+          <div class="field password-field">
+            <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
+          </div>
+
+<!--          <div class="field staff-field">-->
+
+<!--            <label>Select a staff member</label>-->
+
+            <div class="label-combobox">
+              <span>Select a staff member</span>
+            </div>
+
+          <div class="field staff-field">
+            <select name="staff" class="staff-select" id="staff-select">
+<!--              <option value="login">&#45;&#45;Please choose an option&#45;&#45;</option>-->
+              <option th:each="staffMember : ${staff}"
+                      th:value="'login/' + ${staffMember}"
+                      th:text="${staffMember}">Staff Name</option>
+            </select>
+          </div>
+<!--          </div>-->
+
+          <div class="field button-field">
+            <button class="button button-login" type="submit">LOGIN</button>
+<!--            <button class="button button-register" type="submit">REGISTER</button>-->
+          </div>
+        </form>
+
+        <script>
+          document.getElementById('staff-login-form').action = document.getElementById('staff-select').options[0].value;
+
+          document.getElementById('staff-select').addEventListener('change', function() {
+            var form = document.getElementById('staff-login-form');
+            form.action = this.value; // Змінюємо action форми на значення вибраного option
+          });
+        </script>
+
+      </div>
+    </div>
+  </div>
+  <span class="square square-tl"></span>
+  <span class="square square-tr"></span>
+  <span class="square square-bl"></span>
+  <span class="square square-br"></span>
+  <span class="star star1"></span>
+  <span class="star star2"></span>
+</body>
+</html>
