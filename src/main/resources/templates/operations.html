@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Operations</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
 </head>
 <body>
 
-<label sec:authorize="hasRole('ROLE_ADMIN')">Тільки для адміністраторів</label>
-<label sec:authorize="hasRole('ROLE_USER')">Тільки для користувачів</label>
+<div class="login-field">
+    <div class="login-background">
+        <div class="login-title">
+            Authenticated username: <div sec:authentication="name"></div>
+            Authenticated user roles: <div sec:authentication="principal.authorities"></div>
+        </div>
+        <div class="login-form">
+
+            <div class="field username-field">
+                <div sec:authorize="isAuthenticated()">You are successfully authenticated</div>
+            </div>
+            <div class="field password-field">
+                <div sec:authorize="hasRole('PATIENT')">PATIENT</div>
+            </div>
+
+            <div class="field staff-field">
+                <div sec:authorize="hasRole('DOCTOR')">DOCTOR</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<span class="square square-tl"></span>
+<span class="square square-tr"></span>
+<span class="square square-bl"></span>
+<span class="square square-br"></span>
+<span class="star star1"></span>
+<span class="star star2"></span>
 
 </body>
 </html>

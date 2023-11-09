@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import org.apache.logging.log4j.ThreadContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,6 +22,7 @@ import ukma.edu.ua.HospitalApp.api.auth.dto.MLoginBody;
 import ukma.edu.ua.HospitalApp.dto.DoctorDTO;
 import ukma.edu.ua.HospitalApp.dto.PatientDTO;
 import ukma.edu.ua.HospitalApp.exceptionhandler.IncorrectBodyException;
+import ukma.edu.ua.HospitalApp.models.Role;
 import ukma.edu.ua.HospitalApp.services.AuthService;
 
 @Controller
@@ -59,7 +61,8 @@ public class AuthController {
   @PostMapping("/login/patient")
   public String loginPatient(@ModelAttribute("mLoginBody") @Valid @RequestBody LoginBody body) {
     logger.info(loggerMarker, "Patient has logged in");
-    authService.loginPatient(body);
+    PatientDTO patientDTO = authService.loginPatient(body);
+
     return "operations";
   }
 
