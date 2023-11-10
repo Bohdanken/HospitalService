@@ -2,18 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1 th:text="${id}">Привіт, світ!</h1>
-
-<!--<div>-->
-<!--    <h2>All Prescriptions</h2>-->
-<!--    <ul>-->
-<!--        <li th:each="presc : ${prescriptions}">-->
-<!--            <span th:text="${presc.patientName}">Patient Name</span>-->
-<!--            &lt;!&ndash; Додайте більше полів, як потрібно &ndash;&gt;-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
+<div class="login-field">
+    <div class="login-title">
+        <h1 th:text="${id}">Привіт, світ!</h1>
+    </div>
+</div>
+<span class="square square-tl"></span>
+<span class="square square-tr"></span>
+<span class="square square-bl"></span>
+<span class="square square-br"></span>
+<span class="star star1"></span>
+<span class="star star2"></span>
 </body>
 </html>

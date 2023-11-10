@@ -38,7 +38,7 @@ public class PatientController {
 
   @GetMapping("/{id}/prescriptions")
   public String getPatientPrescriptions(@Valid @PathVariable("id") Long id) {
-    prescriptionService.getPatientPrescriptions(id);
+    PrescriptionDTO[] prescriptionDTO = prescriptionService.getPatientPrescriptions(id);
     return "patient/index";
   }
 
