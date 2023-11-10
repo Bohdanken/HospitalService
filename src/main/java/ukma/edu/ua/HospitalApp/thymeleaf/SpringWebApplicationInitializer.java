@@ -3,9 +3,7 @@ package ukma.edu.ua.HospitalApp.thymeleaf;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import jakarta.servlet.Filter;
-import ukma.edu.ua.HospitalApp.thymeleaf.business.SpringBusinessConfig;
-import ukma.edu.ua.HospitalApp.thymeleaf.web.SpringWebConfig;
-//public class SpringWebApplicationInitializer {}
+import ukma.edu.ua.HospitalApp.config.Config;
 public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     public static final String CHARACTER_ENCODING = "UTF-8";
@@ -19,12 +17,12 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { SpringWebConfig.class };
+        return new Class<?>[] { Config.class };
     }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { SpringBusinessConfig.class };
+        return new Class<?>[] { Config.class };
     }
 
     @Override
