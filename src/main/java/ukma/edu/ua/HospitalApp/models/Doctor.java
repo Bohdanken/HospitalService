@@ -10,11 +10,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "doctor")
 public class Doctor extends BaseEntity {
   @Column(name = "first_name")

@@ -45,6 +45,5 @@ public class MapAppender extends AbstractAppender {
   @Override
   public void append(LogEvent event) {
     logs.put(new Date().getTime(), event.getMessage().getFormattedMessage());
-    System.out.println("LOGS SIZE: " + logs.size());
   }
 }
