@@ -9,9 +9,10 @@
 
 <div class="login-field">
     <div class="login-background">
-        <div class="login-title">
-            Authenticated username: <div sec:authentication="name"></div>
-            Authenticated user roles: <div sec:authentication="principal.authorities"></div>
+        <div class="login-title" th:ob>
+            User email address: <label th:text="${mLoginBody.email}"></label>
+            <p></p>
+            User password: <label th:text="${mLoginBody.password}"></label>
         </div>
         <div class="login-form">
 
@@ -29,6 +30,29 @@
         </div>
     </div>
 </div>
+
+<!--<div class="login-field">-->
+<!--    <div class="login-background">-->
+<!--        <div class="login-title">-->
+<!--            Authenticated username: <div sec:authentication="name"></div>-->
+<!--            Authenticated user roles: <div sec:authentication="principal.authorities"></div>-->
+<!--        </div>-->
+<!--        <div class="login-form">-->
+
+<!--            <div class="field username-field">-->
+<!--                <div sec:authorize="isAuthenticated()">You are successfully authenticated</div>-->
+<!--            </div>-->
+<!--            <div class="field password-field">-->
+<!--                <div sec:authorize="hasRole('PATIENT')">PATIENT</div>-->
+<!--            </div>-->
+
+<!--            <div class="field staff-field">-->
+<!--                <div sec:authorize="hasRole('DOCTOR')">DOCTOR</div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <span class="square square-tl"></span>
 <span class="square square-tr"></span>
 <span class="square square-bl"></span>
