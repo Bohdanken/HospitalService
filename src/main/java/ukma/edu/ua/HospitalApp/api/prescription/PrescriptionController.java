@@ -4,11 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ukma.edu.ua.HospitalApp.exceptionhandler.IncorrectIDException;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
@@ -18,6 +14,11 @@ import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 @Tag(name = "Prescription", description = "Prescription endpoints")
 public class PrescriptionController {
   private final PrescriptionService prescriptionService;
+
+  @GetMapping("/limit")
+  public String limit() {
+    return "1";
+  }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deletePrescription(@PathVariable("id") long id) {

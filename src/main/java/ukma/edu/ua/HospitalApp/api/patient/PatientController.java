@@ -34,6 +34,11 @@ public class PatientController {
     return prescriptionService.getPatientPrescriptions(id);
   }
 
+  @GetMapping("/error")
+  public String mError() throws Exception {
+    throw new Exception("---patient error---");
+  }
+
   @PutMapping("/{id}")
   public PatientDTO updatePatient(@Valid @PathVariable("id") Long id,
                                   @Valid @RequestBody UpdatePatientBody body) {
