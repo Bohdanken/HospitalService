@@ -14,7 +14,7 @@ public class LimitingExecutionAspect {
     @Pointcut("execution(* ukma.edu.ua.HospitalApp.api.prescription.PrescriptionController.limit())")
     public void limitMethod() {}
 
-    private final RateLimiter rateLimiter = RateLimiter.create(1);
+    private final RateLimiter rateLimiter = RateLimiter.create(1.0 / 60.0);
 
     @Around("limitMethod()")
     public Object rateLimit(ProceedingJoinPoint joinPoint) {

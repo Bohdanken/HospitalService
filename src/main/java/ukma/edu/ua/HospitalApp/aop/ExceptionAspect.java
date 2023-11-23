@@ -15,7 +15,7 @@ public class ExceptionAspect {
     @Pointcut("execution(* ukma.edu.ua.HospitalApp.api.patient.PatientController.*(..))")
     public void patientControllerMethods() {}
 
-    @AfterThrowing
+    @AfterThrowing("patientControllerMethods()")
     public void afterThrowingMethodCall(JoinPoint jp) {
         System.out.println(jp.getSignature().getName() + " Error handling");
     }
