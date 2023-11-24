@@ -5,8 +5,6 @@ import com.google.maps.PlaceAutocompleteRequest.*;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.GeocodingResult;
-import com.google.maps.model.PlaceDetails;
-import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;

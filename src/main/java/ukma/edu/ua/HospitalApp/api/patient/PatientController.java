@@ -4,16 +4,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.dto.PatientDTO;
 import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
@@ -47,7 +41,11 @@ public class PatientController {
 //    model.addAttribute("message", "Привіт, це повідомлення з сервера!");
 //    return "patient/index";
 //  }
-
+@GetMapping("/address-suggestions")
+public ResponseEntity<String[]> getAddressSuggestions(@RequestParam("address") String address) {
+  String[] addressOptions = patientService.addressOptions(address);
+  return ResponseEntity.ok(addressOptions);
+}
   @PutMapping("/{id}")
   public PatientDTO updatePatient(@Valid @PathVariable("id") Long id,
                                   @Valid @RequestBody UpdatePatientBody body) {

@@ -1,6 +1,7 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
@@ -10,9 +11,9 @@ import ukma.edu.ua.HospitalApp.models.Prescription;
 import ukma.edu.ua.HospitalApp.repositories.PrescriptionRepository;
 
 @Service
-@RequiredArgsConstructor
 public class PrescriptionService {
-  private final PrescriptionRepository prescriptionRepository;
+
+  private PrescriptionRepository prescriptionRepository;
 
   public PrescriptionDTO[] getPatientPrescriptions(long patientId) {
     Prescription searchPrescription = new Prescription();
@@ -22,6 +23,10 @@ public class PrescriptionService {
 
     var prescriptions = prescriptionRepository.findAll(Example.of(searchPrescription));
     return prescriptions.stream().map(this::toPrescriptionDTO).toArray(PrescriptionDTO[]::new);
+  }
+  @Autowired
+  public PrescriptionService(PrescriptionRepository repository) {
+    this.prescriptionRepository = repository;
   }
 
   public void deletePrescription(long id) {
