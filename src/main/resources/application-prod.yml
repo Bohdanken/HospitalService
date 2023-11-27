@@ -10,3 +10,8 @@ spring:
   h2:
     console:
       enabled: true
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

@@ -28,7 +28,7 @@ public class AuthService {
 
     var patient = patientRepository.findOne(Example.of(patientSearch));
     if (patient.isEmpty()) {
-      throw new ResponseStatusException(HttpStatusCode.valueOf(501),
+      throw new ResponseStatusException(HttpStatusCode.valueOf(401),
           "Given credentials are not correct");
     }
 
@@ -40,8 +40,9 @@ public class AuthService {
     doctorSearch.setEmail(data.getEmail());
 
     var doctor = doctorRepository.findOne(Example.of(doctorSearch));
+
     if (doctor.isEmpty()) {
-      throw new ResponseStatusException(HttpStatusCode.valueOf(501),
+      throw new ResponseStatusException(HttpStatusCode.valueOf(401),
           "Given credentials are not correct");
     }
 
