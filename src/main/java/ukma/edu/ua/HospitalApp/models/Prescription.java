@@ -12,27 +12,22 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
 @Table(name = "prescription")
 public class Prescription extends BaseEntity {
   @Column(name = "date_of_issue")
   @Temporal(TemporalType.DATE)
-  private Date dateOfIssue;
+  public Date dateOfIssue;
 
   @ManyToOne(targetEntity = Patient.class)
   @JoinColumn(name = "patient_id", nullable = false)
-  private Patient patient;
+  public Patient patient;
 
   @ManyToMany(targetEntity = Drug.class, fetch = FetchType.LAZY)
   @JoinTable(
       name = "prescription_drug_map",
       joinColumns = @JoinColumn(name = "prescription_id"),
-      inverseJoinColumns = @JoinColumn(name = "drug_id")
-  )
-  private List<Drug> drugs;
+      inverseJoinColumns = @JoinColumn(name = "drug_id"))
+  public List<Drug> drugs;
 }
