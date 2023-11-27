@@ -1,8 +1,8 @@
 # Hospital service
 
-This project will expose an API for private medical institutions to operate with their patients, allow patients operate on their visits and doctors to track visits and issue prescriptions.
+This project exposes an API for private medical institutions to operate with their patients, allow patients operate on their visits and doctors to track visits and issue prescriptions.
 
-There will be 4 roles in this project: admin, hospital, doctor, patient.
+There are be 4 roles in this project: admin, hospital, doctor, patient.
 
 ### Admin
 
@@ -29,7 +29,7 @@ There will be 4 roles in this project: admin, hospital, doctor, patient.
 - Patients can access their prescriptions.
 
 
-#### Team - Primatization of Java
+#### Team 
 
 - Bohdan Shevchenko
 - Maksym Polishuk
