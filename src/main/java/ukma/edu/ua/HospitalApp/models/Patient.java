@@ -13,26 +13,26 @@ import java.util.List;
 @Table(name = "patient")
 @Data
 public class Patient extends BaseEntity {
-  @Column(name = "first_name")
-  public String firstName;
+    @Column(name = "first_name")
+    private String firstName;
 
-  @Column(name = "last_name")
-  public String lastName;
+    @Column(name = "last_name")
+    private String lastName;
 
-  @Column(name = "email")
-  public String email;
+    @Column(name = "email")
+    private String email;
 
-  @Column(name = "address")
-  public String address;
+    @Column(name = "address")
+    private String address;
 
-  @Column(name = "passport_number")
-  public String passportNumber;
+    @Column(name = "passport_number")
+    private String passportNumber;
 
-  @Column(name = "birth_date")
-  public Date birthDate;
+    @Column(name = "birth_date")
+    private Date birthDate;
 
-  private final Role role = Role.PATIENT;
+    private final Role role = Role.PATIENT;
 
-  @OneToMany(mappedBy = "patient")
-  public List<Prescription> prescriptions;
+    @OneToMany(mappedBy = "patient")
+    private List<Prescription> prescriptions;
 }

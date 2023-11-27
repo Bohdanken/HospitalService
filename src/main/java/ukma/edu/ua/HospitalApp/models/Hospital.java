@@ -12,12 +12,12 @@ import java.util.List;
 @Table(name = "hospital")
 @Data
 public class Hospital extends BaseEntity {
-  @Column(name = "name")
-  public String name;
+    @Column(name = "name")
+    private String name;
 
-  @Column(name = "address")
-  public String address;
+    @Column(name = "address")
+    private String address;
 
-  @OneToMany(targetEntity = Doctor.class)
-  public List<Doctor> doctorList;
+    @OneToMany(targetEntity = Doctor.class)
+    private List<Doctor> doctorList;
 }
