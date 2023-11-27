@@ -39,3 +39,12 @@ public class Doctor extends BaseEntity {
 
     // Constructor, getters, and setters (if necessary)
 }
+
+        THERAPIST,
+        ORTHOPEDIST,
+        DENTIST,
+        COSMETOLOGIST
+    }
+
+    // Constructor, getters, and setters (if necessary)
+}

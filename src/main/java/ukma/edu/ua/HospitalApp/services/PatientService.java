@@ -12,6 +12,8 @@ import ukma.edu.ua.HospitalApp.dto.PatientDTO;
 import ukma.edu.ua.HospitalApp.mappers.PatientMapper;
 import ukma.edu.ua.HospitalApp.models.Patient;
 import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
+import ukma.edu.ua.HospitalApp.shared.JWTService;
+import ukma.edu.ua.HospitalApp.shared.JwtConfig;
 
 import java.io.IOException;
 
@@ -23,13 +25,12 @@ public class PatientService {
     this.patientRepository = patientRepository;
   }
 
-
   public Patient createPatient(Patient patient) {
     return patientRepository.save(patient);
   }
 
   public String[] addressOptions(String address){
-    String apiKey=JWTService.getApiKey("maps_api_key");
+    String apiKey = JWTService.getApiKey("maps_api_key");
     GeoApiContext context = new GeoApiContext.Builder()
             .apiKey(apiKey)
             .build();
