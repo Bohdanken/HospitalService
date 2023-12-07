@@ -4,20 +4,21 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
-
 import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "hospital")
-@Data
 public class Hospital extends BaseEntity {
-    @Column(name = "name")
-    private String name;
+  @Column(name = "name")
+  private String name;
 
-    @Column(name = "address")
-    private String address;
+  @Column(name = "address")
+  private String address;
 
-    @OneToMany(targetEntity = Doctor.class)
-    private List<Doctor> doctorList;
+  @OneToMany(targetEntity = Doctor.class)
+  private List<Doctor> doctorList;
 }

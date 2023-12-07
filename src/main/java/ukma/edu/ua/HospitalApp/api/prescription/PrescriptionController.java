@@ -13,7 +13,7 @@ import ukma.edu.ua.HospitalApp.exceptionhandler.IncorrectIDException;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
 @RestController
-@RequestMapping("/prescription")
+@RequestMapping("${app.prefix}/prescription")
 @RequiredArgsConstructor
 @Tag(name = "Prescription", description = "Prescription endpoints")
 public class PrescriptionController {

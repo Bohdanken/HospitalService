@@ -1,7 +1,7 @@
 package ukma.edu.ua.HospitalApp.dto;
 
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.models.*;
+import ukma.edu.ua.HospitalApp.models.Doctor;
 
 
 @Data

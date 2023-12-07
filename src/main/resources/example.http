@@ -1,18 +1,20 @@
 ###
-POST http://localhost:8092/auth/login/patient
+POST http://localhost:8092/api/auth/login
 Content-Type: application/json
 
 {
   "email": "andrew@gmail.com",
-  "password": "asadsd"
+  "password": ""
 }
 
 ###
-GET http://localhost:8092/patient/1/prescriptions
+GET http://localhost:8092/api/patient/1/prescriptions
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXdAZ21haWwuY29tIiwiaWF0IjoxNzAxOTcxMzE2LCJleHAiOjE3MDE5ODMzMTZ9.1ZnwPeI6WILRWwdR1NZWCJftvcIgte814aJLyTYOz9M
 
 ###
-PUT http://localhost:8092/patient/1
+PUT http://localhost:8092/api/patient/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXdAZ21haWwuY29tIiwiZXhwIjoxNzAxODgxMjIxfQ.IxFO_GS4dVUZsTWwtfR9afrD00wQrgc6K5RRppZqS_U
 
 {
   "email": "andrew@gmail.com",
@@ -24,4 +26,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8092/prescription/1
+DELETE http://localhost:8092/api/prescription/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXdAZ21haWwuY29tIiwiaWF0IjoxNzAxOTcxMzE2LCJleHAiOjE3MDE5ODMzMTZ9.1ZnwPeI6WILRWwdR1NZWCJftvcIgte814aJLyTYOz9M
+
+###

@@ -1,6 +1,5 @@
 package ukma.edu.ua.HospitalApp.api.patient.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
@@ -17,10 +16,6 @@ public class UpdatePatientBody {
   @NotNull
   @Length(max = 30)
   private String lastName;
-
-  @NotNull
-  @Email
-  private String email;
 
   @NotNull
   @Length(max = 100)

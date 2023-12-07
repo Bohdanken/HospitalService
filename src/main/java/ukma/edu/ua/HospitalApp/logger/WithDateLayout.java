@@ -10,21 +10,21 @@ import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.layout.AbstractStringLayout;
 
 @Plugin(
-    name = "RequestHandlerLayout",
+    name = "WithDateLayout",
     category = Node.CATEGORY,
     elementType = Layout.ELEMENT_TYPE,
     printObject = true
 )
-public class RequestHandlerLayout extends AbstractStringLayout {
+public class WithDateLayout extends AbstractStringLayout {
   private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-  protected RequestHandlerLayout() {
+  protected WithDateLayout() {
     super(null, null, null);
   }
 
   @PluginFactory
-  public static RequestHandlerLayout createLayout() {
-    return new RequestHandlerLayout();
+  public static WithDateLayout createLayout() {
+    return new WithDateLayout();
   }
 
   @Override
