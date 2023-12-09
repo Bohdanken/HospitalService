@@ -12,15 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CacheConfig {
   @Bean
-  public CacheManager cacheManager() {
+  CacheManager cacheManager() {
     CaffeineCacheManager cacheManager = new CaffeineCacheManager("PatientPrescriptions");
     cacheManager.setCaffeine(Caffeine
         .newBuilder()
         .expireAfterWrite(Duration.ofSeconds(15))
         .initialCapacity(10)
         .maximumSize(20)
-        .recordStats()
-    );
+        .recordStats());
     return cacheManager;
   }
 }

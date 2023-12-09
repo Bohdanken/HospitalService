@@ -25,10 +25,9 @@ public class AuthService {
     try {
       auth
           .getAuthenticationManager()
-          .authenticate(
-              new UsernamePasswordAuthenticationToken(email, password));
+          .authenticate(new UsernamePasswordAuthenticationToken(email, password));
     } catch (Exception e) {
-      throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
   }
 }

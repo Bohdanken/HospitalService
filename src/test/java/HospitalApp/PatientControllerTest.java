@@ -17,12 +17,11 @@ import ukma.edu.ua.HospitalApp.repositories.DoctorRepository;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
-@ContextConfiguration(classes = {PatientController.class, PatientService.class})
+@ContextConfiguration(classes = { PatientController.class, PatientService.class })
 @AutoConfigureMockMvc(addFilters = false)
-@Import({PatientService.class})
+@Import({ PatientService.class })
 @WebMvcTest
 public class PatientControllerTest {
-
   @Autowired
   private MockMvc mockMvc;
 
@@ -38,11 +37,11 @@ public class PatientControllerTest {
   @Test
   void testGetAddressSuggestions() throws Exception {
     String testAddress = "Dalveen street 2";
-    String[] mockResponse = {", Test City, TC"};
-    //given(patientService.addressOptions(testAddress)).willReturn(mockResponse);
+    String[] mockResponse = { ", Test City, TC" };
+    // given(patientService.addressOptions(testAddress)).willReturn(mockResponse);
 
     mockMvc.perform(get("/patient/address-suggestions")
-            .param("address", testAddress)).andDo(print())
+        .param("address", testAddress)).andDo(print())
         .andExpect(status().isOk());
   }
 }

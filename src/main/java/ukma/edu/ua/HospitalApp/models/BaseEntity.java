@@ -16,5 +16,5 @@ import lombok.NoArgsConstructor;
 public abstract class BaseEntity implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Long id;
+  private Long id;
 }

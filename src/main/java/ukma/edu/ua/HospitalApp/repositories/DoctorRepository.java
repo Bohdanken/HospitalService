@@ -6,6 +6,6 @@ import ukma.edu.ua.HospitalApp.models.Doctor;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-
+  public Doctor findByEmail(String email);
 }
 

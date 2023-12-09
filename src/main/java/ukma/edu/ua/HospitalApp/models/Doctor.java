@@ -31,6 +31,9 @@ public class Doctor extends User {
   @Enumerated(EnumType.STRING)
   private DoctorType doctorType;
 
+  @Column(name = "hospital_id", insertable = false, updatable = false)
+  private Long hospitalId;
+
   @ManyToOne(targetEntity = Hospital.class)
   @JoinColumn(name = "hospital_id", nullable = false)
   private Hospital hospital;

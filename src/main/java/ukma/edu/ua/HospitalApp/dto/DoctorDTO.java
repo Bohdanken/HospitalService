@@ -3,7 +3,6 @@ package ukma.edu.ua.HospitalApp.dto;
 import lombok.Data;
 import ukma.edu.ua.HospitalApp.models.Doctor;
 
-
 @Data
 public class DoctorDTO {
   private long id;
@@ -13,8 +12,6 @@ public class DoctorDTO {
   private String lastName;
 
   private String email;
-
-  private int age;
 
   private Doctor.DoctorType doctorType;
 }

@@ -1,9 +1,12 @@
-package ukma.edu.ua.HospitalApp.exceptionhandler;
+package ukma.edu.ua.HospitalApp.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
+@ToString
 public class ResponseError {
   private final HttpStatus status;
 
@@ -16,6 +19,11 @@ public class ResponseError {
     this.message = message;
     this.status = status;
   }
+  
+  public ResponseError(String message, HttpStatusCode status) {
+    this.message = message;
+    this.status = HttpStatus.valueOf(status.value());
+  }
 
   public String getMessage() {
     return message;
@@ -27,14 +35,5 @@ public class ResponseError {
 
   public LocalDateTime getTime() {
     return time;
-  }
-
-  @Override
-  public String toString() {
-    return "ResponseError{" +
-        "status=" + status +
-        ", message='" + message + '\'' +
-        ", time=" + time +
-        '}';
   }
 }

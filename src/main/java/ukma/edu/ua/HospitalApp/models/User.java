@@ -25,7 +25,6 @@ public abstract class User extends BaseEntity {
     PATIENT
   }
 
-  @SuppressWarnings("unused")
   public static class Roles {
     public static String ADMIN = String.valueOf(Role.ADMIN);
 
