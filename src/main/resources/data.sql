@@ -5,13 +5,15 @@ VALUES ('New clinic', 'Wall str. 12A');
 
 -- DOCTOR
 
-INSERT INTO doctor (first_name, last_name, email, age, doctor_type, hospital_id)
-VALUES ('Will', 'Smith', 'doc@gmail.com', 32, 'CARDIOLOGIST', 1);
+INSERT INTO doctor (first_name, last_name, email, birth_date, doctor_type, hospital_id, password)
+VALUES ('Will', 'Smith', 'doc@gmail.com', '1980-01-01', 'CARDIOLOGIST', 1,
+        '$2a$12$1zdfH1oSTAEbaCODXcBnQuNvlf95SvsMto/C6CmXHircOqJluNFsa');
 
 -- PATIENT
 
-INSERT INTO patient (first_name, last_name, email, address, passport_number, birth_date)
-VALUES ('Andrew', 'Tate', 'andrew@gmail.com', 'some address', 'YU123456', '1980-01-01');
+INSERT INTO patient (first_name, last_name, email, address, passport_number, birth_date, password)
+VALUES ('Andrew', 'Tate', 'andrew@gmail.com', 'some address', 'YU123456', '1980-01-01',
+        '$2a$12$1zdfH1oSTAEbaCODXcBnQuNvlf95SvsMto/C6CmXHircOqJluNFsa');
 
 -- DRUG
 

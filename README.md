@@ -1,6 +1,7 @@
 # Hospital service
 
-This project exposes an API for private medical institutions to operate with their patients, allow patients operate on their visits and doctors to track visits and issue prescriptions.
+This project exposes an API for private medical institutions to operate with their patients, allow patients operate on
+their visits and doctors to track visits and issue prescriptions.
 
 There are be 4 roles in this project: admin, hospital, doctor, patient.
 
@@ -28,8 +29,7 @@ There are be 4 roles in this project: admin, hospital, doctor, patient.
 - Patients can manage their visits to doctors in certain hospitals on certain date and time.
 - Patients can access their prescriptions.
 
-
-#### Team 
+#### Team
 
 - Bohdan Shevchenko
 - Maksym Polishuk

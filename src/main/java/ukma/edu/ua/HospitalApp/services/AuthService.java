@@ -1,59 +1,33 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.dto.DoctorDTO;
-import ukma.edu.ua.HospitalApp.dto.PatientDTO;
-import ukma.edu.ua.HospitalApp.mappers.DoctorMapper;
-import ukma.edu.ua.HospitalApp.mappers.PatientMapper;
-import ukma.edu.ua.HospitalApp.models.Doctor;
-import ukma.edu.ua.HospitalApp.models.Patient;
-import ukma.edu.ua.HospitalApp.repositories.DoctorRepository;
-import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
+import ukma.edu.ua.HospitalApp.config.auth.JWTService;
 
 @RequiredArgsConstructor
 @Service
 public class AuthService {
-  private final PatientRepository patientRepository;
+  private final AuthenticationConfiguration auth;
 
-  private final DoctorRepository doctorRepository;
+  private final JWTService jwtService;
 
-  public PatientDTO loginPatient(LoginBody data) {
-    Patient patientSearch = new Patient();
-    patientSearch.setEmail(data.getEmail());
+  public JWTService.TokenResponse login(LoginBody data) {
+    authenticate(data.getEmail(), data.getPassword());
+    return jwtService.generateToken(data.getEmail());
+  }
 
-    var patient = patientRepository.findOne(Example.of(patientSearch));
-    if (patient.isEmpty()) {
-      throw new ResponseStatusException(HttpStatusCode.valueOf(401),
-          "Given credentials are not correct");
+  private void authenticate(String email, String password) {
+    try {
+      auth
+          .getAuthenticationManager()
+          .authenticate(new UsernamePasswordAuthenticationToken(email, password));
+    } catch (Exception e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
-
-    return toPatientDTO(patient.get());
-  }
-
-  public DoctorDTO loginDoctor(LoginBody data) {
-    Doctor doctorSearch = new Doctor();
-    doctorSearch.setEmail(data.getEmail());
-
-    var doctor = doctorRepository.findOne(Example.of(doctorSearch));
-
-    if (doctor.isEmpty()) {
-      throw new ResponseStatusException(HttpStatusCode.valueOf(401),
-          "Given credentials are not correct");
-    }
-
-    return toDoctorDTO(doctor.get());
-  }
-
-  public PatientDTO toPatientDTO(Patient patient) {
-    return PatientMapper.INSTANCE.patientToPatientDTO(patient);
-  }
-
-  public DoctorDTO toDoctorDTO(Doctor doctor) {
-    return DoctorMapper.INSTANCE.doctorToDoctorDTO(doctor);
   }
 }

@@ -1,6 +1,6 @@
-package ukma.edu.ua.HospitalApp.api.patient.dto;
+package ukma.edu.ua.HospitalApp.api.auth.dto;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import java.util.Date;
@@ -8,24 +8,22 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class UpdatePatientBody {
-  @NotNull
-  @Length(max = 20)
+public class RegisterPatientBody {
+  @Length(min = 1, max = 30)
   private String firstName;
 
-  @NotNull
-  @Length(max = 30)
+  @Length(min = 1, max = 30)
   private String lastName;
 
-  @NotNull
-  @Length(max = 100)
+  @Length(min = 1, max = 100)
   private String address;
 
-  @NotNull
-  @Pattern(regexp = "^[A-Z]{2}\\d{6}$")
+  @Pattern(regexp = "^[A-Z]{2}[0-9]{6}$")
   private String passportNumber;
 
-  @NotNull
   @Past
   private Date birthDate;
+
+  @NotEmpty()
+  private String password;
 }
