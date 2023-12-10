@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import ukma.edu.ua.HospitalApp.api.patient.PatientController;
-import ukma.edu.ua.HospitalApp.repositories.DoctorRepository;
+import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
@@ -29,7 +29,7 @@ public class PatientControllerTest {
   private PrescriptionService prescriptionService;
 
   @MockBean
-  private DoctorRepository doctorRepository;
+  private DoctorDetailsRepository doctorRepository;
 
   @Autowired
   private PatientService patientService;

@@ -7,11 +7,11 @@ import lombok.Data;
 public class PatientDTO {
   private Long id;
 
+  private String email;
+
   private String firstName;
 
   private String lastName;
-
-  private String email;
 
   private String address;
 

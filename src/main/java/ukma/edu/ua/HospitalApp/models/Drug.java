@@ -13,10 +13,10 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "drug")
 public class Drug extends BaseEntity {
-  @Column(name = "name")
+  @Column(name = "name", nullable = false)
   private String name;
 
-  @Column(name = "producer")
+  @Column(name = "producer", nullable = false)
   private String producer;
 
   @ManyToMany(mappedBy = "drugs")

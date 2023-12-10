@@ -3,11 +3,9 @@ package ukma.edu.ua.HospitalApp.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.mappers.PrescriptionMapper;
-import ukma.edu.ua.HospitalApp.models.Patient;
 import ukma.edu.ua.HospitalApp.models.Prescription;
 import ukma.edu.ua.HospitalApp.repositories.PrescriptionRepository;
 
@@ -20,12 +18,7 @@ public class PrescriptionService {
 
   @Cacheable(value = "PatientPrescriptions", key = "#patientId")
   public PrescriptionDTO[] getPatientPrescriptions(long patientId) {
-    Prescription searchPrescription = new Prescription();
-    Patient searchPatient = new Patient();
-    searchPatient.setId(patientId);
-    searchPrescription.setPatient(searchPatient);
-
-    var prescriptions = prescriptionRepository.findAll(Example.of(searchPrescription));
+    var prescriptions = prescriptionRepository.findByPatientDetailsId(patientId);
     return prescriptions.stream().map(this::toPrescriptionDTO).toArray(PrescriptionDTO[]::new);
   }
 
@@ -37,7 +30,7 @@ public class PrescriptionService {
 
     var cache = cacheManager.getCache("PatientPrescriptions");
     if (cache != null) {
-      cache.evict(data.getPatientId());
+      cache.evict(data.getPatientDetailsId());
     }
     prescriptionRepository.delete(data);
   }

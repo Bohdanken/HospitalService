@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
+import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 
 class ApiTest {
   @Mock
-  private PatientRepository doctorRepository;
+  private PatientDetailsRepository doctorRepository;
 
   private final PatientService patientService = new PatientService(doctorRepository);
 

@@ -4,5 +4,11 @@ import lombok.Data;
 
 @Data
 public class AdminDTO {
-  private long id;
+  private Long id;
+
+  private String email;
+
+  private String firstName;
+
+  private String lastName;
 }
