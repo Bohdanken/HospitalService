@@ -2,7 +2,6 @@ package ukma.edu.ua.HospitalApp.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -20,18 +19,18 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "prescription")
 public class Prescription extends BaseEntity {
-  @Column(name = "date_of_issue")
+  @Column(name = "date_of_issue", nullable = false)
   @Temporal(TemporalType.DATE)
   private Date dateOfIssue;
 
-  @Column(name = "patient_id", updatable = false, insertable = false)
-  private Long patientId;
+  @Column(name = "patient_details_id", updatable = false, insertable = false, nullable = false)
+  private Long patientDetailsId;
 
-  @ManyToOne(targetEntity = Patient.class)
-  @JoinColumn(name = "patient_id", nullable = false)
-  private Patient patient;
+  @ManyToOne(targetEntity = PatientDetails.class)
+  @JoinColumn(name = "patient_details_id", nullable = false)
+  private PatientDetails patientDetails;
 
-  @ManyToMany(targetEntity = Drug.class, fetch = FetchType.LAZY)
+  @ManyToMany(targetEntity = Drug.class)
   @JoinTable(
       name = "prescription_drug_map",
       joinColumns = @JoinColumn(name = "prescription_id"),

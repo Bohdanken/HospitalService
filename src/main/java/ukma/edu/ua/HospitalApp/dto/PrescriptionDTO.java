@@ -5,7 +5,9 @@ import lombok.Data;
 
 @Data
 public class PrescriptionDTO {
-  private long id;
+  private Long id;
+
+  private Long patientId;
 
   private Date dateOfIssue;
 

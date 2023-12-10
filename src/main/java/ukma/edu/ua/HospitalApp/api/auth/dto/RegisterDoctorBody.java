@@ -7,8 +7,8 @@ import java.util.Date;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import ukma.edu.ua.HospitalApp.config.validation.enums.ValueOfEnum;
-import ukma.edu.ua.HospitalApp.models.Doctor;
-import ukma.edu.ua.HospitalApp.models.Doctor.DoctorType;
+import ukma.edu.ua.HospitalApp.models.DoctorDetails;
+import ukma.edu.ua.HospitalApp.models.DoctorDetails.DoctorType;
 
 @Data
 public class RegisterDoctorBody {
@@ -21,7 +21,7 @@ public class RegisterDoctorBody {
   @Past
   private Date birthDate;
 
-  @ValueOfEnum(enumClass = Doctor.DoctorType.class)
+  @ValueOfEnum(enumClass = DoctorDetails.DoctorType.class)
   private DoctorType doctorType;
  
   @Min(1)

@@ -1,28 +1,32 @@
 package ukma.edu.ua.HospitalApp.models;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@MappedSuperclass
-public abstract class User extends BaseEntity {
-  @Column(name = "email")
+@Entity
+@Table(name = "app_user")
+public class User extends BaseEntity {
+  @Column(name = "email", unique = true, nullable = false)
   private String email;
 
-  @Column(name = "password")
+  @Column(name = "password", nullable = false)
   private String password;
+
+  @Column(name = "role", nullable = false)
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
   public enum Role {
     ADMIN,
     DOCTOR,
-    PATIENT
+    PATIENT,
   }
 
   public static class Roles {

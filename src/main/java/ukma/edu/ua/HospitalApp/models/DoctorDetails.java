@@ -6,6 +6,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Date;
 import lombok.Data;
@@ -14,24 +15,29 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "doctor")
-public class Doctor extends User {
-  public static User.Role ROLE = User.Role.DOCTOR;
-  
-  @Column(name = "first_name")
+@Table(name = "doctor_details")
+public class DoctorDetails extends BaseEntity {
+  @Column(name = "first_name", nullable = false)
   private String firstName;
 
-  @Column(name = "last_name")
+  @Column(name = "last_name", nullable = false)
   private String lastName;
 
-  @Column(name = "birth_date")
+  @Column(name = "birth_date", nullable = false)
   private Date birthDate;
 
-  @Column(name = "doctor_type")
+  @Column(name = "doctor_type", nullable = false)
   @Enumerated(EnumType.STRING)
   private DoctorType doctorType;
 
-  @Column(name = "hospital_id", insertable = false, updatable = false)
+  @Column(name = "user_id", insertable = false, updatable = false, nullable = false)
+  private Long userId;
+
+  @OneToOne(targetEntity = User.class)
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
+
+  @Column(name = "hospital_id", insertable = false, updatable = false, nullable = false)
   private Long hospitalId;
 
   @ManyToOne(targetEntity = Hospital.class)

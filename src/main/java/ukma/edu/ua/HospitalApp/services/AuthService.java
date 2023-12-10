@@ -1,13 +1,12 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.config.auth.JWTService;
+import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +26,7 @@ public class AuthService {
           .getAuthenticationManager()
           .authenticate(new UsernamePasswordAuthenticationToken(email, password));
     } catch (Exception e) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+      throw new BadRequestException("Incorrect credentials");
     }
   }
 }

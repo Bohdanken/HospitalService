@@ -13,12 +13,12 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "hospital")
 public class Hospital extends BaseEntity {
-  @Column(name = "name")
+  @Column(name = "name", nullable = false)
   private String name;
 
-  @Column(name = "address")
+  @Column(name = "address", nullable = false)
   private String address;
 
-  @OneToMany(targetEntity = Doctor.class)
-  private List<Doctor> doctorList;
+  @OneToMany(targetEntity = DoctorDetails.class)
+  private List<DoctorDetails> doctorList;
 }

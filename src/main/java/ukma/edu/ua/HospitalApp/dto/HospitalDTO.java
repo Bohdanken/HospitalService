@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class HospitalDTO {
-  private long id;
+  private Long id;
 
-  String name;
+  private String name;
 
-  String address;
+  private String address;
 }

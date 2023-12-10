@@ -28,11 +28,11 @@ class PrescriptionDrugMapId implements Serializable {
 @IdClass(PrescriptionDrugMapId.class)
 public class PrescriptionDrugMap {
   @Id
-  @Column(name = "prescription_id", insertable = false, updatable = false)
+  @Column(name = "prescription_id", insertable = false, updatable = false, nullable = false)
   private Long prescriptionId;
 
   @Id
-  @Column(name = "drug_id", insertable = false, updatable = false)
+  @Column(name = "drug_id", insertable = false, updatable = false, nullable = false)
   private Long drugId;
 
   @ManyToOne(targetEntity = Prescription.class)

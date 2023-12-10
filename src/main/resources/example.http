@@ -14,7 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXdAZ21haWwuY29tIiwia
 ###
 PUT http://localhost:8092/api/patient/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyZXdAZ21haWwuY29tIiwiZXhwIjoxNzAxODgxMjIxfQ.IxFO_GS4dVUZsTWwtfR9afrD00wQrgc6K5RRppZqS_U
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXRpZW50MUBnbWFpbC5jb20iLCJpYXQiOjE3MDIyMTgxMDcsImV4cCI6MTcwMjIzMDEwN30.og9LV0BE1vlt6q3ePo4mklt10ECkqZ3_V9VOuF8d4Bk
 
 {
   "email": "andrew@gmail.com",

@@ -1,17 +1,22 @@
 package ukma.edu.ua.HospitalApp.dto;
 
+import java.util.Date;
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.models.Doctor;
+import ukma.edu.ua.HospitalApp.models.DoctorDetails;
 
 @Data
 public class DoctorDTO {
-  private long id;
+  private Long id;
+
+  private String email;
 
   private String firstName;
 
   private String lastName;
 
-  private String email;
+  private Date birthDate;
 
-  private Doctor.DoctorType doctorType;
+  private DoctorDetails.DoctorType doctorType;
+
+  private HospitalDTO hospital;
 }

@@ -6,18 +6,18 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.dto.PatientDTO;
+import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.mappers.PatientMapper;
-import ukma.edu.ua.HospitalApp.models.Patient;
-import ukma.edu.ua.HospitalApp.repositories.PatientRepository;
+import ukma.edu.ua.HospitalApp.models.PatientDetails;
+import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
 
 @Service
 @RequiredArgsConstructor
 public class PatientService {
-  private final PatientRepository patientRepository;
+  private final PatientDetailsRepository patientDetailsRepository;
 
   public String[] addressOptions(String address) {
     String apiKey = null;
@@ -35,7 +35,7 @@ public class PatientService {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return new String[] {"No suggestions"};
+    return new String[] { "No suggestions" };
 
   }
 
@@ -50,9 +50,8 @@ public class PatientService {
   }
 
   public PatientDTO updatePatient(UpdatePatientBody data, long id) {
-    Patient patientSearch = new Patient();
-    patientSearch.setId(id);
-    var patient = patientRepository.findOne(Example.of(patientSearch)).orElseThrow();
+    var patient = patientDetailsRepository.findById(id)
+        .orElseThrow(() -> new NotFoundException("Patient not found"));
 
     patient.setFirstName(data.getFirstName());
     patient.setLastName(data.getLastName());
@@ -60,12 +59,12 @@ public class PatientService {
     patient.setBirthDate(data.getBirthDate());
     patient.setAddress(data.getAddress());
 
-    patientRepository.save(patient);
+    patientDetailsRepository.save(patient);
 
     return toPatientPropertiesDTO(patient);
   }
 
-  public PatientDTO toPatientPropertiesDTO(Patient patient) {
+  public PatientDTO toPatientPropertiesDTO(PatientDetails patient) {
     return PatientMapper.INSTANCE.patientToPatientDTO(patient);
   }
 }
