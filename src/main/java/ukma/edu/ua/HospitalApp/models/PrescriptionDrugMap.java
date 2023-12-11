@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -23,6 +25,8 @@ class PrescriptionDrugMapId implements Serializable {
 }
 
 @Data
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "prescription_drug_map")
 @IdClass(PrescriptionDrugMapId.class)

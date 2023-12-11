@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp.api.auth.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
@@ -9,6 +10,9 @@ import org.hibernate.validator.constraints.Length;
 
 @Data
 public class RegisterPatientBody {
+  @Email
+  private String email;
+
   @Length(min = 1, max = 30)
   private String firstName;
 

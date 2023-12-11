@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.config.auth.JWTService;
 import ukma.edu.ua.HospitalApp.services.AuthService;
 
@@ -20,5 +22,15 @@ public class AuthController {
   @PostMapping("/login")
   public JWTService.TokenResponse login(@RequestBody LoginBody body) {
     return authService.login(body);
+  }
+
+  @PostMapping("/register/doctor")
+  public JWTService.TokenResponse registerDoctor(@RequestBody RegisterDoctorBody body) {
+    return authService.registerDoctor(body);
+  }
+
+  @PostMapping("/register/patient")
+  public JWTService.TokenResponse registerPatient(@RequestBody RegisterPatientBody body) {
+    return authService.registerPatient(body);
   }
 }
