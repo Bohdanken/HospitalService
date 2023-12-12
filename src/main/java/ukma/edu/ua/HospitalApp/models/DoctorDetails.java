@@ -11,9 +11,13 @@ import jakarta.persistence.Table;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "doctor_details")
 public class DoctorDetails extends BaseEntity {
@@ -36,9 +40,6 @@ public class DoctorDetails extends BaseEntity {
   @OneToOne(targetEntity = User.class)
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
-
-  @Column(name = "hospital_id", insertable = false, updatable = false, nullable = false)
-  private Long hospitalId;
 
   @ManyToOne(targetEntity = Hospital.class)
   @JoinColumn(name = "hospital_id", nullable = false)

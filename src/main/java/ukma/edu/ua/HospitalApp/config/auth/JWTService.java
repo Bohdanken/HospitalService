@@ -1,6 +1,5 @@
 package ukma.edu.ua.HospitalApp.config.auth;
 
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.time.Instant;
@@ -57,7 +56,7 @@ public class JWTService {
           .parseSignedClaims(token)
           .getPayload()
           .getSubject();
-    } catch (JwtException e) {
+    } catch (Exception e) {
       return null;
     }
   }

@@ -35,7 +35,7 @@ public class SpringSecurityConfiguration {
 
     return http
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(mvc.pattern("/api/auth/*")).permitAll()
+            .requestMatchers(mvc.pattern("/api/auth/**")).permitAll()
             .requestMatchers(mvc.pattern("/api/patient/*")).hasAuthority(User.Roles.PATIENT)
             .requestMatchers(mvc.pattern("/swagger*/**")).permitAll()
             .anyRequest().authenticated())
