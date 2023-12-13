@@ -11,6 +11,6 @@ import ukma.edu.ua.HospitalApp.models.Prescription;
 public interface PrescriptionMapper {
   PrescriptionMapper INSTANCE = Mappers.getMapper(PrescriptionMapper.class);
 
-  @Mapping(source = "patientDetailsId", target = "patientId")
+  @Mapping(source = "patientDetails.id", target = "patientId")
   PrescriptionDTO prescriptionToPrescriptionDTO(Prescription prescription);
 }

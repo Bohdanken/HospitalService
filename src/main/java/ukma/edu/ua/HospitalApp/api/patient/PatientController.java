@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
+import ukma.edu.ua.HospitalApp.config.Endpoints;
 import ukma.edu.ua.HospitalApp.dto.PatientDTO;
 import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 
 @RestController
-@RequestMapping("${app.prefix}/patient")
+@RequestMapping("${app.prefix}" + Endpoints.PATIENT)
 @RequiredArgsConstructor
 @Tag(name = "Patient", description = "Patient endpoints")
 public class PatientController {
@@ -26,18 +27,24 @@ public class PatientController {
 
   private final PatientService patientService;
 
-  @GetMapping("/{id}/prescriptions")
+  private static final String GET_PATIENT_PRESCRIPTIONS_PATH = "/{id}/prescriptions";
+
+  private static final String GET_ADDRESS_SUGGESTIONS_PATH = "/address-suggestions";
+
+  private static final String UPDATE_PATIENT_PATH = "/{id}";
+
+  @GetMapping(GET_PATIENT_PRESCRIPTIONS_PATH)
   public PrescriptionDTO[] getPatientPrescriptions(@Valid @PathVariable("id") Long id) {
     return prescriptionService.getPatientPrescriptions(id);
   }
 
-  @GetMapping("/address-suggestions")
+  @GetMapping(GET_ADDRESS_SUGGESTIONS_PATH)
   public ResponseEntity<String[]> getAddressSuggestions(@RequestParam("address") String address) {
     String[] addressOptions = patientService.addressOptions(address);
     return ResponseEntity.ok(addressOptions);
   }
 
-  @PutMapping("/{id}")
+  @PutMapping(UPDATE_PATIENT_PATH)
   public PatientDTO updatePatient(
       @Valid @PathVariable("id") Long id,
       @Valid @RequestBody UpdatePatientBody body) {

@@ -26,10 +26,7 @@ public class Prescription extends BaseEntity {
   @Column(name = "date_of_issue", nullable = false)
   @Temporal(TemporalType.DATE)
   private Date dateOfIssue;
-
-  @Column(name = "patient_details_id", updatable = false, insertable = false, nullable = false)
-  private Long patientDetailsId;
-
+  
   @ManyToOne(targetEntity = PatientDetails.class)
   @JoinColumn(name = "patient_details_id", nullable = false)
   private PatientDetails patientDetails;
