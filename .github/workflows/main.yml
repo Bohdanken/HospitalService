@@ -31,7 +31,7 @@ jobs:
       run: |
         sudo chmod +x gradlew
         sudo gradle --version
-        su8do echo $JAVA_HOME
+        sudo echo $JAVA_HOME
         sudo ./gradlew build
   deploy:
       runs-on: ubuntu-latest
