@@ -2,7 +2,7 @@ package ukma.edu.ua.HospitalApp.api.auth.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import java.util.Date;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class RegisterDoctorBody {
   @Email
   private String email;
 
-  @NotEmpty()
+  @NotNull
   private String password;
 
   @Length(min = 1, max = 30)

@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -12,46 +13,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import ukma.edu.ua.HospitalApp.ControllerTest;
 import ukma.edu.ua.HospitalApp.api.auth.AuthController;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
 import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
-import ukma.edu.ua.HospitalApp.config.auth.CustomUserDetailsService;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
 import ukma.edu.ua.HospitalApp.config.auth.JWTService.TokenResponse;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
 import ukma.edu.ua.HospitalApp.models.DoctorDetails.DoctorType;
 import ukma.edu.ua.HospitalApp.services.AuthService;
 
-@WebAppConfiguration
 @WebMvcTest(controllers = AuthController.class)
-public class AuthControllerTest {
+public class AuthControllerTest extends ControllerTest {
   @Autowired
-  private MockMvc mvc;
-
-  @Autowired
-  private WebApplicationContext context;
+  private AuthController authController;
 
   @MockBean
   private AuthService authService;
-
-  @MockBean
-  private CustomUserDetailsService userDetailsService;
-
-  @MockBean
-  private JWTService jwtService;
 
   private static String loginBody = null;
 
@@ -87,15 +71,13 @@ public class AuthControllerTest {
     registerPatientBody = new ObjectMapper().writeValueAsString(registerPatientData);
   }
 
-  @BeforeEach
-  public void setupEach() {
-    mvc = MockMvcBuilders
-        .webAppContextSetup(context)
-        .build();
+  @Test
+  @DisplayName("Smoke test on auth controller")
+  public void smoke() {
+    assertNotNull(authController);
   }
 
   @Test
-  @Order(1)
   @DisplayName("It should respond with token if login creds are correct")
   public void testLogin() throws Exception {
     when(authService.login(any())).thenReturn(new TokenResponse("TOKEN"));
@@ -110,7 +92,6 @@ public class AuthControllerTest {
   }
 
   @Test
-  @Order(2)
   @DisplayName("It should respond with error 400 if login creds are incorrect")
   public void testLoginFail() throws Exception {
     when(authService.login(any())).thenThrow(BadRequestException.class);
@@ -127,7 +108,6 @@ public class AuthControllerTest {
   }
 
   @Test
-  @Order(3)
   @DisplayName("It should respond with error 400 if body data is not valid")
   public void testLoginFailWithNotValidData() throws Exception {
     mvc
@@ -138,7 +118,6 @@ public class AuthControllerTest {
   }
 
   @Test
-  @Order(4)
   @DisplayName("It should respond with token if the doctor has been registered")
   public void registerDoctor() throws Exception {
     when(authService.registerDoctor(any())).thenReturn(new TokenResponse("TOKEN"));
@@ -153,7 +132,6 @@ public class AuthControllerTest {
   }
 
   @Test
-  @Order(5)
   @DisplayName("It should respond with token if the patient has been registered")
   public void registerPatient() throws Exception {
     when(authService.registerPatient(any())).thenReturn(new TokenResponse("TOKEN"));

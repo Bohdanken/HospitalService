@@ -1,7 +1,7 @@
 package ukma.edu.ua.HospitalApp.api.auth.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import java.util.Date;
@@ -28,6 +28,6 @@ public class RegisterPatientBody {
   @Past
   private Date birthDate;
 
-  @NotEmpty()
+  @NotNull
   private String password;
 }
