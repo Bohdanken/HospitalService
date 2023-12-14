@@ -57,7 +57,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.HOST }} "sudo pkill -f 'java -jar'"
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.HOST }} "sudo rm ~/*.jar -f"
       - name: Deploy new jar
-        run: scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ~/HospitalApp-0.0.1-SNAPSHOT.jar ${{ secrets.HOST }}:~/
+        run: scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa HospitalApp-0.0.1-SNAPSHOT.jar ${{ secrets.HOST }}:~/
       - name: Start application
         run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.HOST }} "sudo java -jar ~/HospitalApp-0.0.1-SNAPSHOT.jar"
 
