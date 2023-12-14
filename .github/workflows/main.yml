@@ -27,7 +27,9 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Build and test
-      run: sudo ls -a
+      run: |
+        sudo chmod +x gradlew
+        sudo ./gradlew build
   deploy:
       runs-on: ubuntu-latest
       needs: build
@@ -37,4 +39,4 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ssh
       - name: Copy SSH private key
-        run: sudo ls -a
+        run: sudo ls -a ./build/libs/
