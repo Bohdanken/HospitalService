@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ukma.edu.ua.HospitalApp.api.auth.AuthController;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.exceptions.ResponseError;
+import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.services.AuthService;
 
 @Controller
@@ -53,5 +55,11 @@ public class AuthControllerHttp {
     return ResponseEntity
             .status(HttpStatus.BAD_REQUEST)
             .body(errorMessage);
+  }
+  @ExceptionHandler(NotFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ResponseEntity<ResponseError> handleNotFoundException(NotFoundException ex) {
+    var error = new ResponseError(ex.getReason(), HttpStatus.NOT_FOUND);
+    return new ResponseEntity<ResponseError>(error, HttpStatus.NOT_FOUND);
   }
 }

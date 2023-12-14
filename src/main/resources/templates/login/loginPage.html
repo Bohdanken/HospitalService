@@ -56,6 +56,7 @@
     var loginForm = document.getElementById('staff-login-form');
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
+      console.log("Form submission intercepted");
       var formData = new FormData(loginForm);
       fetch(loginForm.action, {
         method: 'POST',
