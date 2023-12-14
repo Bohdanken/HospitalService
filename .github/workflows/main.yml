@@ -51,7 +51,7 @@ jobs:
         run: |
           sudo mkdir -p ~/.ssh
           sudo touch ~/.ssh/id_rsa
-          sudo echo "${{ secrets.SSH_SECRET }}" >> ~/.ssh/id_rsa
+          sudo echo "${{ secrets.SSH_SECRET }}" | sudo tee ~/.ssh/id_rsa
       - name: Delete previous jar 
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} "pkill -f 'java -jar'"
