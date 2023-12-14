@@ -30,8 +30,6 @@ jobs:
     - name: Build and test
       run: |
         sudo chmod +x gradlew
-        sudo touch gradle.properties
-        sudo echo "org.gradle.java.home=$JAVA_HOME" >> gradle.properties
         sudo gradle --version
         sudo echo $JAVA_HOME
         sudo ./gradlew build
