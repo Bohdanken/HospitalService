@@ -47,5 +47,19 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y ssh
-      - name: Copy SSH private key
-        run: sudo ls -a
+      - name: Copy SSH key
+        run: |
+          sudo mkdir -p ~/.ssh
+          sudo echo "${{ secrets.SSH_SECRET }}" >> ~/.ssh/id_rsa
+          sudo chmod 400 ~/.ssh/id_rsa
+      - name: Delete previous jar 
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} "pkill -f 'java -jar'"
+          ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} "sudo rm ~/*.jar -f"
+      - name: Deploy new jar
+        run: scp -i ~/.ssh/id_rsa ~/HospitalApp-0.0.1-SNAPSHOT.jar ${{ secrets.HOST }}:~/
+      - name: Start application
+        run: ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} "sudo java -jar ~/HospitalApp-0.0.1-SNAPSHOT.jar"
+
+
+          
