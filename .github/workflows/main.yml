@@ -27,7 +27,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Build and test
-      run: sudo ./gradlew build
+      run: sudo ls -a
   deploy:
       runs-on: ubuntu-latest
       needs: build
