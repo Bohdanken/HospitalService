@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospitalier</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="app-title-background">
+  <span class="app-title">Hospitalier</span>
+</div>
+
+  <div class="login-field">
+    <div class="login-background">
+      <div class="login-title">
+        <span>Sign In</span>
+      </div>
+      <div class="login-form">
+
+        <form id="staff-login-form" action="#" th:action="@{${loginUrl}}" th:object="${mLoginBody}" method="post">
+
+          <div class="field username-field">
+            <label for="email"></label><input type="text" id="email" name="email" placeholder="Email" th:field="*{email}">
+          </div>
+          <div class="field password-field">
+            <label for="password"></label><input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
+          </div>
+          <div class="field button-field">
+            <button class="button button-login" type="submit">LOGIN</button>
+          </div>
+          <div th:if="${loginError}" class="alert alert-danger" th:text="${loginError}"></div>
+        </form>
+ <!--       <script>
+          document.getElementById('staff-login-form').action = document.getElementById('staff-select').options[0].value;
+
+          document.getElementById('staff-select').addEventListener('change', function() {
+            var form = document.getElementById('staff-login-form');
+            form.action = this.value; // Змінюємо action форми на значення вибраного option
+          });
+        </script>
+-->
+      </div>
+    </div>
+  </div>
+  <span class="square square-tl"></span>
+  <span class="square square-tr"></span>
+  <span class="square square-bl"></span>
+  <span class="square square-br"></span>
+  <span class="star star1"></span>
+  <span class="star star2"></span>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('staff-login-form');
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      var formData = new FormData(loginForm);
+      fetch(loginForm.action, {
+        method: 'POST',
+        body: formData
+      })
+              .then(response => response.json())
+              .then(data => {
+                storeTokenInMemory(data.token);
+              })
+              .catch(error => console.error('Error:', error));
+    });
+  });
+  function storeTokenInMemory(token) {
+    window.sessionStorage.setItem('jwtToken', token);
+  }
+</script>
+
+</html>

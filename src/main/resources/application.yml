@@ -23,10 +23,14 @@ springdoc:
     path: /swagger-json
 
 app:
-  prefix: /api
+  prefix: /api/auth
   jwt:
     access-token-lifetime: 12000
     refresh-token-lifetime: 24000
     # SECRETS HAVE TO BE DEFINED IN .env FILE! THIS IS SENSITIVE INFORMATION
     access-token-secret: svLos0dT/tCDaw5hqFNKzqg32WrOU9dedOLN0zx6PII=
     refresh-token-secret: JC+AhCxTbmSU8mgIzeb7ErLJRwk1WE/hDEfuHumgq+M=
+logging:
+  level:
+    org.springframework: DEBUG
+    com.myapp: DEBUG

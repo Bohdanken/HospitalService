@@ -1,8 +1,11 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.config.auth.JWTService;
@@ -28,5 +31,10 @@ public class AuthService {
     } catch (Exception e) {
       throw new BadRequestException("Incorrect credentials");
     }
+  }
+
+  public static boolean isAuthenticated() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
   }
 }
