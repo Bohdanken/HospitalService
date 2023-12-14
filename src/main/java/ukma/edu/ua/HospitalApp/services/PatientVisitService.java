@@ -9,7 +9,11 @@ import ukma.edu.ua.HospitalApp.api.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.dto.VisitDTO;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.mappers.PatientVisitMapper;
+import ukma.edu.ua.HospitalApp.models.DoctorDetails;
+import ukma.edu.ua.HospitalApp.models.PatientDetails;
 import ukma.edu.ua.HospitalApp.models.PatientVisit;
+import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.repositories.PatientVisitRepository;
 
 @Service
@@ -17,12 +21,25 @@ import ukma.edu.ua.HospitalApp.repositories.PatientVisitRepository;
 public class PatientVisitService {
 
     private final PatientVisitRepository patientVisitRepository;
+    private final PatientDetailsRepository patientDetailsRepository;
+    private final DoctorDetailsRepository doctorDetailsRepository;
 //    private final CacheManager cacheManager;
 
     public VisitDTO createPatientVisit(VisitBody data) {
+//        var patientVisit = PatientVisit.builder()
+//                .patientDetailsId(data.getPatientId())
+//                .doctorDetailsId(data.getDoctorId())
+//                .dateOfVisit(data.getDateOfVisit())
+//                .build();
+
+        PatientDetails patient = patientDetailsRepository.findById(data.getPatientId())
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+        DoctorDetails doctor = doctorDetailsRepository.findById(data.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
         var patientVisit = PatientVisit.builder()
-                .patientDetailsId(data.getPatientId())
-                .doctorDetailsId(data.getDoctorId())
+                .patientDetails(patient)
+                .doctorDetails(doctor)
                 .dateOfVisit(data.getDateOfVisit())
                 .build();
 

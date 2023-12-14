@@ -12,7 +12,9 @@ public interface PatientVisitMapper {
 
     PatientVisitMapper INSTANCE = Mappers.getMapper(PatientVisitMapper.class);
 
-    @Mapping(source = "patientDetailsId", target = "patientId")
-    @Mapping(source = "doctorDetailsId", target = "doctorId")
+//    @Mapping(source = "patientDetailsId", target = "patientId")
+//    @Mapping(source = "doctorDetailsId", target = "doctorId")
+    @Mapping(source = "patientDetails.id", target = "patientId")
+    @Mapping(source = "doctorDetails.id", target = "doctorId")
     VisitDTO patientVisitToVisitDTO(PatientVisit patientVisit);
 }
