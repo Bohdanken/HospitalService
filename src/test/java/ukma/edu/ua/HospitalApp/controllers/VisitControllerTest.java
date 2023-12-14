@@ -2,7 +2,6 @@ package ukma.edu.ua.HospitalApp.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,6 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import ukma.edu.ua.HospitalApp.api.visit.VisitController;
 import ukma.edu.ua.HospitalApp.api.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.api.visit.dto.VisitBody;
+import ukma.edu.ua.HospitalApp.config.auth.CustomUserDetailsService;
+import ukma.edu.ua.HospitalApp.config.auth.JWTService;
 import ukma.edu.ua.HospitalApp.dto.VisitDTO;
 import ukma.edu.ua.HospitalApp.services.PatientVisitService;
 
@@ -25,7 +26,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -41,6 +42,13 @@ public class VisitControllerTest {
     @MockBean
     private PatientVisitService patientVisitService;
 
+    @MockBean
+    private CustomUserDetailsService customUserDetailsService;
+
+    @MockBean
+    private JWTService jwtService;
+
+
     private static String updateVisitBody = null;
     private static String visitBody = null;
 
@@ -50,13 +58,13 @@ public class VisitControllerTest {
         visitData.setPatientId(2L);
         visitData.setDoctorId(1L);
         visitData.setDateOfVisit(
-                Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
+                Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30))
         );
         visitBody = new ObjectMapper().writeValueAsString(visitData);
 
         var updateVisitData = new UpdateVisitBody();
         updateVisitData.setDateOfVisit(
-                Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
+                Timestamp.valueOf(LocalDateTime.of(2024, 2, 22, 16, 30))
         );
         updateVisitBody = new ObjectMapper().writeValueAsString(updateVisitData);
     }
@@ -74,7 +82,7 @@ public class VisitControllerTest {
     public void testCreateVisit() throws Exception {
         when(patientVisitService.createPatientVisit(any())).thenReturn(
                 new VisitDTO(1L, 2L, 1L,
-                    Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
+                    Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30))
                 ));
 
         mvc
@@ -86,9 +94,7 @@ public class VisitControllerTest {
             .andExpect(jsonPath("$.id").value(1L))
             .andExpect(jsonPath("$.patientId").value(2L))
             .andExpect(jsonPath("$.doctorId").value(1L))
-            .andExpect(jsonPath("$.dateOfVisit").value(
-                    Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
-            ));
+            .andExpect(jsonPath("$.dateOfVisit").value("2024-02-21T14:30:00.000+00:00"));
     }
 
     @Test
@@ -97,9 +103,9 @@ public class VisitControllerTest {
     public void testGetVisitByPatient() throws Exception {
         VisitDTO[] visitDTOS = new VisitDTO[] {
                 new VisitDTO(1L, 2L, 1L,
-                    Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 0))),
+                        Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30))),
                 new VisitDTO(2L, 2L, 2L,
-                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30)))
+                        Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30)))
         };
 
         when(patientVisitService.getPatientVisitsByPatient(any())).thenReturn(visitDTOS);
@@ -110,8 +116,8 @@ public class VisitControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].patientId", is(2L)))
-                .andExpect(jsonPath("$[1].patientId", is(2L)));
+                .andExpect(jsonPath("$[0].patientId", is(2)))
+                .andExpect(jsonPath("$[1].patientId", is(2)));
     }
 
     @Test
@@ -120,12 +126,12 @@ public class VisitControllerTest {
     public void testGetVisitByDoctor() throws Exception {
         VisitDTO[] visitDTOS = new VisitDTO[] {
                 new VisitDTO(1L, 1L, 1L,
-                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 0))),
+                        Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30))),
                 new VisitDTO(2L, 2L, 1L,
-                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30)))
+                        Timestamp.valueOf(LocalDateTime.of(2024, 2, 21, 16, 30)))
         };
 
-        when(patientVisitService.getPatientVisitsByPatient(any())).thenReturn(visitDTOS);
+        when(patientVisitService.getPatientVisitsByDoctor(any())).thenReturn(visitDTOS);
 
         mvc
                 .perform(get("/api/visit/doctor/1")
@@ -133,8 +139,8 @@ public class VisitControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].doctorId", is(1L)))
-                .andExpect(jsonPath("$[1].doctorId", is(1L)));
+                .andExpect(jsonPath("$[0].doctorId", is(1)))
+                .andExpect(jsonPath("$[1].doctorId", is(1)));
     }
 
     @Test
@@ -143,7 +149,7 @@ public class VisitControllerTest {
     public void testUpdateVisit() throws Exception {
         when(patientVisitService.updateVisit(any(), anyLong())).thenReturn(
                 new VisitDTO(1L, 2L, 1L,
-                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
+                        Timestamp.valueOf(LocalDateTime.of(2024, 2, 22, 16, 30))
                 ));
 
         mvc
@@ -155,31 +161,19 @@ public class VisitControllerTest {
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.patientId").value(2L))
                 .andExpect(jsonPath("$.doctorId").value(1L))
-                .andExpect(jsonPath("$.dateOfVisit").value(
-                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
-                ));
+                .andExpect(jsonPath("$.dateOfVisit").value("2024-02-22T14:30:00.000+00:00"));
     }
 
-//    @Test
-//    @Order(5)
-//    @DisplayName("Returns a modified visit")
-//    public void testDeleteVisit() throws Exception {
-//        when(patientVisitService.deletePatientVisit(anyLong())).thenReturn(
-//                new VisitDTO(1L, 2L, 1L,
-//                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
-//                ));
-//
-//        mvc
-//                .perform(delete("/api/visit/1")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(updateVisitBody))
-//                .andExpect(status().isOk())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.id").value(1L))
-//                .andExpect(jsonPath("$.patientId").value(2L))
-//                .andExpect(jsonPath("$.doctorId").value(1L))
-//                .andExpect(jsonPath("$.dateOfVisit").value(
-//                        Timestamp.valueOf(LocalDateTime.of(2023, 12, 14, 16, 30))
-//                ));
-//    }
+    @Test
+    @Order(5)
+    @DisplayName("Delete a visit")
+    public void testDeleteVisit() throws Exception {
+
+        doNothing().when(patientVisitService).deletePatientVisit(anyLong());
+
+        mvc.perform(delete("/api/visit/1"))
+                .andExpect(status().isOk());
+
+        verify(patientVisitService).deletePatientVisit(1L);
+    }
 }
