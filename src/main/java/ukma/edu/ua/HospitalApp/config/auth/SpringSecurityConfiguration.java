@@ -69,7 +69,7 @@ public class SpringSecurityConfiguration {
     return provider;
   }
 
-  //@Bean
+  @Bean
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }

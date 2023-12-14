@@ -56,6 +56,7 @@ public class AuthControllerHttp {
             .status(HttpStatus.BAD_REQUEST)
             .body(errorMessage);
   }
+
   @ExceptionHandler(NotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public ResponseEntity<ResponseError> handleNotFoundException(NotFoundException ex) {

@@ -33,7 +33,7 @@ public class AuthController {
   }
 
     @PostMapping(LOGIN_PATH)
-    public JWTService.TokenResponse login(@Valid @RequestBody LoginBody body) {
+    public JWTService.TokenResponse login(@Valid @ModelAttribute("mLoginBody") LoginBody body) {
       return authService.login(body);
     }
 

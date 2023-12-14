@@ -15,7 +15,6 @@ public class HospitalService {
   public Hospital createHospital(Hospital hospital) {
     return hospitalRepository.save(hospital);
   }
-
   public Hospital updateHospital(long id, Hospital hospital) {
     Hospital depDB = hospitalRepository.findById(id).get();
 
@@ -24,7 +23,6 @@ public class HospitalService {
     }
     return hospitalRepository.save(depDB);
   }
-
   public void deleteHospital(Hospital hospital) {
     hospitalRepository.delete(hospital);
   }
