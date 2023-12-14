@@ -50,8 +50,11 @@ jobs:
       - name: Copy SSH key
         run: |
           sudo mkdir -p ~/.ssh
+          sudo cd ~/.ssh
+          sudo touch id_rsa
           sudo echo "${{ secrets.SSH_SECRET }}" >> ~/.ssh/id_rsa
           sudo chmod 400 ~/.ssh/id_rsa
+          
       - name: Delete previous jar 
         run: |
           ssh -i ~/.ssh/id_rsa ${{ secrets.HOST }} "pkill -f 'java -jar'"
