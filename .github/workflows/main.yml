@@ -24,6 +24,7 @@ jobs:
     - name: Build and test
       run: |
         sudo chmod +x gradlew
+        sudo gradle --version
         sudo ./gradlew build --refresh-dependencies
   deploy:
       runs-on: ubuntu-latest
