@@ -28,12 +28,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Build and test
-      run: |
-        sudo chmod +x gradlew
-        sudo gradle --version
-        sudo echo $JAVA_HOME
-        sudo echo $PATH
-        sudo gradle build -Dorg.gradle.java.home=/$JAVA_HOME
+      run: sudo gradle build -Dorg.gradle.java.home=/$JAVA_HOME
   deploy:
       runs-on: ubuntu-latest
       needs: build
@@ -43,4 +38,4 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ssh
       - name: Copy SSH private key
-        run: sudo ls -a ./build/libs/
+        run: sudo ls -a
