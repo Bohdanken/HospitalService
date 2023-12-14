@@ -7,9 +7,13 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "admin_details")
 public class AdminDetails extends BaseEntity {

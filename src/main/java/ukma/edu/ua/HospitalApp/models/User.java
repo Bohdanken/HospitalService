@@ -7,9 +7,13 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "app_user")
 public class User extends BaseEntity {

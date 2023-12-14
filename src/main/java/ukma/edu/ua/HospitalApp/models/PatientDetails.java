@@ -10,9 +10,13 @@ import java.util.Date;
 import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = "patient_details")
 public class PatientDetails extends BaseEntity {
@@ -30,10 +34,7 @@ public class PatientDetails extends BaseEntity {
 
   @Column(name = "birth_date", nullable = false)
   private Date birthDate;
-
-  @Column(name = "user_id", insertable = false, updatable = false, nullable = false)
-  private Long userId;
-
+  
   @OneToOne(targetEntity = User.class)
   @JoinColumn(name = "user_id", nullable = false)
   private User user;

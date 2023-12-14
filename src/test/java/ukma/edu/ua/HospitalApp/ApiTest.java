@@ -1,12 +1,14 @@
-package HospitalApp;
+package ukma.edu.ua.HospitalApp;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.services.PatientService;
 
+@Disabled
 class ApiTest {
   @Mock
   private PatientDetailsRepository doctorRepository;

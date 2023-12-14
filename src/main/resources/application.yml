@@ -23,7 +23,7 @@ springdoc:
     path: /swagger-json
 
 app:
-  prefix: /api/auth
+  prefix: /api/
   jwt:
     access-token-lifetime: 12000
     refresh-token-lifetime: 24000

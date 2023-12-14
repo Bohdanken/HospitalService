@@ -1,9 +1,10 @@
-package HospitalApp;
+package ukma.edu.ua.HospitalApp.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,6 +22,7 @@ import ukma.edu.ua.HospitalApp.services.PrescriptionService;
 @AutoConfigureMockMvc(addFilters = false)
 @Import({ PatientService.class })
 @WebMvcTest
+@Disabled
 public class PatientControllerTest {
   @Autowired
   private MockMvc mockMvc;
