@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ukma.edu.ua.HospitalApp.api.auth.AuthController;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.config.Endpoints;
 import ukma.edu.ua.HospitalApp.exceptions.ResponseError;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.services.AuthService;
@@ -40,7 +41,7 @@ public class AuthControllerHttp {
     }
     if (!model.containsAttribute("mLoginBody"))
       model.addAttribute("mLoginBody", new LoginBody());
-    model.addAttribute("loginUrl", AuthController.APP_PREFIX +"/login");
+    model.addAttribute("loginUrl", AuthController.APP_PREFIX + Endpoints.AUTH+AuthController.LOGIN_PATH);
     return "login/loginPage";
   }
 

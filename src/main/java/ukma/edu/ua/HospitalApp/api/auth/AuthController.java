@@ -18,7 +18,7 @@ import ukma.edu.ua.HospitalApp.services.AuthService;
 @RequiredArgsConstructor
 @Tag(name = "Auth", description = "Authentication routes for users")
 public class AuthController {
-  @Value("${app.prefix:/api/} ")
+  @Value("${app.prefix}")
   public String appPrefixInstance;
   public static String APP_PREFIX;
   private final AuthService authService;
@@ -33,7 +33,7 @@ public class AuthController {
   }
 
     @PostMapping(LOGIN_PATH)
-    public JWTService.TokenResponse login(@Valid @ModelAttribute("mLoginBody") LoginBody body) {
+    public JWTService.TokenResponse login( @ModelAttribute("mLoginBody")  LoginBody body) {
       return authService.login(body);
     }
 
