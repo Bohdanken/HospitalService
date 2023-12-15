@@ -37,16 +37,17 @@ public class SpringSecurityConfiguration {
   @Bean
   SecurityFilterChain filterChain(@NotNull HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
     AuthControllerHttp.logger.debug("We are in filter chain");
+    String patternLogin=AuthController.APP_PREFIX+"" + Endpoints.AUTH + "*/**";
     return http
             .authorizeHttpRequests(request -> request
                     .requestMatchers(new AntPathRequestMatcher("/css*/**")).permitAll()
                     .requestMatchers(mvc.pattern("/login")).permitAll()  // Permit access to login page
-                    .requestMatchers(mvc.pattern(AuthController.APP_PREFIX + Endpoints.AUTH + "/**")).permitAll()
+                    .requestMatchers(mvc.pattern("/**")).permitAll()
+                    .requestMatchers(mvc.pattern(patternLogin)).permitAll()
                     .requestMatchers(mvc.pattern(AuthController.APP_PREFIX + Endpoints.PATIENT + "/**")).hasAuthority(User.Roles.PATIENT)
                     .requestMatchers(mvc.pattern(AuthController.APP_PREFIX + Endpoints.PRESCRIPTION + "/**")).hasAuthority(User.Roles.DOCTOR)
                     .requestMatchers(mvc.pattern("/swagger*/**")).permitAll()
                     .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-                    .requestMatchers(mvc.pattern("/swagger*/**")).permitAll()
                     .anyRequest().authenticated())
            /* .formLogin(form -> form
                     .loginPage("/login")  // Specify the custom login page URL
@@ -69,7 +70,7 @@ public class SpringSecurityConfiguration {
     return provider;
   }
 
-  //@Bean
+  @Bean
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
