@@ -43,7 +43,21 @@ public class PatientControllerHttp {
             model.addAttribute("hospitals", hospitalService.getAllHospitals());
             model.addAttribute("doctorTypes", DoctorDetails.DoctorType.values());
             model.addAttribute("appointment", new VisitBody());
+//            return "login/patientPage";
         }
         return "login/patientPage";
+//        return "redirect:/login";
+    }
+
+    @GetMapping("/visits")
+    public String getVisits(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
+            String userEmail = authentication.getName();
+            model.addAttribute("patientEmail", userEmail);
+            model.addAttribute("patientName", "Unknown");
+            model.addAttribute("visits", patientVisitService.getVisits());
+        }
+        return "login/visitPage";
     }
 }
