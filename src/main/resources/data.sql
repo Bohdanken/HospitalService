@@ -291,3 +291,6 @@ INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 2);
 INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 1);
 INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 4);
 INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 5);
+
+-- PRESCRIPTIONS --------------------------------------------------------------------------------------------------------
+INSERT INTO visit (patient_details_id, doctor_details_id, date_of_visit) VALUES (1, 2, '2023-10-05')
