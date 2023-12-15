@@ -1,8 +1,14 @@
 package ukma.edu.ua.HospitalApp.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
@@ -25,6 +31,7 @@ public class AuthService {
   private final JWTService jwtService;
 
   private final UserService userService;
+  private final UserDetailsService userDetailsService;
 
   private final PatientDetailsRepository patientDetailsRepository;
 
@@ -69,13 +76,23 @@ public class AuthService {
     return jwtService.generateToken(user.getEmail());
   }
 
-  private void authenticate(String email, String password) {
+  public void authenticate(String email, String password) {
+    try {
+     userDetailsService.loadUserByUsername(email);
+    } catch (Exception ex) {
+      throw new BadRequestException("Incorrect email.");
+    }
     try {
       auth
-          .getAuthenticationManager()
-          .authenticate(new UsernamePasswordAuthenticationToken(email, password));
+              .getAuthenticationManager()
+              .authenticate(new UsernamePasswordAuthenticationToken(email, password));
     } catch (Exception e) {
-      throw new BadRequestException("Incorrect credentials");
+      throw new BadRequestException("Incorrect password.");
     }
+    }
+
+  public static boolean isAuthenticated() {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
   }
 }

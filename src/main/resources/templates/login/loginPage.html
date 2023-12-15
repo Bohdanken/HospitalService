@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospitalier</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="app-title-background">
+  <span class="app-title">Hospitalier</span>
+</div>
+
+  <div class="login-field">
+    <div class="login-background">
+      <div class="login-title">
+        <span>Sign In</span>
+      </div>
+      <div class="login-form">
+
+        <form id="staff-login-form" action="#" th:action="@{${loginUrl}}" th:object="${mLoginBody}" method="post">
+
+          <div class="field username-field">
+            <label for="email"></label><input type="text" id="email" name="email" placeholder="Email" th:field="*{email}">
+          </div>
+          <div class="field password-field">
+            <label for="password"></label><input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
+          </div>
+          <div class="field button-field">
+            <button class="button button-login" type="submit">LOGIN</button>
+          </div>
+          <div id="alert" class="alert"></div>
+        </form>
+ <!--       <script>
+          document.getElementById('staff-login-form').action = document.getElementById('staff-select').options[0].value;
+
+          document.getElementById('staff-select').addEventListener('change', function() {
+            var form = document.getElementById('staff-login-form');
+            form.action = this.value; // Змінюємо action форми на значення вибраного option
+          });
+        </script>
+-->
+      </div>
+    </div>
+  </div>
+  <span class="square square-tl"></span>
+  <span class="square square-tr"></span>
+  <span class="square square-bl"></span>
+  <span class="square square-br"></span>
+  <span class="star star1"></span>
+  <span class="star star2"></span>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('staff-login-form');
+    var errorMessage = ''; // Variable to store the error message
+
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      console.log("Form submission intercepted");
+      var formData = new FormData(loginForm);
+
+      fetch(loginForm.action, {
+        method: 'POST',
+        body: formData
+      })
+              .then(response => {
+                if (response.ok) {
+                  return response.json();
+                } else{
+                  return response.json().then(data => {
+                    errorMessage = data.message; // Assuming the error message is in 'message' field
+                    console.log("Error Message:", errorMessage);
+                    // Optionally, update the DOM with the error message
+                    document.getElementById('alert').textContent = errorMessage;
+                  });
+                }
+              })
+              .then(data => {
+                if (data && data.accessToken) {
+                  console.log("Token received:", data.accessToken);
+                  document.getElementById('alert').textContent = "";
+                  storeTokenInMemory(data.accessToken);
+                  makeAuthenticatedRequest("/visit-form","GET");
+                }
+              })
+              .catch(error => console.error('Error:', error));
+    });
+  });
+
+  function storeTokenInMemory(token) {
+    console.log("Storing token in session storage");
+    window.sessionStorage.setItem('jwtToken', token);
+  }
+
+  function getToken() {
+    const jwtToken = sessionStorage.getItem('jwtToken');
+    if (jwtToken) {
+      console.log('Token retrieved:', jwtToken);
+      return jwtToken;
+    } else {
+      console.log('No token found in session storage.');
+      return null;
+    }
+  }
+
+  function makeAuthenticatedRequest(url, method, body = null) {
+    const token = getToken();
+    const headers = new Headers();
+    if (token) {
+      headers.append('Authorization', 'Bearer ' + token);
+    }
+    // Add content-type header if there's a body
+    if (body) {
+      headers.append('Content-Type', 'application/json');
+      body = JSON.stringify(body);
+    }
+    const requestOptions = {
+      method: method,
+      headers: headers,
+      body: body,
+    };
+    fetch(url, requestOptions)
+            .then(response => {
+                window.location.href = response.url;
+            })
+            .catch(error => console.error('Error:', error));
+  }
+
+</script>
+
+
+
+
+</html>

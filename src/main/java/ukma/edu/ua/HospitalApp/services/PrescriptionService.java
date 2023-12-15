@@ -1,11 +1,19 @@
 package ukma.edu.ua.HospitalApp.services;
 
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.api.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
+import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.mappers.PrescriptionMapper;
+import ukma.edu.ua.HospitalApp.models.Drug;
+import ukma.edu.ua.HospitalApp.models.PatientDetails;
 import ukma.edu.ua.HospitalApp.models.Prescription;
 import ukma.edu.ua.HospitalApp.repositories.PrescriptionRepository;
 
@@ -14,25 +22,38 @@ import ukma.edu.ua.HospitalApp.repositories.PrescriptionRepository;
 public class PrescriptionService {
   private final PrescriptionRepository prescriptionRepository;
 
-  private final CacheManager cacheManager;
-
-  @Cacheable(value = "PatientPrescriptions", key = "#patientId")
   public PrescriptionDTO[] getPatientPrescriptions(long patientId) {
     var prescriptions = prescriptionRepository.findByPatientDetailsId(patientId);
     return prescriptions.stream().map(this::toPrescriptionDTO).toArray(PrescriptionDTO[]::new);
   }
 
-  public void deletePrescription(long id) {
-    var data = prescriptionRepository.findById(id).orElse(null);
-    if (data == null) {
-      return;
-    }
+  public PrescriptionDTO createPresription(CreatePresriptionBody data) {
+    List<Drug> drugs = data
+        .getDrugs()
+        .stream()
+        .map(id -> Drug.builder().id(id).build())
+        .collect(Collectors.toList());
 
-    var cache = cacheManager.getCache("PatientPrescriptions");
-    if (cache != null) {
-      cache.evict(data.getPatientDetailsId());
+    var presription = Prescription
+        .builder()
+        .dateOfIssue(Date.from(Instant.now()))
+        .patientDetails(PatientDetails.builder().id(data.getPatientId()).build())
+        .drugs(drugs)
+        .build();
+    try {
+      var result = prescriptionRepository.save(presription);
+      return toPrescriptionDTO(result);
+    } catch (DataIntegrityViolationException e) {
+      throw new BadRequestException("Provided data is not valid or does not exist");
     }
-    prescriptionRepository.delete(data);
+  }
+
+  public void deletePrescription(long id) {
+    var prescription = prescriptionRepository.findById(id).orElse(null);
+    if (prescription == null) {
+      throw new NotFoundException("Prescription not found");
+    }
+    prescriptionRepository.deleteById(id);
   }
 
   public PrescriptionDTO toPrescriptionDTO(Prescription prescription) {

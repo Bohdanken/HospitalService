@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp.services;
 
+import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ public class HospitalService {
   public Hospital createHospital(Hospital hospital) {
     return hospitalRepository.save(hospital);
   }
-
   public Hospital updateHospital(long id, Hospital hospital) {
     Hospital depDB = hospitalRepository.findById(id).get();
 
@@ -24,7 +24,9 @@ public class HospitalService {
     }
     return hospitalRepository.save(depDB);
   }
-
+  public List<Hospital> getAllHospitals() {
+    return hospitalRepository.findAll();
+  }
   public void deleteHospital(Hospital hospital) {
     hospitalRepository.delete(hospital);
   }
