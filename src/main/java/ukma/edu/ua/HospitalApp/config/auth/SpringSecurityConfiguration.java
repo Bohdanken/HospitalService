@@ -42,7 +42,7 @@ public class SpringSecurityConfiguration {
             .authorizeHttpRequests(request -> request
                     .requestMatchers(new AntPathRequestMatcher("/css*/**")).permitAll()
                     .requestMatchers(mvc.pattern("/login")).permitAll()  // Permit access to login page
-                   // .requestMatchers(mvc.pattern("/api/auth*/**")).permitAll()
+                    .requestMatchers(mvc.pattern("/**")).permitAll()
                     .requestMatchers(mvc.pattern(patternLogin)).permitAll()
                     .requestMatchers(mvc.pattern(AuthController.APP_PREFIX + Endpoints.PATIENT + "/**")).hasAuthority(User.Roles.PATIENT)
                     .requestMatchers(mvc.pattern(AuthController.APP_PREFIX + Endpoints.PRESCRIPTION + "/**")).hasAuthority(User.Roles.DOCTOR)
@@ -55,7 +55,7 @@ public class SpringSecurityConfiguration {
                     .permitAll())  // Permit all to access the form login*/
             .csrf(AbstractHttpConfigurer::disable)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            //.headers(c -> c.frameOptions(f -> f.sameOrigin()))
+            .headers(c -> c.frameOptions(f -> f.sameOrigin()))
             .build();
   }
 

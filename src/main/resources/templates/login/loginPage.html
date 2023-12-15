@@ -82,6 +82,7 @@
                   console.log("Token received:", data.accessToken);
                   document.getElementById('alert').textContent = "";
                   storeTokenInMemory(data.accessToken);
+                  makeAuthenticatedRequest("/visit-form","GET");
                 }
               })
               .catch(error => console.error('Error:', error));
@@ -93,32 +94,36 @@
     window.sessionStorage.setItem('jwtToken', token);
   }
 
+  function getToken() {
+    const jwtToken = sessionStorage.getItem('jwtToken');
+    if (jwtToken) {
+      console.log('Token retrieved:', jwtToken);
+      return jwtToken;
+    } else {
+      console.log('No token found in session storage.');
+      return null;
+    }
+  }
+
   function makeAuthenticatedRequest(url, method, body = null) {
     const token = getToken();
     const headers = new Headers();
-
     if (token) {
       headers.append('Authorization', 'Bearer ' + token);
     }
-
     // Add content-type header if there's a body
     if (body) {
       headers.append('Content-Type', 'application/json');
       body = JSON.stringify(body);
     }
-
     const requestOptions = {
       method: method,
       headers: headers,
       body: body,
     };
-
-    return fetch(url, requestOptions)
+    fetch(url, requestOptions)
             .then(response => {
-              if (!response.ok) {
-                throw new Error('Network response was not ok');
-              }
-              return response.json();
+                window.location.href = response.url;
             })
             .catch(error => console.error('Error:', error));
   }
