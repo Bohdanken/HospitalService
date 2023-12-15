@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospitalier</title>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="app-title-background">
+  <span class="app-title">Hospitalier</span>
+</div>
+
+<div class="login-field">
+  <div class="login-background">
+    <div class="login-title">
+      <span>Форма запису на прийом до лікаря</span>
+    </div>
+    <div>
+      <p>Емейл: <span th:text="${patientEmail}"></span></p>
+      <p>Ім'я: <span th:text="${patientName}"></span></p>
+    </div>
+    <div class="login-form">
+
+      <form th:action="@{/appointment}" th:object="${appointment}" method="post">
+        <div>
+          <label for="hospital">Виберіть лікарню:</label>
+          <select id="hospital" th:field="*{hospitalId}">
+            <option value="">-- Виберіть лікарню --</option>
+            <option th:each="hospital : ${hospitals}"
+                    th:value="${hospital.id}"
+                    th:text="${hospital.name}">Лікарня</option>
+          </select>
+        </div>
+        <div>
+          <label for="doctorType">Виберіть тип лікаря:</label>
+          <select id="doctorType" th:field="*{doctorTypeId}">
+            <option value="">-- Виберіть тип лікаря --</option>
+            <option th:each="type : ${doctorTypes}"
+                    th:value="${type.id}"
+                    th:text="${type.name}">Тип лікаря</option>
+          </select>
+        </div>
+        <div>
+          <label for="date">Дата візиту:</label>
+          <input type="date" id="date" th:field="*{date}">
+        </div>
+        <div>
+          <label for="time">Час візиту:</label>
+          <input type="time" id="time" th:field="*{time}">
+        </div>
+
+        <div>
+          <button type="submit">Записатися</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<span class="square square-tl"></span>
+<span class="square square-tr"></span>
+<span class="square square-bl"></span>
+<span class="square square-br"></span>
+<span class="star star1"></span>
+<span class="star star2"></span>
+</body>
+
+</html>
