@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.patient;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
@@ -7,12 +7,8 @@ import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
-import ukma.edu.ua.HospitalApp.dto.PatientDTO;
+import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.mappers.PatientMapper;
-import ukma.edu.ua.HospitalApp.models.PatientDetails;
-import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
 
 @Service
 @RequiredArgsConstructor

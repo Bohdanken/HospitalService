@@ -15,10 +15,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ukma.edu.ua.HospitalApp.config.auth.CustomUserDetailsService;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
-import ukma.edu.ua.HospitalApp.config.auth.SpringSecurityConfiguration;
-import ukma.edu.ua.HospitalApp.repositories.UserRepository;
+import ukma.edu.ua.HospitalApp.auth.CustomUserDetailsService;
+import ukma.edu.ua.HospitalApp.auth.JWTService;
+import ukma.edu.ua.HospitalApp.auth.SpringSecurityConfiguration;
+import ukma.edu.ua.HospitalApp.auth.UserRepository;
 
 @SuppressWarnings("OneTopLevelClassCheck")
 @TestConfiguration

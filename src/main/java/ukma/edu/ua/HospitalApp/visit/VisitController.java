@@ -1,19 +1,12 @@
-package ukma.edu.ua.HospitalApp.api.visit;
+package ukma.edu.ua.HospitalApp.visit;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
-import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
-import ukma.edu.ua.HospitalApp.api.visit.dto.UpdateVisitBody;
-import ukma.edu.ua.HospitalApp.api.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
-import ukma.edu.ua.HospitalApp.dto.PatientDTO;
-import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
-import ukma.edu.ua.HospitalApp.dto.VisitDTO;
-import ukma.edu.ua.HospitalApp.services.PatientVisitService;
+import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 
 @RestController
 @RequestMapping("${app.prefix}/visit")

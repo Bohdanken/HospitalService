@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.doctor;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

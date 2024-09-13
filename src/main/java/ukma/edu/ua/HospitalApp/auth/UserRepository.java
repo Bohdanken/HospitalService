@@ -1,9 +1,8 @@
-package ukma.edu.ua.HospitalApp.repositories;
+package ukma.edu.ua.HospitalApp.auth;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ukma.edu.ua.HospitalApp.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

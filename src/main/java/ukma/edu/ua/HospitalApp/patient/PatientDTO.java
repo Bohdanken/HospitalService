@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.dto;
+package ukma.edu.ua.HospitalApp.patient;
 
 import java.util.Date;
 import lombok.Data;

@@ -1,6 +1,5 @@
-package ukma.edu.ua.HospitalApp.dto;
+package ukma.edu.ua.HospitalApp.visit;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NonNull;
 

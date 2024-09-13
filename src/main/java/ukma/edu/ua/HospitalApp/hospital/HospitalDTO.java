@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.dto;
+package ukma.edu.ua.HospitalApp.hospital;
 
 import lombok.Data;
 

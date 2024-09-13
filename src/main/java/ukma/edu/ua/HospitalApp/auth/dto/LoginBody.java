@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.auth.dto;
+package ukma.edu.ua.HospitalApp.auth.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

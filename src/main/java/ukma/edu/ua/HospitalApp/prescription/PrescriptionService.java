@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.prescription;
 
 import java.time.Instant;
 import java.util.Date;
@@ -7,15 +7,10 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.api.prescription.dto.CreatePresriptionBody;
-import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.mappers.PrescriptionMapper;
-import ukma.edu.ua.HospitalApp.models.Drug;
-import ukma.edu.ua.HospitalApp.models.PatientDetails;
-import ukma.edu.ua.HospitalApp.models.Prescription;
-import ukma.edu.ua.HospitalApp.repositories.PrescriptionRepository;
+import ukma.edu.ua.HospitalApp.patient.PatientDetails;
 
 @Service
 @RequiredArgsConstructor

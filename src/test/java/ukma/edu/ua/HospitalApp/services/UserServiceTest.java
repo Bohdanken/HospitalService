@@ -15,10 +15,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ukma.edu.ua.HospitalApp.auth.UserService;
 import ukma.edu.ua.HospitalApp.exceptions.errors.UniqueConstraintException;
-import ukma.edu.ua.HospitalApp.models.User;
-import ukma.edu.ua.HospitalApp.models.User.Role;
-import ukma.edu.ua.HospitalApp.repositories.UserRepository;
+import ukma.edu.ua.HospitalApp.auth.User;
+import ukma.edu.ua.HospitalApp.auth.User.Role;
+import ukma.edu.ua.HospitalApp.auth.UserRepository;
 
 @DisplayName("UserService unit test")
 @ExtendWith(MockitoExtension.class)

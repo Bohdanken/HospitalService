@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.auth;
+package ukma.edu.ua.HospitalApp.auth;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.PostConstruct;
@@ -6,12 +6,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
+import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
-import ukma.edu.ua.HospitalApp.services.AuthService;
 
 @RestController
 @RequestMapping("${app.prefix}" + Endpoints.AUTH)

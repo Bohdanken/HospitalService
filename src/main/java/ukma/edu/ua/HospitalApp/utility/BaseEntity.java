@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.models;
+package ukma.edu.ua.HospitalApp.utility;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.config.auth;
+package ukma.edu.ua.HospitalApp.auth;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

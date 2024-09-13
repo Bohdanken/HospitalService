@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.prescription.dto;
+package ukma.edu.ua.HospitalApp.prescription.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;

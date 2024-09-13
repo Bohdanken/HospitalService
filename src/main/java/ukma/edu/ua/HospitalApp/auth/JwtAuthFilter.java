@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.config.auth;
+package ukma.edu.ua.HospitalApp.auth;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

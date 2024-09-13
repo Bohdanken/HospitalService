@@ -1,8 +1,7 @@
-package ukma.edu.ua.HospitalApp.repositories;
+package ukma.edu.ua.HospitalApp.visit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ukma.edu.ua.HospitalApp.models.PatientVisit;
 
 import java.util.List;
 

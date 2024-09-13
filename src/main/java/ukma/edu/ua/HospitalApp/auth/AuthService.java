@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -6,22 +6,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
+import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails;
-import ukma.edu.ua.HospitalApp.models.Hospital;
-import ukma.edu.ua.HospitalApp.models.PatientDetails;
-import ukma.edu.ua.HospitalApp.models.User;
-import ukma.edu.ua.HospitalApp.models.User.Role;
-import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
+import ukma.edu.ua.HospitalApp.hospital.Hospital;
+import ukma.edu.ua.HospitalApp.patient.PatientDetails;
+import ukma.edu.ua.HospitalApp.auth.User.Role;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.PatientDetailsRepository;
 
 @RequiredArgsConstructor
 @Service

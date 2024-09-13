@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.config.auth;
+package ukma.edu.ua.HospitalApp.auth;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
@@ -7,7 +7,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,11 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
-import ukma.edu.ua.HospitalApp.api.AuthControllerHttp;
-import ukma.edu.ua.HospitalApp.api.auth.AuthController;
-import ukma.edu.ua.HospitalApp.models.User;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
-import ukma.edu.ua.HospitalApp.models.User;
 
 @SuppressWarnings("LineLengthCheck")
 @Configuration

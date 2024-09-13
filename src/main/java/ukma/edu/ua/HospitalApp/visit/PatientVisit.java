@@ -1,10 +1,13 @@
-package ukma.edu.ua.HospitalApp.models;
+package ukma.edu.ua.HospitalApp.visit;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
+import ukma.edu.ua.HospitalApp.utility.BaseEntity;
+import ukma.edu.ua.HospitalApp.patient.PatientDetails;
 
 import java.sql.Timestamp;
 

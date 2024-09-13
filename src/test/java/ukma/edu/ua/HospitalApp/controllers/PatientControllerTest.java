@@ -13,10 +13,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import ukma.edu.ua.HospitalApp.api.patient.PatientController;
-import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.services.PatientService;
-import ukma.edu.ua.HospitalApp.services.PrescriptionService;
+import ukma.edu.ua.HospitalApp.patient.PatientController;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.PatientService;
+import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 
 @ContextConfiguration(classes = { PatientController.class, PatientService.class })
 @AutoConfigureMockMvc(addFilters = false)

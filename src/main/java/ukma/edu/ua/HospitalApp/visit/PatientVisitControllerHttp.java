@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api;
+package ukma.edu.ua.HospitalApp.visit;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
-import ukma.edu.ua.HospitalApp.services.HospitalService;
-import ukma.edu.ua.HospitalApp.visit.PatientVisitService;
+import ukma.edu.ua.HospitalApp.hospital.HospitalService;
 
 @Controller
 @RequiredArgsConstructor
 @Tag(name = "Patient Visit Management", description = "Manage patient visits")
-public class PatientControllerHttp {
+public class PatientVisitControllerHttp {
     private final PatientVisitService patientVisitService;
     private final HospitalService hospitalService;
 

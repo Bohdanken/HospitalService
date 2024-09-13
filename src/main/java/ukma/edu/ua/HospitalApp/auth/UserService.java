@@ -1,12 +1,10 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.exceptions.errors.UniqueConstraintException;
-import ukma.edu.ua.HospitalApp.auth.User;
-import ukma.edu.ua.HospitalApp.auth.UserRepository;
 
 @Service
 @RequiredArgsConstructor

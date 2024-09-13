@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.patient.dto;
+package ukma.edu.ua.HospitalApp.patient.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;

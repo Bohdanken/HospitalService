@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.validators;
+package ukma.edu.ua.HospitalApp.visit;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

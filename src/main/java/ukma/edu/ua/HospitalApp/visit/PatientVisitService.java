@@ -1,20 +1,14 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.api.visit.dto.UpdateVisitBody;
-import ukma.edu.ua.HospitalApp.api.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.dto.VisitDTO;
+import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.mappers.PatientVisitMapper;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails;
-import ukma.edu.ua.HospitalApp.models.PatientDetails;
-import ukma.edu.ua.HospitalApp.models.PatientVisit;
-import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
-import ukma.edu.ua.HospitalApp.repositories.PatientVisitRepository;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
+import ukma.edu.ua.HospitalApp.patient.PatientDetails;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.PatientDetailsRepository;
 
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.auth.dto;
+package ukma.edu.ua.HospitalApp.auth.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -8,8 +8,8 @@ import java.util.Date;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import ukma.edu.ua.HospitalApp.config.validation.enums.ValueOfEnum;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails.DoctorType;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails.DoctorType;
 
 @Data
 public class RegisterDoctorBody {

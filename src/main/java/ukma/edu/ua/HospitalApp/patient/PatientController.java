@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.api.patient;
+package ukma.edu.ua.HospitalApp.patient;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ukma.edu.ua.HospitalApp.api.patient.dto.UpdatePatientBody;
+import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
-import ukma.edu.ua.HospitalApp.dto.PatientDTO;
-import ukma.edu.ua.HospitalApp.dto.PrescriptionDTO;
-import ukma.edu.ua.HospitalApp.services.PatientService;
-import ukma.edu.ua.HospitalApp.services.PrescriptionService;
+import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 
 @RestController
 @RequestMapping("${app.prefix}" + Endpoints.PATIENT)

@@ -1,11 +1,9 @@
-package ukma.edu.ua.HospitalApp.services;
+package ukma.edu.ua.HospitalApp.hospital;
 
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.models.Hospital;
-import ukma.edu.ua.HospitalApp.repositories.HospitalRepository;
 
 // TODO: add proper types
 @Service

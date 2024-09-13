@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.models;
+package ukma.edu.ua.HospitalApp.auth;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ukma.edu.ua.HospitalApp.utility.BaseEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
