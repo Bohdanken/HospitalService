@@ -6,9 +6,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
 
 @RestController

@@ -20,7 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import ukma.edu.ua.HospitalApp.ControllerTest;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionController;
-import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
+import ukma.edu.ua.HospitalApp.prescription.internal.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 

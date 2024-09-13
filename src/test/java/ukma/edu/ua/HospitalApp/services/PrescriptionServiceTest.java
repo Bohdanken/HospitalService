@@ -20,13 +20,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
-import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
+import ukma.edu.ua.HospitalApp.prescription.internal.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.prescription.Drug;
-import ukma.edu.ua.HospitalApp.patient.PatientDetails;
-import ukma.edu.ua.HospitalApp.prescription.Prescription;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionRepository;
+import ukma.edu.ua.HospitalApp.prescription.internal.Drug;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.prescription.internal.Prescription;
+import ukma.edu.ua.HospitalApp.prescription.internal.PrescriptionRepository;
 
 @DisplayName("PrescriptionService unit test")
 @ExtendWith(MockitoExtension.class)

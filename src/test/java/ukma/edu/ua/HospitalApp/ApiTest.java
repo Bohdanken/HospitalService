@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import ukma.edu.ua.HospitalApp.patient.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.patient.PatientService;
 
 @Disabled

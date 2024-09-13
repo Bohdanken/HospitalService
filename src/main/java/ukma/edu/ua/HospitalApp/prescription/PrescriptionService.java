@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.patient.PatientDetails;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.prescription.internal.*;
 
 @Service
 @RequiredArgsConstructor

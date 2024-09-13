@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.hospital.internal.Hospital;
+import ukma.edu.ua.HospitalApp.hospital.internal.HospitalRepository;
 
 // TODO: add proper types
 @Service

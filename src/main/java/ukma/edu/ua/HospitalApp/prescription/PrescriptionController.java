@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
+import ukma.edu.ua.HospitalApp.prescription.internal.CreatePresriptionBody;
 
 @RestController
 @RequestMapping("${app.prefix}" + Endpoints.PRESCRIPTION)

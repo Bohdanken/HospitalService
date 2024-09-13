@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import ukma.edu.ua.HospitalApp.patient.PatientController;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
 import ukma.edu.ua.HospitalApp.patient.PatientService;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 

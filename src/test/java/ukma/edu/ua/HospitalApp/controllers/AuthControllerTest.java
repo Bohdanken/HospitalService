@@ -21,12 +21,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import ukma.edu.ua.HospitalApp.ControllerTest;
 import ukma.edu.ua.HospitalApp.auth.AuthController;
-import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
+import ukma.edu.ua.HospitalApp.auth.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.auth.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.auth.JWTService.TokenResponse;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetails.DoctorType;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails.DoctorType;
 import ukma.edu.ua.HospitalApp.auth.AuthService;
 
 @WebMvcTest(controllers = AuthController.class)

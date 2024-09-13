@@ -8,9 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.hospital.HospitalService;
+import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
 
 @Controller
 @RequiredArgsConstructor

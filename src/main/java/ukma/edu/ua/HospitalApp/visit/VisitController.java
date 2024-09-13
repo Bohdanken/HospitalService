@@ -5,8 +5,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
+import ukma.edu.ua.HospitalApp.visit.internal.UpdateVisitBody;
+import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
 
 @RestController
 @RequestMapping("${app.prefix}/visit")

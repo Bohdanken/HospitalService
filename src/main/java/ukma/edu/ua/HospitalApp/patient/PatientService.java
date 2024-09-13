@@ -7,8 +7,11 @@ import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientMapper;
+import ukma.edu.ua.HospitalApp.patient.internal.UpdatePatientBody;
 
 @Service
 @RequiredArgsConstructor

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
+import ukma.edu.ua.HospitalApp.patient.internal.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 

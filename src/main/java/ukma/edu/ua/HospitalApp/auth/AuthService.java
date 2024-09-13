@@ -8,16 +8,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
-import ukma.edu.ua.HospitalApp.hospital.Hospital;
-import ukma.edu.ua.HospitalApp.patient.PatientDetails;
-import ukma.edu.ua.HospitalApp.auth.User.Role;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.patient.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
+import ukma.edu.ua.HospitalApp.hospital.internal.Hospital;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.user.User;
+import ukma.edu.ua.HospitalApp.user.User.Role;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.user.UserService;
 
 @RequiredArgsConstructor
 @Service

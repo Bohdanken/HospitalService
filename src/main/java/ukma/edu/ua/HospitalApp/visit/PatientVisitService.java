@@ -2,13 +2,12 @@ package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
-import ukma.edu.ua.HospitalApp.patient.PatientDetails;
-import ukma.edu.ua.HospitalApp.doctor.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.patient.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.visit.internal.*;
 
 @Service
 @RequiredArgsConstructor
