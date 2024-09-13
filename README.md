@@ -5,6 +5,9 @@ their visits and doctors to track visits and issue prescriptions.
 
 There are be 3 roles in this project: admin, doctor, patient.
 
+### Architecture
+![img.png](architecture.png)
+
 ### Admin
 
 - Admins are predefined and seeded to a database by a tech lead.
