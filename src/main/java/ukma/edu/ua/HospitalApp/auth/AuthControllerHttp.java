@@ -15,12 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ukma.edu.ua.HospitalApp.api.auth.AuthController;
-import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.AuthController;
+import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.config.Endpoints;
 import ukma.edu.ua.HospitalApp.exceptions.ResponseError;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.services.AuthService;
+import ukma.edu.ua.HospitalApp.auth.AuthService;
 
 @Controller
 @RequiredArgsConstructor

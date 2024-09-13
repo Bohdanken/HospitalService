@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

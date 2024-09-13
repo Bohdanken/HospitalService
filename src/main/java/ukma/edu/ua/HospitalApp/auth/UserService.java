@@ -5,8 +5,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.exceptions.errors.UniqueConstraintException;
-import ukma.edu.ua.HospitalApp.models.User;
-import ukma.edu.ua.HospitalApp.repositories.UserRepository;
+import ukma.edu.ua.HospitalApp.auth.User;
+import ukma.edu.ua.HospitalApp.auth.UserRepository;
 
 @Service
 @RequiredArgsConstructor

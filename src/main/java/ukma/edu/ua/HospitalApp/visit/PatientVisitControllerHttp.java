@@ -8,15 +8,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ukma.edu.ua.HospitalApp.api.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.dto.VisitDTO;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails;
-import ukma.edu.ua.HospitalApp.models.User;
-import ukma.edu.ua.HospitalApp.repositories.UserRepository;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDetails;
 import ukma.edu.ua.HospitalApp.services.HospitalService;
-import ukma.edu.ua.HospitalApp.services.PatientVisitService;
-
-import java.util.Optional;
+import ukma.edu.ua.HospitalApp.visit.PatientVisitService;
 
 @Controller
 @RequiredArgsConstructor
