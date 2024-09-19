@@ -13,14 +13,15 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import ukma.edu.ua.HospitalApp.patient.PatientController;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.patient.PatientService;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 
-@ContextConfiguration(classes = { PatientController.class, PatientService.class })
+import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.patient.controllers.PatientController;
+import ukma.edu.ua.HospitalApp.patient.services.PatientServiceInternal;
+import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionService;
+
+@ContextConfiguration(classes = { PatientController.class, PatientServiceInternal.class })
 @AutoConfigureMockMvc(addFilters = false)
-@Import({ PatientService.class })
+@Import({ PatientServiceInternal.class })
 @WebMvcTest
 @Disabled
 public class PatientControllerTest {
@@ -34,7 +35,7 @@ public class PatientControllerTest {
   private DoctorDetailsRepository doctorRepository;
 
   @Autowired
-  private PatientService patientService;
+  private PatientServiceInternal patientService;
 
   @Test
   void testGetAddressSuggestions() throws Exception {

@@ -1,69 +1,21 @@
 package ukma.edu.ua.HospitalApp.patient;
 
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.errors.ApiException;
-import com.google.maps.model.GeocodingResult;
-import java.io.IOException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientMapper;
-import ukma.edu.ua.HospitalApp.patient.internal.UpdatePatientBody;
 
-@Service
+import lombok.RequiredArgsConstructor;
+import ukma.edu.ua.HospitalApp.entities.PatientDetails;
+import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
+
 @RequiredArgsConstructor
+@Service
 public class PatientService {
-  private final PatientDetailsRepository patientDetailsRepository;
+	private final PatientDetailsRepository patientDetailsRepository;
 
-  public String[] addressOptions(String address) {
-    String apiKey = null;
-    GeoApiContext context = new GeoApiContext.Builder()
-        .apiKey(apiKey)
-        .build();
-    try {
-      GeocodingResult[] results = getGeocodingResults(context, address);
-      String[] options = new String[results.length];
-      for (int i = 0; i < results.length; i++) {
-        System.out.println(results[i].formattedAddress);
-        options[i] = results[i].formattedAddress;
-      }
-      return options;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return new String[] { "No suggestions" };
+	public PatientDetails getPatientData(long id) {
+		return this.patientDetailsRepository.findById(id).orElse(null);
+	}
 
-  }
-
-  private GeocodingResult[] getGeocodingResults(GeoApiContext context, String address) {
-    try {
-      GeocodingResult[] results = GeocodingApi.geocode(context, address).await();
-      return results;
-    } catch (ApiException | InterruptedException | IOException e) {
-      e.printStackTrace();
-      return new GeocodingResult[0];
-    }
-  }
-
-  public PatientDTO updatePatient(UpdatePatientBody data, long id) {
-    var patient = patientDetailsRepository.findById(id)
-        .orElseThrow(() -> new NotFoundException("Patient not found"));
-
-    patient.setFirstName(data.getFirstName());
-    patient.setLastName(data.getLastName());
-    patient.setPassportNumber(data.getPassportNumber());
-    patient.setBirthDate(data.getBirthDate());
-    patient.setAddress(data.getAddress());
-
-    patientDetailsRepository.save(patient);
-
-    return toPatientPropertiesDTO(patient);
-  }
-
-  public PatientDTO toPatientPropertiesDTO(PatientDetails patient) {
-    return PatientMapper.INSTANCE.patientToPatientDTO(patient);
-  }
+	public PatientDetails savePatientData(PatientDetails data) {
+		return this.patientDetailsRepository.save(data);
+	}
 }

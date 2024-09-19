@@ -1,5 +1,6 @@
 package ukma.edu.ua.HospitalApp.doctor;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
@@ -9,9 +10,10 @@ import ukma.edu.ua.HospitalApp.visit.PatientVisitService;
 import ukma.edu.ua.HospitalApp.visit.VisitDTO;
 import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
 
-@Service
-public class DoctorService {
 
+@Service
+@RequiredArgsConstructor
+public class DoctorService {
     private final DoctorDetailsRepository doctorDetailsRepository;
     private final DoctorMapper doctorMapper;
     private final PatientVisitService patientVisitService;
@@ -42,5 +44,9 @@ public class DoctorService {
         updatedDoctor.setUser(existingDoctor.getUser());
         DoctorDetails savedDoctor = doctorDetailsRepository.save(updatedDoctor);
         return doctorMapper.doctorToDoctorDTO(savedDoctor);
+    }
+
+    public DoctorDetails getDoctorById(long id) {
+        return doctorDetailsRepository.findById(id).orElse(null);
     }
 }

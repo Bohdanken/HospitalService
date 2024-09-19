@@ -1,6 +1,9 @@
 package ukma.edu.ua.HospitalApp.user;
 
 import lombok.RequiredArgsConstructor;
+import ukma.edu.ua.HospitalApp.user.repositories.UserRepository;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,9 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     var user = userRepository
         .findByEmail(email)
         .orElseThrow(() -> new UsernameNotFoundException("There is no account with such email"));
-
-
-    return org.springframework.security.core.userdetails.User
+    return User
         .withUsername(user.getEmail())
         .password(user.getPassword())
         .authorities(user.getRole().toString())

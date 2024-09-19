@@ -19,10 +19,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import ukma.edu.ua.HospitalApp.ControllerTest;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionController;
-import ukma.edu.ua.HospitalApp.prescription.internal.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
+import ukma.edu.ua.HospitalApp.prescription.controllers.PrescriptionController;
+import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
+import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionService;
 
 @WebMvcTest(controllers = PrescriptionController.class)
 public class PrescriptionControllerTest extends ControllerTest {
