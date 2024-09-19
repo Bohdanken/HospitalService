@@ -1,14 +1,16 @@
 package ukma.edu.ua.HospitalApp.doctor;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorMapper;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.doctor.mappers.DoctorMapper;
+import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
 import ukma.edu.ua.HospitalApp.visit.PatientVisitService;
-import ukma.edu.ua.HospitalApp.visit.VisitDTO;
-import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
+
 
 
 @Service
@@ -18,12 +20,6 @@ public class DoctorService {
     private final DoctorMapper doctorMapper;
     private final PatientVisitService patientVisitService;
 
-    @Autowired
-    public DoctorService(DoctorDetailsRepository doctorDetailsRepository, DoctorMapper doctorMapper, PatientVisitService patientVisitService) {
-        this.doctorDetailsRepository = doctorDetailsRepository;
-        this.doctorMapper = doctorMapper;
-        this.patientVisitService = patientVisitService;
-    }
 
     public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {
         DoctorDetails doctorDetails = doctorDetailsRepository.findById(doctorId)
@@ -48,5 +44,9 @@ public class DoctorService {
 
     public DoctorDetails getDoctorById(long id) {
         return doctorDetailsRepository.findById(id).orElse(null);
+    }
+
+    public DoctorDetails saveDoctorData(DoctorDetails data) {
+        return doctorDetailsRepository.save(data);
     }
 }

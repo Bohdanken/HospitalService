@@ -1,10 +1,10 @@
-package ukma.edu.ua.HospitalApp.visit.internal;
+package ukma.edu.ua.HospitalApp.visit.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ukma.edu.ua.HospitalApp.doctor.DoctorDTO;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.PatientVisit;
 
 
 import java.sql.Timestamp;

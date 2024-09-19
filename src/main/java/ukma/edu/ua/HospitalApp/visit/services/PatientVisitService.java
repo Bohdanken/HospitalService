@@ -3,13 +3,18 @@ package ukma.edu.ua.HospitalApp.visit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.doctor.DoctorDTO;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorMapper;
-import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
-import ukma.edu.ua.HospitalApp.visit.internal.*;
+import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.PatientVisit;
+import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
+import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
+import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
+import ukma.edu.ua.HospitalApp.visit.mappers.PatientVisitMapper;
+import ukma.edu.ua.HospitalApp.visit.repositories.PatientVisitRepository;
+
 
 import java.sql.Timestamp;
 import java.util.List;
