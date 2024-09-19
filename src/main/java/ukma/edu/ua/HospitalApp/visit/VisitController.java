@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ukma.edu.ua.HospitalApp.doctor.DoctorService;
 import ukma.edu.ua.HospitalApp.visit.internal.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
 
@@ -13,12 +14,16 @@ import ukma.edu.ua.HospitalApp.visit.internal.VisitBody;
 @RequiredArgsConstructor
 @Tag(name = "Visit", description = "Visit endpoints")
 public class VisitController {
-
     private final PatientVisitService patientVisitService;
-
+    private final DoctorService doctorService;
     @PostMapping("/create")
     public VisitDTO createVisit(@Valid @RequestBody VisitBody body) {
         return patientVisitService.createPatientVisit(body);
+    }
+
+    @PostMapping("/doctor/{doctorId}/appointments")
+    public VisitDTO createDoctorAppointment(@PathVariable Long doctorId, @RequestBody VisitBody visitBody) {
+        return doctorService.createAppointmentForDoctor(doctorId, visitBody);
     }
 
     @GetMapping("/patient/{patientId}")

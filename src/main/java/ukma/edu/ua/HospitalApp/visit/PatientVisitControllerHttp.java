@@ -19,14 +19,6 @@ public class PatientVisitControllerHttp {
     private final PatientVisitService patientVisitService;
     private final HospitalService hospitalService;
 
-   /* @GetMapping("/visit-form")
-    public String getVisitForm(Model model, @RequestParam String patientEmail, @RequestParam String patientName) {
-        model.addAttribute("patientEmail", patientEmail);
-        model.addAttribute("patientName", patientName);
-        model.addAttribute("visit", new VisitBody());
-        return "visitForm";
-    }*/
-
     @GetMapping("/visit-form")
     public String getVisitForm(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

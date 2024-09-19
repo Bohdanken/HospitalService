@@ -2,12 +2,17 @@ package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.doctor.DoctorDTO;
+import ukma.edu.ua.HospitalApp.doctor.internal.DoctorMapper;
 import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
 import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.doctor.internal.DoctorDetailsRepository;
 import ukma.edu.ua.HospitalApp.patient.internal.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.visit.internal.*;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,13 +23,12 @@ public class PatientVisitService {
     private final DoctorDetailsRepository doctorDetailsRepository;
 //    private final CacheManager cacheManager;
 
-    public VisitDTO createPatientVisit(VisitBody data) {
-//        var patientVisit = PatientVisit.builder()
-//                .patientDetailsId(data.getPatientId())
-//                .doctorDetailsId(data.getDoctorId())
-//                .dateOfVisit(data.getDateOfVisit())
-//                .build();
+public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Timestamp endTime) {
+    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorDTO.getId(), startTime, endTime);
+    return appointments.isEmpty();
+}
 
+    public VisitDTO createPatientVisit(VisitBody data) {
         PatientDetails patient = patientDetailsRepository.findById(data.getPatientId())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
         DoctorDetails doctor = doctorDetailsRepository.findById(data.getDoctorId())
