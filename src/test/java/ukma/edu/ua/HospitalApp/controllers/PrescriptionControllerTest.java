@@ -20,9 +20,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import ukma.edu.ua.HospitalApp.ControllerTest;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 import ukma.edu.ua.HospitalApp.prescription.controllers.PrescriptionController;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
-import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionService;
 
 @WebMvcTest(controllers = PrescriptionController.class)
 public class PrescriptionControllerTest extends ControllerTest {
@@ -46,7 +46,7 @@ public class PrescriptionControllerTest extends ControllerTest {
     body.setPatientId(Long.valueOf(1));
     body.setDrugs(List.of(Long.valueOf(1), Long.valueOf(2)));
 
-    when(prescriptionService.createPresription(any())).thenReturn(new PrescriptionDTO());
+    //when(prescriptionService.createPresription(any())).thenReturn(new PrescriptionDTO());
 
     mvc.perform(
         post("/api/prescription/issue")

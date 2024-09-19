@@ -2,9 +2,9 @@ package ukma.edu.ua.HospitalApp.hospital;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ukma.edu.ua.HospitalApp.hospital.internal.Hospital;
+import ukma.edu.ua.HospitalApp.entities.Hospital;
 import ukma.edu.ua.HospitalApp.hospital.internal.HospitalMapper;
-import ukma.edu.ua.HospitalApp.hospital.internal.HospitalRepository;
+import ukma.edu.ua.HospitalApp.hospital.repositories.HospitalRepository;
 
 import java.util.List;
 import java.util.Objects;

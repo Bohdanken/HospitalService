@@ -1,18 +1,17 @@
-package ukma.edu.ua.HospitalApp.doctor.internal;
+package ukma.edu.ua.HospitalApp.doctor.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import ukma.edu.ua.HospitalApp.doctor.DoctorDTO;
-
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)  // Ensure the component model is set for Spring
 public interface DoctorMapper {
 
-  // Mapping from entity to DTO
+  // Map DoctorDetails entity to DoctorDTO
   @Mapping(source = "user.email", target = "email")
   DoctorDTO doctorToDoctorDTO(DoctorDetails doctor);
 
-  // Mapping from DTO to entity
-  @Mapping(target = "user.email", source = "email")
+  // Map DoctorDTO back to DoctorDetails entity
   DoctorDetails doctorDTOToDoctor(DoctorDTO doctorDTO);
 }

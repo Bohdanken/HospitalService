@@ -14,11 +14,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import ukma.edu.ua.HospitalApp.security.JWTService;
 import ukma.edu.ua.HospitalApp.user.CustomUserDetailsService;
-import ukma.edu.ua.HospitalApp.visit.controllers.VisitController;
+
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
-import ukma.edu.ua.HospitalApp.visit.services.PatientVisitService;
+
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
