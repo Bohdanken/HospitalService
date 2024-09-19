@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ukma.edu.ua.HospitalApp.common.Endpoints;
-import ukma.edu.ua.HospitalApp.patient.dto.PatientDTO;
+import ukma.edu.ua.HospitalApp.entities.PatientDTO;
 import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.patient.services.PatientServiceInternal;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.entities.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 
 @RestController

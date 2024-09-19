@@ -1,9 +1,8 @@
-package ukma.edu.ua.HospitalApp.doctor;
+package ukma.edu.ua.HospitalApp.entities;
 
 import java.util.Date;
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
-import ukma.edu.ua.HospitalApp.hospital.HospitalDTO;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 
 @Data
 public class DoctorDTO {

@@ -22,9 +22,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.repositories.PrescriptionRepository;
-import ukma.edu.ua.HospitalApp.entities.Drug;
-import ukma.edu.ua.HospitalApp.entities.PatientDetails;
-import ukma.edu.ua.HospitalApp.entities.Prescription;
+import ukma.edu.ua.HospitalApp.entities.internal.Drug;
+import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.Prescription;
 import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
 import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;

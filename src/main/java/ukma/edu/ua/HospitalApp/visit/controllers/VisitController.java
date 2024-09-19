@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ukma.edu.ua.HospitalApp.doctor.DoctorService;
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
+import ukma.edu.ua.HospitalApp.entities.VisitDTO;
 
 
 @RestController

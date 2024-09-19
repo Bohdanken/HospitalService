@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.hospital.HospitalService;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 

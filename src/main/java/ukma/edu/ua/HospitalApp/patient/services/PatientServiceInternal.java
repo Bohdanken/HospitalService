@@ -8,9 +8,9 @@ import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import ukma.edu.ua.HospitalApp.entities.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
-import ukma.edu.ua.HospitalApp.patient.dto.PatientDTO;
+import ukma.edu.ua.HospitalApp.entities.PatientDTO;
 import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.patient.mappers.PatientMapper;
 import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;

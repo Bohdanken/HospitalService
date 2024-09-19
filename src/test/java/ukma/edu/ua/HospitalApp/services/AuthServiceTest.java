@@ -24,7 +24,7 @@ import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
 import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.auth.services.AuthService;
 import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.entities.User;
+import ukma.edu.ua.HospitalApp.entities.internal.User;
 import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.UniqueConstraintException;
 import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;

@@ -3,7 +3,7 @@ package ukma.edu.ua.HospitalApp.patient;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import ukma.edu.ua.HospitalApp.entities.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
 
 @RequiredArgsConstructor

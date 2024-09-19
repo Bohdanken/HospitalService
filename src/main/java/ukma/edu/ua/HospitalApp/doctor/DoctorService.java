@@ -2,14 +2,14 @@ package ukma.edu.ua.HospitalApp.doctor;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.doctor.mappers.DoctorMapper;
 import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.DoctorDTO;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.visit.PatientVisitService;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
+import ukma.edu.ua.HospitalApp.entities.VisitDTO;
 
 
 

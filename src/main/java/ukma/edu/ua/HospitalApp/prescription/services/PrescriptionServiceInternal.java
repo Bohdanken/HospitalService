@@ -8,12 +8,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import ukma.edu.ua.HospitalApp.entities.Drug;
-import ukma.edu.ua.HospitalApp.entities.PatientDetails;
-import ukma.edu.ua.HospitalApp.entities.Prescription;
+import ukma.edu.ua.HospitalApp.entities.internal.Drug;
+import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.Prescription;
 import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.entities.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.mappers.PrescriptionMapper;
 import ukma.edu.ua.HospitalApp.prescription.repositories.*;

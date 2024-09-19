@@ -8,8 +8,8 @@ import java.util.Date;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails.DoctorType;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails.DoctorType;
 import ukma.edu.ua.HospitalApp.validators.ValueOfEnum;
 
 @Data
