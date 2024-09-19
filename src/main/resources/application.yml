@@ -32,5 +32,5 @@ app:
     refresh-token-secret: JC+AhCxTbmSU8mgIzeb7ErLJRwk1WE/hDEfuHumgq+M=
 logging:
   level:
-    org.springframework: DEBUG
-    com.myapp: DEBUG
+    org.springframework: info
+    com.myapp: info

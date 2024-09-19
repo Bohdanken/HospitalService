@@ -19,20 +19,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
-import ukma.edu.ua.HospitalApp.prescription.internal.CreatePresriptionBody;
-import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.prescription.internal.Drug;
-import ukma.edu.ua.HospitalApp.patient.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.prescription.internal.Prescription;
-import ukma.edu.ua.HospitalApp.prescription.internal.PrescriptionRepository;
+
+import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
+import ukma.edu.ua.HospitalApp.prescription.repositories.PrescriptionRepository;
+import ukma.edu.ua.HospitalApp.entities.Drug;
+import ukma.edu.ua.HospitalApp.entities.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.Prescription;
+import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
+import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;
 
 @DisplayName("PrescriptionService unit test")
 @ExtendWith(MockitoExtension.class)
 public class PrescriptionServiceTest {
   @InjectMocks
-  private PrescriptionService prescriptionService;
+  private PrescriptionServiceInternal prescriptionService;
 
   @Mock
   private PrescriptionRepository prescriptionRepository;

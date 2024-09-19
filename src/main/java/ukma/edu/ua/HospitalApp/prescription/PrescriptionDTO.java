@@ -2,6 +2,7 @@ package ukma.edu.ua.HospitalApp.prescription;
 
 import java.util.Date;
 import lombok.Data;
+import ukma.edu.ua.HospitalApp.prescription.dto.DrugDTO;
 
 @Data
 public class PrescriptionDTO {

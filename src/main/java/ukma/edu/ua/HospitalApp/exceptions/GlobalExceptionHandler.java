@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.NotFoundException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.UnauthorizedException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.UniqueConstraintException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
