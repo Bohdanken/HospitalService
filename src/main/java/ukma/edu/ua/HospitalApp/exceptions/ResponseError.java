@@ -19,7 +19,7 @@ public class ResponseError {
     this.message = message;
     this.status = status;
   }
-  
+
   public ResponseError(String message, HttpStatusCode status) {
     this.message = message;
     this.status = HttpStatus.valueOf(status.value());

@@ -20,14 +20,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import ukma.edu.ua.HospitalApp.ControllerTest;
-import ukma.edu.ua.HospitalApp.api.auth.AuthController;
-import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService.TokenResponse;
-import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.models.DoctorDetails.DoctorType;
-import ukma.edu.ua.HospitalApp.services.AuthService;
+import ukma.edu.ua.HospitalApp.auth.controllers.AuthController;
+import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
+import ukma.edu.ua.HospitalApp.auth.services.AuthService;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails.DoctorType;
+import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.security.JWTService.TokenResponse;
 
 @WebMvcTest(controllers = AuthController.class)
 public class AuthControllerTest extends ControllerTest {

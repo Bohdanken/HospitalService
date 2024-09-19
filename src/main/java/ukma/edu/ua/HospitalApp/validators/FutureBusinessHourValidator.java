@@ -25,7 +25,8 @@ public class FutureBusinessHourValidator implements ConstraintValidator<FutureBu
             return false;
         }
 
-        // Перевірка, що не субота або неділя (Calendar.SUNDAY = 1, Calendar.SATURDAY = 7)
+        // Перевірка, що не субота або неділя (Calendar.SUNDAY = 1, Calendar.SATURDAY =
+        // 7)
         if (dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
             return false;
         }

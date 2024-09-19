@@ -18,16 +18,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.AuthenticationException;
-import ukma.edu.ua.HospitalApp.api.auth.dto.LoginBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterDoctorBody;
-import ukma.edu.ua.HospitalApp.api.auth.dto.RegisterPatientBody;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService;
-import ukma.edu.ua.HospitalApp.config.auth.JWTService.TokenResponse;
-import ukma.edu.ua.HospitalApp.exceptions.errors.BadRequestException;
-import ukma.edu.ua.HospitalApp.exceptions.errors.UniqueConstraintException;
-import ukma.edu.ua.HospitalApp.models.User;
-import ukma.edu.ua.HospitalApp.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.repositories.PatientDetailsRepository;
+
+import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
+import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
+import ukma.edu.ua.HospitalApp.auth.services.AuthService;
+import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.entities.internal.User;
+import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.exceptions.UniqueConstraintException;
+import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.security.JWTService;
+import ukma.edu.ua.HospitalApp.security.JWTService.TokenResponse;
+import ukma.edu.ua.HospitalApp.user.UserService;
 
 @DisplayName("AuthService unit test")
 @ExtendWith(MockitoExtension.class)
