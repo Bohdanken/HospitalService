@@ -5,7 +5,7 @@ import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import ukma.edu.ua.HospitalApp.entities.Hospital;
+import ukma.edu.ua.HospitalApp.entities.internal.Hospital;
 import ukma.edu.ua.HospitalApp.hospital.repositories.HospitalRepository;
 
 @Service

@@ -2,7 +2,6 @@ package ukma.edu.ua.HospitalApp.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -19,7 +18,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import ukma.edu.ua.HospitalApp.ControllerTest;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
 import ukma.edu.ua.HospitalApp.prescription.controllers.PrescriptionController;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;

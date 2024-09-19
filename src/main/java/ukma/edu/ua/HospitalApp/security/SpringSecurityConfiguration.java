@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import ukma.edu.ua.HospitalApp.common.Endpoints;
-import ukma.edu.ua.HospitalApp.entities.User;
+import ukma.edu.ua.HospitalApp.entities.internal.User;
 import ukma.edu.ua.HospitalApp.user.CustomUserDetailsService;
 
 @SuppressWarnings("LineLengthCheck")

@@ -5,8 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-import ukma.edu.ua.HospitalApp.entities.PatientDetails;
-import ukma.edu.ua.HospitalApp.patient.dto.PatientDTO;
+import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
+import ukma.edu.ua.HospitalApp.entities.PatientDTO;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface PatientMapper {

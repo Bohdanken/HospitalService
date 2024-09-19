@@ -1,7 +1,7 @@
 package ukma.edu.ua.HospitalApp.user;
 
 import lombok.RequiredArgsConstructor;
-import ukma.edu.ua.HospitalApp.entities.User;
+import ukma.edu.ua.HospitalApp.entities.internal.User;
 import ukma.edu.ua.HospitalApp.exceptions.UniqueConstraintException;
 import ukma.edu.ua.HospitalApp.user.repositories.UserRepository;
 

@@ -25,7 +25,7 @@ import ukma.edu.ua.HospitalApp.auth.dto.LoginBody;
 import ukma.edu.ua.HospitalApp.auth.dto.RegisterDoctorBody;
 import ukma.edu.ua.HospitalApp.auth.dto.RegisterPatientBody;
 import ukma.edu.ua.HospitalApp.auth.services.AuthService;
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails.DoctorType;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails.DoctorType;
 import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
 import ukma.edu.ua.HospitalApp.security.JWTService.TokenResponse;
 

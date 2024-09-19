@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.entities;
+package ukma.edu.ua.HospitalApp.entities.internal;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -2,7 +2,7 @@ package ukma.edu.ua.HospitalApp.visit.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.entities.DoctorDetails;
+import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.validators.FutureBusinessHours;
 
 import java.sql.Timestamp;

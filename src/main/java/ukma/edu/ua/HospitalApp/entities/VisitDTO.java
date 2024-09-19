@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.visit.dto;
+package ukma.edu.ua.HospitalApp.entities;
 
 import lombok.Data;
 import lombok.NonNull;

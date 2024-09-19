@@ -1,8 +1,7 @@
-package ukma.edu.ua.HospitalApp.prescription;
+package ukma.edu.ua.HospitalApp.entities;
 
 import java.util.Date;
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.prescription.dto.DrugDTO;
 
 @Data
 public class PrescriptionDTO {

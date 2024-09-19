@@ -1,4 +1,4 @@
-package ukma.edu.ua.HospitalApp.entities;
+package ukma.edu.ua.HospitalApp.entities.internal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

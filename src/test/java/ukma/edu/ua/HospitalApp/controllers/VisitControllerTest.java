@@ -1,35 +1,9 @@
 package ukma.edu.ua.HospitalApp.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
-import ukma.edu.ua.HospitalApp.security.JWTService;
-import ukma.edu.ua.HospitalApp.user.CustomUserDetailsService;
-
-import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.visit.dto.VisitDTO;
-
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 /*
 @WebAppConfiguration
 @WebMvcTest(controllers = VisitController.class)
