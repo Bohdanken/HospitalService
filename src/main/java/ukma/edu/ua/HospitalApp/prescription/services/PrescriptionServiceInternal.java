@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ import ukma.edu.ua.HospitalApp.prescription.repositories.*;
 @RequiredArgsConstructor
 public class PrescriptionServiceInternal {
   private final PrescriptionRepository prescriptionRepository;
+
+  private final ApplicationEventPublisher events;
 
   public PrescriptionDTO[] getPatientPrescriptions(long patientId) {
     var prescriptions = prescriptionRepository.findByPatientDetailsId(patientId);
@@ -43,7 +46,11 @@ public class PrescriptionServiceInternal {
         .build();
     try {
       var result = prescriptionRepository.save(presription);
-      return toPrescriptionDTO(result);
+      var dto = toPrescriptionDTO(result);
+
+      events.publishEvent(dto);
+
+      return dto;
     } catch (DataIntegrityViolationException e) {
       throw new BadRequestException("Provided data is not valid or does not exist");
     }

@@ -1,10 +1,12 @@
 package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.doctor.DoctorService;
 import ukma.edu.ua.HospitalApp.entities.DoctorDTO;
 import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.entities.EmailMessageDTO;
 import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientVisit;
@@ -30,6 +32,8 @@ public class PatientVisitService {
     private final DoctorService doctorService;
 //    private final CacheManager cacheManager;
 
+    private final ApplicationEventPublisher events;
+
 public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp endTime) {
     List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorId, startTime, endTime);
     return appointments.isEmpty();
@@ -47,7 +51,11 @@ public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp e
 
         patientVisitRepository.save(patientVisit);
 
-        return toVisitDTO(patientVisit);
+        var visitDTO = toVisitDTO(patientVisit);
+
+        events.publishEvent(visitDTO);
+
+        return visitDTO;
     }
 
     public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {

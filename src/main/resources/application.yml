@@ -15,6 +15,17 @@ spring:
   devtools:
     restart:
       enabled: true
+  mail:
+    host: live.smtp.mailtrap.io
+    port: 587
+    username: api
+    password: aebcccd0ff71fd15786b1aa3a5e92383
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 springdoc:
   swagger-ui:
