@@ -4,21 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import ukma.edu.ua.HospitalApp.doctor.DoctorService;
-import ukma.edu.ua.HospitalApp.entities.DoctorDTO;
-import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
-import ukma.edu.ua.HospitalApp.entities.EmailMessageDTO;
 import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientVisit;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
 import ukma.edu.ua.HospitalApp.patient.PatientService;
-import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
 import ukma.edu.ua.HospitalApp.entities.VisitDTO;
 import ukma.edu.ua.HospitalApp.visit.mappers.PatientVisitMapper;
 import ukma.edu.ua.HospitalApp.visit.repositories.PatientVisitRepository;
-
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -26,18 +21,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PatientVisitService {
-
     private final PatientVisitRepository patientVisitRepository;
     private final PatientService patientService;
     private final DoctorService doctorService;
-//    private final CacheManager cacheManager;
-
     private final ApplicationEventPublisher events;
 
-public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp endTime) {
-    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorId, startTime, endTime);
-    return appointments.isEmpty();
-}
+    public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp endTime) {
+        List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorId, startTime,
+                endTime);
+        return appointments.isEmpty();
+    }
 
     public VisitDTO createPatientVisit(VisitBody data) {
         PatientDetails patient = patientService.getPatientData(data.getPatientId());
@@ -59,8 +52,6 @@ public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp e
     }
 
     public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {
-        DoctorDetails doctorDetails = doctorService.getDoctorById(doctorId);
-
         boolean isAvailable = isDoctorAvailable(doctorId, visitBody.getDateOfVisit(), visitBody.getDateOfVisit());
         if (!isAvailable) {
             throw new IllegalArgumentException("Doctor is not available for this time slot");
@@ -69,13 +60,11 @@ public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp e
         return createPatientVisit(visitBody);
     }
 
-//    @Cacheable(value = "PatientVisitsByPatient", key = "#patientId")
     public VisitDTO[] getPatientVisitsByPatient(Long patientId) {
         var visits = patientVisitRepository.findByPatientDetailsId(patientId);
         return visits.stream().map(this::toVisitDTO).toArray(VisitDTO[]::new);
     }
 
-//    @Cacheable(value = "PatientVisitsByDoctor", key = "#doctorId")
     public VisitDTO[] getPatientVisitsByDoctor(Long doctorId) {
         var visits = patientVisitRepository.findByDoctorDetailsId(doctorId);
         return visits.stream().map(this::toVisitDTO).toArray(VisitDTO[]::new);
@@ -109,15 +98,6 @@ public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp e
 
         if (data == null)
             return;
-
-//        var cache_by_patient = cacheManager.getCache("PatientVisitsByPatient");
-//        var cache_by_doctor = cacheManager.getCache("PatientVisitsByDoctor");
-//
-//        if (cache_by_patient != null)
-//            cache_by_patient.evict(data.getPatientDetailsId());
-//
-//        if (cache_by_doctor != null)
-//            cache_by_doctor.evict(data.getPatientDetailsId());
 
         patientVisitRepository.delete(data);
     }
