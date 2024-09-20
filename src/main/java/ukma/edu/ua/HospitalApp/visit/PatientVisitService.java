@@ -30,8 +30,8 @@ public class PatientVisitService {
     private final DoctorService doctorService;
 //    private final CacheManager cacheManager;
 
-public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Timestamp endTime) {
-    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorDTO.getId(), startTime, endTime);
+public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp endTime) {
+    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorId, startTime, endTime);
     return appointments.isEmpty();
 }
 
@@ -48,6 +48,17 @@ public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Times
         patientVisitRepository.save(patientVisit);
 
         return toVisitDTO(patientVisit);
+    }
+
+    public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {
+        DoctorDetails doctorDetails = doctorService.getDoctorById(doctorId);
+
+        boolean isAvailable = isDoctorAvailable(doctorId, visitBody.getDateOfVisit(), visitBody.getDateOfVisit());
+        if (!isAvailable) {
+            throw new IllegalArgumentException("Doctor is not available for this time slot");
+        }
+
+        return createPatientVisit(visitBody);
     }
 
 //    @Cacheable(value = "PatientVisitsByPatient", key = "#patientId")
