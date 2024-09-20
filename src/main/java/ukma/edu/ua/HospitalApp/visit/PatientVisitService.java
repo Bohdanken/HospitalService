@@ -2,12 +2,14 @@ package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.doctor.DoctorService;
 import ukma.edu.ua.HospitalApp.entities.DoctorDTO;
 import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
 import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientVisit;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
+import ukma.edu.ua.HospitalApp.patient.PatientService;
 import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
@@ -24,8 +26,8 @@ import java.util.List;
 public class PatientVisitService {
 
     private final PatientVisitRepository patientVisitRepository;
-    private final PatientDetailsRepository patientDetailsRepository;
-    private final DoctorDetailsRepository doctorDetailsRepository;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
 //    private final CacheManager cacheManager;
 
 public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Timestamp endTime) {
@@ -34,10 +36,8 @@ public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Times
 }
 
     public VisitDTO createPatientVisit(VisitBody data) {
-        PatientDetails patient = patientDetailsRepository.findById(data.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
-        DoctorDetails doctor = doctorDetailsRepository.findById(data.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+        PatientDetails patient = patientService.getPatientData(data.getPatientId());
+        DoctorDetails doctor = doctorService.getDoctorById(data.getDoctorId());
 
         var patientVisit = PatientVisit.builder()
                 .patientDetails(patient)
