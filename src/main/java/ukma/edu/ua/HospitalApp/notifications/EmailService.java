@@ -33,14 +33,13 @@ public class EmailService {
         sendEmail(
                 patient.getUser().getEmail(),
                 "Approintment created",
-                "Your appointment has been scheduled with doctor " + doctor.getFirstName() + " " + doctor.getLastName()
-        );
+                "Your appointment has been scheduled with doctor " + doctor.getFirstName() + " "
+                        + doctor.getLastName());
 
         sendEmail(
                 doctor.getUser().getEmail(),
                 "Approintment created",
-                patient.getFirstName() + " " + patient.getLastName() + " has scheduled an appointment with you"
-        );
+                patient.getFirstName() + " " + patient.getLastName() + " has scheduled an appointment with you");
     }
 
     @EventListener
@@ -50,8 +49,7 @@ public class EmailService {
         sendEmail(
                 patient.getUser().getEmail(),
                 "Prescription created",
-                "There's a new prescription available for you"
-        );
+                "There's a new prescription available for you");
     }
 
     @EventListener
@@ -59,8 +57,7 @@ public class EmailService {
         sendEmail(
                 userDTO.getEmail(),
                 "Welcome!",
-                "Welcome to the hospital app, %s %s!".formatted(userDTO.getFirstName(), userDTO.getLastName())
-        );
+                "Welcome to the hospital app, %s %s!".formatted(userDTO.getFirstName(), userDTO.getLastName()));
     }
 
     public void sendEmail(String to, String subject, String body) {
@@ -71,6 +68,4 @@ public class EmailService {
 
         mailSender.send(message);
     }
-
 }
-
