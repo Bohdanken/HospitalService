@@ -1,13 +1,17 @@
 package ukma.edu.ua.HospitalApp.visit;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import ukma.edu.ua.HospitalApp.doctor.DoctorService;
 import ukma.edu.ua.HospitalApp.entities.DoctorDTO;
 import ukma.edu.ua.HospitalApp.doctor.repositories.DoctorDetailsRepository;
+import ukma.edu.ua.HospitalApp.entities.EmailMessageDTO;
 import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
 import ukma.edu.ua.HospitalApp.entities.internal.PatientVisit;
 import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
+import ukma.edu.ua.HospitalApp.patient.PatientService;
 import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
@@ -24,20 +28,20 @@ import java.util.List;
 public class PatientVisitService {
 
     private final PatientVisitRepository patientVisitRepository;
-    private final PatientDetailsRepository patientDetailsRepository;
-    private final DoctorDetailsRepository doctorDetailsRepository;
+    private final PatientService patientService;
+    private final DoctorService doctorService;
 //    private final CacheManager cacheManager;
 
-public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Timestamp endTime) {
-    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorDTO.getId(), startTime, endTime);
+    private final ApplicationEventPublisher events;
+
+public boolean isDoctorAvailable(Long doctorId, Timestamp startTime, Timestamp endTime) {
+    List<PatientVisit> appointments = patientVisitRepository.findAppointmentsForDoctorInRange(doctorId, startTime, endTime);
     return appointments.isEmpty();
 }
 
     public VisitDTO createPatientVisit(VisitBody data) {
-        PatientDetails patient = patientDetailsRepository.findById(data.getPatientId())
-                .orElseThrow(() -> new RuntimeException("Patient not found"));
-        DoctorDetails doctor = doctorDetailsRepository.findById(data.getDoctorId())
-                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+        PatientDetails patient = patientService.getPatientData(data.getPatientId());
+        DoctorDetails doctor = doctorService.getDoctorById(data.getDoctorId());
 
         var patientVisit = PatientVisit.builder()
                 .patientDetails(patient)
@@ -47,7 +51,22 @@ public boolean isDoctorAvailable(DoctorDTO doctorDTO, Timestamp startTime, Times
 
         patientVisitRepository.save(patientVisit);
 
-        return toVisitDTO(patientVisit);
+        var visitDTO = toVisitDTO(patientVisit);
+
+        events.publishEvent(visitDTO);
+
+        return visitDTO;
+    }
+
+    public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {
+        DoctorDetails doctorDetails = doctorService.getDoctorById(doctorId);
+
+        boolean isAvailable = isDoctorAvailable(doctorId, visitBody.getDateOfVisit(), visitBody.getDateOfVisit());
+        if (!isAvailable) {
+            throw new IllegalArgumentException("Doctor is not available for this time slot");
+        }
+
+        return createPatientVisit(visitBody);
     }
 
 //    @Cacheable(value = "PatientVisitsByPatient", key = "#patientId")

@@ -18,19 +18,6 @@ import ukma.edu.ua.HospitalApp.entities.VisitDTO;
 public class DoctorService {
     private final DoctorDetailsRepository doctorDetailsRepository;
     private final DoctorMapper doctorMapper;
-    private final PatientVisitService patientVisitService;
-
-
-    public VisitDTO createAppointmentForDoctor(Long doctorId, VisitBody visitBody) {
-        DoctorDetails doctorDetails = doctorDetailsRepository.findById(doctorId)
-                .orElseThrow(() -> new IllegalArgumentException("Doctor not found"));
-        DoctorDTO doctorDTO = doctorMapper.doctorToDoctorDTO(doctorDetails);
-        boolean isAvailable = patientVisitService.isDoctorAvailable(doctorDTO, visitBody.getDateOfVisit(), visitBody.getDateOfVisit());
-        if (!isAvailable) {
-            throw new IllegalArgumentException("Doctor is not available for this time slot");
-        }
-        return patientVisitService.createPatientVisit(visitBody);
-    }
 
     public DoctorDTO updateDoctor(Long doctorId, DoctorDTO doctorDTO) {
         DoctorDetails existingDoctor = doctorDetailsRepository.findById(doctorId)

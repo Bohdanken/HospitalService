@@ -17,7 +17,6 @@ import ukma.edu.ua.HospitalApp.entities.VisitDTO;
 @Tag(name = "Visit", description = "Visit endpoints")
 public class VisitController {
     private final ukma.edu.ua.HospitalApp.visit.PatientVisitService patientVisitService;
-    private final DoctorService doctorService;
     @PostMapping("/create")
     public VisitDTO createVisit(@Valid @RequestBody VisitBody body) {
         return patientVisitService.createPatientVisit(body);
@@ -25,7 +24,7 @@ public class VisitController {
 
     @PostMapping("/doctor/{doctorId}/appointments")
     public VisitDTO createDoctorAppointment(@PathVariable Long doctorId, @RequestBody VisitBody visitBody) {
-        return doctorService.createAppointmentForDoctor(doctorId, visitBody);
+        return patientVisitService.createAppointmentForDoctor(doctorId, visitBody);
     }
 
     @GetMapping("/patient/{patientId}")
