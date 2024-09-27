@@ -1,74 +1,33 @@
 version: "3"
 name: hospital-service-app
 services:
-  # Entities Service Microservice
-  entities-service:
-    build:
-      context: ./entities-service    # Docker build context for the entities microservice
-    container_name: entities-service
-    image: entities-service
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      - DATABASE_URL=jdbc:postgresql://entities-db:5432/entities_db
-      - DATABASE_USER=admin
-      - DATABASE_PASSWORD=admin
-    depends_on:
-      - entities-db
-    networks:
-      - hospital-network
-
-  # PostgreSQL Database for the Entities Service
-  entities-db:
-    image: postgres:13
-    container_name: entities-db
-    environment:
-      POSTGRES_DB: entities_db
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-    ports:
-      - "5432:5432"
-    volumes:
-      - entities-db-data:/var/lib/postgresql/data
-    networks:
-      - hospital-network
-
-  # Base Service Microservice (Backend)
   backend:
     build:
-      context: ./base-service    # Docker build context for the base microservice
+      context: .
+    depends_on:
+      - postgres
+      - pgadmin
     container_name: hospital-service
     image: hospital-service
     restart: no
     ports:
-      - "8092:8092"
-    environment:
-      - DATABASE_URL=jdbc:postgresql://backend-db:5432/main
-      - DATABASE_USER=admin
-      - DATABASE_PASSWORD=admin
-    depends_on:
-      - backend-db
-    networks:
-      - hospital-network
+      - 8092:8092
 
-  # PostgreSQL Database for the Backend (Base Microservice)
-  backend-db:
-    image: postgres:13
+  postgres:
+    image: postgres
     container_name: hospital-service-pg
     restart: unless-stopped
     ports:
-      - "8093:5432"
+      - 8093:5432
     environment:
-      POSTGRES_DB: main
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=main
+    logging:
+      driver: none
     volumes:
       - hospital-service-pgdata:/var/lib/postgresql/data
-    networks:
-      - hospital-network
 
-  # pgAdmin for Database Administration (Admin Tool)
   pgadmin:
     image: dpage/pgadmin4:8.3
     container_name: hospital-service-pgadmin
@@ -76,20 +35,10 @@ services:
       - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=admin
     ports:
-      - "8094:80"
-    depends_on:
-      - backend-db
-      - entities-db
+      - 8094:80
     volumes:
       - hospital-service-pgadmin-data:/var/lib/pgadmin
-    networks:
-      - hospital-network
 
 volumes:
-  entities-db-data:         # Volume for entities-service PostgreSQL
-  hospital-service-pgdata:  # Volume for backend-service PostgreSQL
-  hospital-service-pgadmin-data:  # Volume for pgAdmin
-
-networks:
-  hospital-network:
-    driver: bridge
+  hospital-service-pgdata:
+  hospital-service-pgadmin-data:
