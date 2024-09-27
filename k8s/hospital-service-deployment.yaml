@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hospital-service
+  labels:
+    app: hospital-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hospital-service
+  template:
+    metadata:
+      labels:
+        app: hospital-service
+    spec:
+      containers:
+        - name: hospital-service
+          image: hospital-service:latest
+          ports:
+            - containerPort: 8092
+          env:
+            - name: DB_HOST
+              value: "postgres-service"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "main"
+            - name: DB_USER
+              value: "admin"
+            - name: DB_PASSWORD
+              value: "admin"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hospital-service
+spec:
+  selector:
+    app: hospital-service
+  ports:
+    - protocol: TCP
+      port: 8092
+      targetPort: 8092
+  type: ClusterIP
