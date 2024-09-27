@@ -1,5 +1,4 @@
 version: "3"
-name: hospital-service-app
 services:
   backend:
     build:

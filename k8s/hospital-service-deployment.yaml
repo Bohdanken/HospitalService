@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: hospital-service
-          image: hospital-service:latest
+          image: bohdanken/hospital-service:latest
           ports:
             - containerPort: 8092
           env:
             - name: DB_HOST
-              value: "postgres-service"
+              value: "postgres"
             - name: DB_PORT
               value: "5432"
             - name: DB_NAME
@@ -30,7 +30,9 @@ spec:
               value: "admin"
             - name: DB_PASSWORD
               value: "admin"
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -42,4 +44,5 @@ spec:
     - protocol: TCP
       port: 8092
       targetPort: 8092
-  type: ClusterIP
+      nodePort: 30092
+  type: NodePort
