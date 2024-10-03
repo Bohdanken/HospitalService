@@ -5,16 +5,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import ukma.edu.ua.HospitalApp.entities.internal.Drug;
-import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.entities.internal.Prescription;
-import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
-import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
-import ukma.edu.ua.HospitalApp.entities.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.common.dto.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.common.entities.Drug;
+import ukma.edu.ua.HospitalApp.common.entities.Patient;
+import ukma.edu.ua.HospitalApp.common.entities.Prescription;
+import ukma.edu.ua.HospitalApp.common.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.common.exceptions.NotFoundException;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.mappers.PrescriptionMapper;
 import ukma.edu.ua.HospitalApp.prescription.repositories.*;
@@ -24,10 +23,8 @@ import ukma.edu.ua.HospitalApp.prescription.repositories.*;
 public class PrescriptionServiceInternal {
   private final PrescriptionRepository prescriptionRepository;
 
-  private final ApplicationEventPublisher events;
-
   public PrescriptionDTO[] getPatientPrescriptions(long patientId) {
-    var prescriptions = prescriptionRepository.findByPatientDetailsId(patientId);
+    var prescriptions = prescriptionRepository.findByPatient(Patient.builder().id(patientId).build());
     return prescriptions.stream().map(this::toPrescriptionDTO).toArray(PrescriptionDTO[]::new);
   }
 
@@ -41,16 +38,13 @@ public class PrescriptionServiceInternal {
     var presription = Prescription
         .builder()
         .dateOfIssue(Date.from(Instant.now()))
-        .patientDetails(PatientDetails.builder().id(data.getPatientId()).build())
+        .patient(Patient.builder().id(data.getPatientId()).build())
         .drugs(drugs)
         .build();
+
     try {
-      var result = prescriptionRepository.save(presription);
-      var dto = toPrescriptionDTO(result);
-
-      events.publishEvent(dto);
-
-      return dto;
+      var res = prescriptionRepository.save(presription);
+      return toPrescriptionDTO(res);
     } catch (DataIntegrityViolationException e) {
       throw new BadRequestException("Provided data is not valid or does not exist");
     }

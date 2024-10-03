@@ -16,9 +16,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import ukma.edu.ua.HospitalApp.security.JWTService;
-import ukma.edu.ua.HospitalApp.security.SpringSecurityConfiguration;
-import ukma.edu.ua.HospitalApp.user.CustomUserDetailsService;
+import jakarta.persistence.EntityManager;
+import ukma.edu.ua.HospitalApp.common.security.CustomUserDetailsService;
+import ukma.edu.ua.HospitalApp.common.security.JWTService;
+import ukma.edu.ua.HospitalApp.common.security.SpringSecurityConfiguration;
 import ukma.edu.ua.HospitalApp.user.repositories.UserRepository;
 
 @SuppressWarnings("OneTopLevelClassCheck")
@@ -27,6 +28,9 @@ class SecurityTestConfig {
   @MockBean
   UserRepository userRepository;
 
+  @MockBean
+  EntityManager em;
+
   @Bean
   JWTService jwtService() {
     return new JWTService();
@@ -34,7 +38,7 @@ class SecurityTestConfig {
 
   @Bean
   UserDetailsService userDetailsService() {
-    return new CustomUserDetailsService(userRepository);
+    return new CustomUserDetailsService(em);
   }
 }
 

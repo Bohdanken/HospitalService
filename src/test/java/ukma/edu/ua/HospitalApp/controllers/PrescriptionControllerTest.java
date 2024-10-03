@@ -1,7 +1,6 @@
 package ukma.edu.ua.HospitalApp.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -44,7 +43,8 @@ public class PrescriptionControllerTest extends ControllerTest {
     body.setPatientId(Long.valueOf(1));
     body.setDrugs(List.of(Long.valueOf(1), Long.valueOf(2)));
 
-    //when(prescriptionService.createPresription(any())).thenReturn(new PrescriptionDTO());
+    // when(prescriptionService.createPresription(any())).thenReturn(new
+    // PrescriptionDTO());
 
     mvc.perform(
         post("/api/prescription/issue")

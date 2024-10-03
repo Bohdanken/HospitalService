@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ukma.edu.ua.HospitalApp.entities.internal.User;
+import ukma.edu.ua.HospitalApp.common.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

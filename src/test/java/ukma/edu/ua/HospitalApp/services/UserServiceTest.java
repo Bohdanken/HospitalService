@@ -16,9 +16,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import ukma.edu.ua.HospitalApp.entities.internal.User;
-import ukma.edu.ua.HospitalApp.entities.internal.User.Role;
-import ukma.edu.ua.HospitalApp.exceptions.UniqueConstraintException;
+import ukma.edu.ua.HospitalApp.common.entities.User;
+import ukma.edu.ua.HospitalApp.common.entities.User.Role;
+import ukma.edu.ua.HospitalApp.common.exceptions.UniqueConstraintException;
 import ukma.edu.ua.HospitalApp.user.UserService;
 import ukma.edu.ua.HospitalApp.user.repositories.UserRepository;
 
@@ -38,7 +38,7 @@ public class UserServiceTest {
 
   private String password = "somepass";
 
-  private User.Role role = Role.PATIENT;
+  private Role role = Role.PATIENT;
 
   @Test
   @Order(1)

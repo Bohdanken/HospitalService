@@ -5,16 +5,18 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import ukma.edu.ua.HospitalApp.common.dto.VisitDTO;
 import ukma.edu.ua.HospitalApp.visit.dto.UpdateVisitBody;
 import ukma.edu.ua.HospitalApp.visit.dto.VisitBody;
-import ukma.edu.ua.HospitalApp.entities.VisitDTO;
+import ukma.edu.ua.HospitalApp.visit.services.PatientVisitServiceInternal;
 
 @RestController
 @RequestMapping("${app.prefix}/visit")
 @RequiredArgsConstructor
 @Tag(name = "Visit", description = "Visit endpoints")
 public class VisitController {
-    private final ukma.edu.ua.HospitalApp.visit.PatientVisitService patientVisitService;
+    private final PatientVisitServiceInternal patientVisitService;
 
     @PostMapping("/create")
     public VisitDTO createVisit(@Valid @RequestBody VisitBody body) {

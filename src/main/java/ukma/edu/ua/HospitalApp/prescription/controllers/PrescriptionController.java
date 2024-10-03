@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import ukma.edu.ua.HospitalApp.common.Endpoints;
-import ukma.edu.ua.HospitalApp.entities.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.common.dto.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;
 

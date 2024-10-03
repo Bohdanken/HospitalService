@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import ukma.edu.ua.HospitalApp.security.JWTService;
+import ukma.edu.ua.HospitalApp.common.security.JWTService;
 
 @DisplayName("JWTService unit test")
 public class JWTServiceTest {

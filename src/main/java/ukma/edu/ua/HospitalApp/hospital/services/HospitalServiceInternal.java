@@ -5,7 +5,9 @@ import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import ukma.edu.ua.HospitalApp.entities.internal.Hospital;
+import ukma.edu.ua.HospitalApp.common.dto.HospitalDTO;
+import ukma.edu.ua.HospitalApp.common.entities.Hospital;
+import ukma.edu.ua.HospitalApp.hospital.mappers.HospitalMapper;
 import ukma.edu.ua.HospitalApp.hospital.repositories.HospitalRepository;
 
 @Service
@@ -32,5 +34,9 @@ public class HospitalServiceInternal {
 
   public void deleteHospital(Hospital hospital) {
     hospitalRepository.delete(hospital);
+  }
+
+  public HospitalDTO toHospitalDTO(Hospital hospital) {
+    return HospitalMapper.INSTANCE.hospitalToHospitalDTO(hospital);
   }
 }

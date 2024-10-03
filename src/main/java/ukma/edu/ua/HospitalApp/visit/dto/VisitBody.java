@@ -2,8 +2,7 @@ package ukma.edu.ua.HospitalApp.visit.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import ukma.edu.ua.HospitalApp.entities.internal.DoctorDetails;
-import ukma.edu.ua.HospitalApp.validators.FutureBusinessHours;
+import ukma.edu.ua.HospitalApp.common.validators.FutureBusinessHours;
 
 import java.sql.Timestamp;
 
@@ -14,8 +13,6 @@ public class VisitBody {
 
     @NotNull
     private Long doctorId;
-
-    private DoctorDetails.DoctorType doctorType;
 
     @NotNull
     @FutureBusinessHours

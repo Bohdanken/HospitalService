@@ -3,19 +3,19 @@ package ukma.edu.ua.HospitalApp.patient;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.patient.repositories.PatientDetailsRepository;
+import ukma.edu.ua.HospitalApp.common.entities.Patient;
+import ukma.edu.ua.HospitalApp.patient.services.PatientServiceInternal;
 
 @RequiredArgsConstructor
 @Service
 public class PatientService {
-	private final PatientDetailsRepository patientDetailsRepository;
+	private final PatientServiceInternal patientServiceInternal;
 
-	public PatientDetails getPatientData(long id) {
-		return this.patientDetailsRepository.findById(id).orElse(null);
+	public Patient getPatientData(long id) {
+		return this.patientServiceInternal.getPatientData(id);
 	}
 
-	public PatientDetails savePatientData(PatientDetails data) {
-		return this.patientDetailsRepository.save(data);
+	public Patient savePatientData(Patient data) {
+		return this.patientServiceInternal.savePatientData(data);
 	}
 }

@@ -20,13 +20,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import ukma.edu.ua.HospitalApp.common.entities.Drug;
+import ukma.edu.ua.HospitalApp.common.entities.Patient;
+import ukma.edu.ua.HospitalApp.common.entities.Prescription;
+import ukma.edu.ua.HospitalApp.common.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.common.exceptions.NotFoundException;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.repositories.PrescriptionRepository;
-import ukma.edu.ua.HospitalApp.entities.internal.Drug;
-import ukma.edu.ua.HospitalApp.entities.internal.PatientDetails;
-import ukma.edu.ua.HospitalApp.entities.internal.Prescription;
-import ukma.edu.ua.HospitalApp.exceptions.BadRequestException;
-import ukma.edu.ua.HospitalApp.exceptions.NotFoundException;
 import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;
 
 @DisplayName("PrescriptionService unit test")
@@ -42,7 +42,7 @@ public class PrescriptionServiceTest {
   @Order(1)
   @DisplayName("It should always return an array of a patient's prescriptions")
   public void shouldGetListOfPatientsPrescriptions() {
-    when(prescriptionRepository.findByPatientDetailsId(anyLong()))
+    when(prescriptionRepository.findByPatient(Patient.builder().id(anyLong()).build()))
         .thenReturn(List.of(
             Prescription.builder().build(),
             Prescription.builder().build(),
@@ -64,7 +64,7 @@ public class PrescriptionServiceTest {
         .thenReturn(Prescription.builder()
             .id(Long.valueOf(1))
             .dateOfIssue(new Date())
-            .patientDetails(PatientDetails
+            .patient(Patient
                 .builder()
                 .id(Long.valueOf(1))
                 .build())

@@ -3,7 +3,7 @@ package ukma.edu.ua.HospitalApp.prescription;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import ukma.edu.ua.HospitalApp.entities.PrescriptionDTO;
+import ukma.edu.ua.HospitalApp.common.dto.PrescriptionDTO;
 import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;
 
 @Service

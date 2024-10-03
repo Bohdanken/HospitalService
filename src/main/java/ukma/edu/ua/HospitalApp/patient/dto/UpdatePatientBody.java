@@ -4,10 +4,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import java.util.Date;
+
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
+@Builder
 public class UpdatePatientBody {
   @NotNull
   @Length(max = 20)

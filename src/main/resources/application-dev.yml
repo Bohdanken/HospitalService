@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/main
+    url: jdbc:postgresql://localhost:8093/main
     username: admin
     password: admin
     driverClassName: org.postgresql.Driver
@@ -10,6 +10,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  h2:
-    console:
-      enabled: true
