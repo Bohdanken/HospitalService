@@ -1,4 +1,4 @@
-package ukma.edu.prescription.config;
+package ukma.edu.prescription.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,14 +29,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()  // Disable CSRF for API requests
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/api/admin/**")).permitAll()
-                                .anyRequest().authenticated()
-                )
+                .csrf(c -> c.disable())
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/admin/**")).permitAll()
+                        .anyRequest().authenticated())
                 .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -71,8 +69,7 @@ public class SecurityConfig {
             String requestApiKey = request.getHeader(API_KEY_HEADER);
             if (validApiKey.equals(requestApiKey)) {
                 PreAuthenticatedAuthenticationToken token = new PreAuthenticatedAuthenticationToken(
-                        new User("apiUser", "", new ArrayList<>()), null, new ArrayList<>()
-                );
+                        new User("apiUser", "", new ArrayList<>()), null, new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(token);
             } else {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

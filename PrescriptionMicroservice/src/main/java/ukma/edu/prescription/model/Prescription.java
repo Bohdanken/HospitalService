@@ -2,7 +2,6 @@ package ukma.edu.prescription.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -24,10 +23,10 @@ public class Prescription {
   private Date dateOfIssue;
 
   @Column(name = "patient_id", nullable = false)
-  private Long patientId;  // Storing the patient ID instead of the entity reference
+  private Long patientId; // Storing the patient ID instead of the entity reference
 
   @ElementCollection
   @CollectionTable(name = "prescription_drugs", joinColumns = @JoinColumn(name = "prescription_id"))
   @Column(name = "drug_id")
-  private List<Long> drugIds;  // Store the IDs of the drugs instead of the Drug entity
+  private List<Long> drugIds; // Store the IDs of the drugs instead of the Drug entity
 }

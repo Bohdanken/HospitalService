@@ -1,0 +1,57 @@
+server:
+  port: 8092
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: HospitalApp
+  thymeleaf:
+    mode: HTML
+  profiles:
+    active: dev
+  jpa:
+    defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+  devtools:
+    restart:
+      enabled: true
+  mail:
+    host: live.smtp.mailtrap.io
+    port: 587
+    username: api
+    password: aebcccd0ff71fd15786b1aa3a5e92383
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    path: /swagger-json
+
+app:
+  prefix: api
+  medicine-source-service:
+    url: http://localhost:8082
+    key: key
+  prescription-service:
+    url: http://localhost:8081
+    key: key
+  jwt:
+    access-token-lifetime: 12000
+    refresh-token-lifetime: 24000
+    # SECRETS HAVE TO BE DEFINED IN .env FILE! THIS IS SENSITIVE INFORMATION
+    access-token-secret: svLos0dT/tCDaw5hqFNKzqg32WrOU9dedOLN0zx6PII=
+    refresh-token-secret: JC+AhCxTbmSU8mgIzeb7ErLJRwk1WE/hDEfuHumgq+M=
+
+logging:
+  level:
+    org.springframework: info
+    com.myapp: info
