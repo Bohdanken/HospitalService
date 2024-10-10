@@ -1,11 +1,10 @@
-package ukma.edu.ua.HospitalApp.prescription.dto;
+package ukma.edu.prescription.dto;
 
 import java.util.Date;
-
 import lombok.Data;
 
 @Data
-public class PrescriptionResponse {
+public class PrescriptionDTO {
 	private Long id;
 	private Date dateOfIssue;
 	private Long patientId;

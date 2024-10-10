@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.patient.services.PatientServiceInternal;
-import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
+import ukma.edu.ua.HospitalApp.prescription.services.PrescriptionServiceInternal;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -36,7 +36,7 @@ public class PatientControllerTest {
 	protected ObjectMapper objectMapper;
 
 	@MockBean
-	private PrescriptionService prescriptionService;
+	private PrescriptionServiceInternal prescriptionService;
 
 	@MockBean
 	private PatientServiceInternal patientServiceInternal;
@@ -89,7 +89,7 @@ public class PatientControllerTest {
 				.andDo(print())
 				.andExpect(status().isOk());
 
-		verify(prescriptionService, times(1)).getPatientPrescriptions(12345);
+		verify(prescriptionService, times(1)).getPrescriptionForCurrentPatient();
 	}
 
 	@Test

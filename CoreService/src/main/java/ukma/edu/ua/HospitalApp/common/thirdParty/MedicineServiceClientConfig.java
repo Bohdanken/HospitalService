@@ -6,14 +6,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class MedicineServiceClient {
-	@Value("app.medicine-source-service.url")
+public class MedicineServiceClientConfig {
+	@Value("${app.medicine-source-service.url}")
 	private String url;
 
-	@Value("app.medicine-source-service.key")
+	@Value("${app.medicine-source-service.key}")
 	private String key;
 
-	@Bean("medicineServiceClient")
+	@Bean
 	WebClient medicineServiceClient() {
 		return WebClient.builder().baseUrl(url).defaultHeader("X-API-KEY", key).build();
 	}

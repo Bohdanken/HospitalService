@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,7 +47,7 @@ public class SpringSecurityConfiguration {
             .requestMatchers(mvc.pattern(appPrefix + Endpoints.PRESCRIPTION + "*/**")).hasAuthority(User.Roles.DOCTOR)
             .requestMatchers(mvc.pattern("/swagger*/**")).permitAll()
             .anyRequest().permitAll())
-        .csrf(AbstractHttpConfigurer::disable)
+        .csrf(o -> o.disable())
         .sessionManagement((r) -> r.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .exceptionHandling((e) -> e
             .authenticationEntryPoint((request, response, authException) -> response.sendError(

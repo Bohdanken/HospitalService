@@ -1,40 +1,45 @@
 package ukma.edu.prescription.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import ukma.edu.prescription.dto.CreatePrescriptionBody;
+import ukma.edu.prescription.dto.PrescriptionDTO;
 import ukma.edu.prescription.service.PrescriptionService;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/prescriptions")
+@RequiredArgsConstructor
 public class PrescriptionController {
-
   private final PrescriptionService prescriptionService;
 
-  @Autowired
-  public PrescriptionController(PrescriptionService prescriptionService) {
-    this.prescriptionService = prescriptionService;
-  }
-
-
   @PostMapping("/create")
-  public ResponseEntity<Void> createPrescription(@RequestParam Long patientId, @RequestParam String prescriptionDetails) {
-    prescriptionService.createPrescription(patientId, prescriptionDetails);
-    return ResponseEntity.status(HttpStatus.CREATED).build();
+  @ResponseStatus(HttpStatus.CREATED)
+  public PrescriptionDTO createPrescription(@RequestBody @Valid CreatePrescriptionBody body) {
+    return prescriptionService.createPrescription(body);
   }
-
 
   @GetMapping("/patient/{patientId}")
-  public ResponseEntity<String> getPrescriptionDetailsByPatientId(@PathVariable Long patientId) {
-    Optional<String> prescriptionDetails = prescriptionService.getPrescriptionDetailsByPatientId(patientId);
-    return prescriptionDetails.map(string -> ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=prescription.txt")
-            .contentType(MediaType.TEXT_PLAIN)
-            .body(string)).orElseGet(() -> ResponseEntity.notFound().build());
+  public ResponseEntity<String> getLatestPrescriptionByPatientId(@PathVariable Long patientId) {
+    var prescriptionDetails = prescriptionService.getLatestPrescriptionByPatientId(patientId);
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=prescription.txt")
+        .contentType(MediaType.TEXT_PLAIN)
+        .body(prescriptionDetails);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<String> getPresctiptionById(@PathVariable Long id) {
+    var prescriptionDetails = prescriptionService.getPrescriptionById(id);
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=prescription.txt")
+        .contentType(MediaType.TEXT_PLAIN)
+        .body(prescriptionDetails);
   }
 
   @DeleteMapping("/{id}")

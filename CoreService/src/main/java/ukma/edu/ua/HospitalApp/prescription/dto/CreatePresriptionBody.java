@@ -14,5 +14,15 @@ public class CreatePresriptionBody {
 
   @Size(min = 1)
   @NotNull
-  private List<Long> drugs;
+  private List<CreatePresriptionBodyDrugInfo> drugs;
+
+  @Data
+  public static class CreatePresriptionBodyDrugInfo {
+    @NotNull
+    private Long drugId;
+
+    @NotNull
+    @Min(1)
+    private Integer timesPerDay;
+  }
 }
