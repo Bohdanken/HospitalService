@@ -1,4 +1,4 @@
-package ukma.edu.prescription.utils;
+package ukma.edu.prescription.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -28,20 +28,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()  // Disable CSRF for API requests
-                .headers().frameOptions().disable()  // Allow H2 console to be displayed in a frame
-                .and()
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()  // Allow access to H2 console
-                                .anyRequest().authenticated()
-                )
-                .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
+        return http
+                .csrf(o -> o.disable())
+                .headers(o -> o.frameOptions(f -> f.disable())) // Allow H2 console to be displayed in a frame
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
+                        // Allow access to H2 console
+                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+                        .anyRequest().authenticated())
+                .addFilterBefore(apiKeyAuthFilter(), UsernamePasswordAuthenticationFilter.class).build();
     }
 
     @Bean
@@ -62,7 +58,7 @@ public class SecurityConfig {
                 throws IOException, ServletException {
             if (new AntPathRequestMatcher("/swagger-ui/**").matches(request) ||
                     new AntPathRequestMatcher("/v3/api-docs/**").matches(request) ||
-                    new AntPathRequestMatcher("/h2-console/**").matches(request) ||  // Allow H2 console
+                    new AntPathRequestMatcher("/h2-console/**").matches(request) || // Allow H2 console
                     new AntPathRequestMatcher("/api/admin/**").matches(request)) {
                 chain.doFilter(request, response);
                 return;
@@ -71,8 +67,7 @@ public class SecurityConfig {
             String requestApiKey = request.getHeader(API_KEY_HEADER);
             if (validApiKey.equals(requestApiKey)) {
                 PreAuthenticatedAuthenticationToken token = new PreAuthenticatedAuthenticationToken(
-                        new User("apiUser", "", new ArrayList<>()), null, new ArrayList<>()
-                );
+                        new User("apiUser", "", new ArrayList<>()), null, new ArrayList<>());
                 SecurityContextHolder.getContext().setAuthentication(token);
             } else {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -83,4 +78,3 @@ public class SecurityConfig {
         }
     }
 }
-

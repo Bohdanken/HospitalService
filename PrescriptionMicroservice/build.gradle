@@ -22,7 +22,7 @@ configurations {
 }
 
 springBoot {
-	mainClass = 'ukma.edu.ua.PrescriptionMicroserviceApplication'
+	mainClass = 'ukma.edu.Application'
 }
 
 repositories {

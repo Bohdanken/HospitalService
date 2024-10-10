@@ -31,6 +31,10 @@ public class DrugService {
         return drugRepository.findByGenericNameContainingIgnoreCase(genericName);
     }
 
+    public List<Drug> getAllDrugsById(List<Long> ids) {
+        return drugRepository.findAllById(ids);
+    }
+
     public Drug getDrugByName(String brandName) {
         return drugRepository.findByBrandName(brandName);
     }
@@ -52,7 +56,7 @@ public class DrugService {
                 log.info("Saving drug: {}", drug.getBrandName());
                 drugRepository.save(drug);
             }
-        }  catch (Exception e) {
+        } catch (Exception e) {
             log.error("Error while processing CSV file: {}", e.getMessage());
             throw e;
         }

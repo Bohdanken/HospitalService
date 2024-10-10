@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface DrugRepository extends JpaRepository<Drug, Long> {
     List<Drug> findByProducerContainingIgnoreCase(String producer);
+
     List<Drug> findByGenericNameContainingIgnoreCase(String genericName);
+
     Drug findByBrandName(String name);
 }

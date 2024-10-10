@@ -4,11 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +17,6 @@ import ukma.edu.ua.HospitalApp.common.dto.PatientDTO;
 import ukma.edu.ua.HospitalApp.patient.dto.UpdatePatientBody;
 import ukma.edu.ua.HospitalApp.patient.services.PatientServiceInternal;
 import ukma.edu.ua.HospitalApp.prescription.PrescriptionService;
-import ukma.edu.ua.HospitalApp.prescription.dto.PrescriptionResponse;
 
 @RestController
 @RequestMapping("${app.prefix}" + Endpoints.PATIENT)
@@ -31,13 +26,13 @@ public class PatientController {
   private final PrescriptionService prescriptionService;
   private final PatientServiceInternal patientService;
 
-  private static final String GET_PATIENT_PRESCRIPTIONS_PATH = "/{id}/prescriptions";
+  private static final String GET_PATIENT_PRESCRIPTIONS_PATH = "/prescriptions";
   private static final String UPDATE_PATIENT_PATH = "/{id}";
 
   @GetMapping(GET_PATIENT_PRESCRIPTIONS_PATH)
   @Operation(summary = "Get patient's prescriptions")
-  public Flux<ResponseEntity<List<PrescriptionResponse>>> getPatientPrescriptions(@Valid @PathVariable Long id) {
-    return prescriptionService.getPatientPrescriptions(id);
+  public String getPatientPrescription() {
+    return prescriptionService.getPrescriptionForCurrentPatient();
   }
 
   @PutMapping(UPDATE_PATIENT_PATH)

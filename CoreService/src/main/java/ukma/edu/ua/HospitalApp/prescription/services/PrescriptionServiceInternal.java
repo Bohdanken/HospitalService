@@ -1,63 +1,90 @@
 package ukma.edu.ua.HospitalApp.prescription.services;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
-import ukma.edu.ua.HospitalApp.common.dto.DrugDTO;
-import ukma.edu.ua.HospitalApp.common.dto.PrescriptionDTO;
-import ukma.edu.ua.HospitalApp.common.entities.Patient;
+import ukma.edu.ua.HospitalApp.common.exceptions.BadRequestException;
+import ukma.edu.ua.HospitalApp.common.security.AppUser;
+import ukma.edu.ua.HospitalApp.medicine.MedicineService;
+import ukma.edu.ua.HospitalApp.patient.PatientService;
+import ukma.edu.ua.HospitalApp.prescription.dto.CreatePrescriptionBodyThirdParty;
 import ukma.edu.ua.HospitalApp.prescription.dto.CreatePresriptionBody;
 import ukma.edu.ua.HospitalApp.prescription.dto.PrescriptionResponse;
-
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @RequiredArgsConstructor
 public class PrescriptionServiceInternal {
+  private final PatientService patientService;
+  private final MedicineService medicineService;
+
   @Qualifier("prescriptionServiceClient")
-  private WebClient prescriptionServiceClient;
+  private final WebClient prescriptionServiceClient;
 
-  @Qualifier("medicineServiceClient")
-  private WebClient medicineServiceClient;
+  public String getPrescriptionForCurrentPatient() {
+    var authentication = SecurityContextHolder.getContext().getAuthentication();
+    var appUser = (AppUser) authentication.getPrincipal();
 
-  public Flux<ResponseEntity<List<PrescriptionResponse>>> getPatientPrescriptions(long patientId) {
     return prescriptionServiceClient
         .get()
-        .uri("/api/prescriptions/patient/" + patientId)
+        .uri("/api/prescriptions/patient/" + appUser.getUserId())
         .retrieve()
-        .toEntityList(PrescriptionResponse.class)
-        .flux();
+        .toEntity(String.class)
+        .block()
+        .getBody();
   }
 
-  public PrescriptionDTO createPresription(CreatePresriptionBody data) {
-    var drugs = data
-        .getDrugs()
-        .stream()
-        .map(id -> DrugDTO.builder().id(id).build())
-        .collect(Collectors.toList())
-        .toArray(new DrugDTO[] {});
+  public String getPrescriptionById(long id) {
+    return prescriptionServiceClient
+        .get()
+        .uri("/api/prescriptions/" + id)
+        .retrieve()
+        .toEntity(String.class)
+        .block()
+        .getBody();
+  }
 
-    var presription = PrescriptionDTO
-        .builder()
-        .dateOfIssue(Date.from(Instant.now()))
-        .patient(Patient.builder().id(data.getPatientId()).build())
+  public PrescriptionResponse createPresription(CreatePresriptionBody data) {
+    var patient = patientService.getPatientData(data.getPatientId());
+
+    var drugIds = data.getDrugs().stream().map(drug -> drug.getDrugId()).toList();
+    var allDrugs = medicineService.getDrugsByIds(drugIds);
+    var drugs = allDrugs
+        .stream()
+        .map(drug -> CreatePrescriptionBodyThirdParty.Drug
+            .builder()
+            .name(drug.getBrandName())
+            .timesPerDay(
+                data.getDrugs()
+                    .stream()
+                    .filter(e -> e.getDrugId() == drug.getId())
+                    .findFirst()
+                    .get()
+                    .getTimesPerDay())
+            .build())
+        .toList();
+    var reqBody = CreatePrescriptionBodyThirdParty.builder()
+        .patientId(patient.getId())
+        .patientFirstName(patient.getFirstName())
+        .patientLastName(patient.getLastName())
         .drugs(drugs)
         .build();
 
     try {
-      var res = prescriptionRepository.save(presription);
-      return toPrescriptionDTO(res);
+      return prescriptionServiceClient
+          .post()
+          .uri("/api/prescriptions/create")
+          .contentType(MediaType.APPLICATION_JSON)
+          .bodyValue(reqBody)
+          .retrieve()
+          .toEntity(PrescriptionResponse.class)
+          .block()
+          .getBody();
     } catch (DataIntegrityViolationException e) {
-      throw new BadRequestException("Provided data is not valid or does not exist");
+      throw new BadRequestException("Error creating prescription");
     }
   }
 

@@ -242,55 +242,55 @@ INSERT INTO app_user (email, password, role) VALUES ('admin2@gmail.com', '$2a$12
 INSERT INTO app_admin (first_name, last_name, id) VALUES ('Big', 'Boss', 111);
 INSERT INTO app_admin (first_name, last_name, id) VALUES ('Small', 'Boss', 112);
 
--- DRUGS ----------------------------------------------------------------------------------------------------------------
+-- -- DRUGS ----------------------------------------------------------------------------------------------------------------
 
-INSERT INTO drug (name, producer) VALUES ('Zyvirex', 'MediFuture Pharma'); -- 1
-INSERT INTO drug (name, producer) VALUES ('Neuropana', 'Healtheonix'); -- 2
-INSERT INTO drug (name, producer) VALUES ('Cardiogard', 'BioPlexus Inc.'); -- 3
-INSERT INTO drug (name, producer) VALUES ('Painocept', 'VitaGen Labs'); -- 4
-INSERT INTO drug (name, producer) VALUES ('Immunolift', 'NeuroTech Pharmaceuticals'); -- 5
-INSERT INTO drug (name, producer) VALUES ('GastroEase', 'CardioLife Sciences'); -- 6
-INSERT INTO drug (name, producer) VALUES ('Oncostop', 'GastroMed Solutions'); -- 7
-INSERT INTO drug (name, producer) VALUES ('Vitaregen', 'Oncology Innovations Corp.'); -- 8
-INSERT INTO drug (name, producer) VALUES ('Sleepwell', 'TranquiMind Pharma'); -- 9
-INSERT INTO drug (name, producer) VALUES ('Moodbright', 'Regenix Health'); -- 10
+-- INSERT INTO drug (name, producer) VALUES ('Zyvirex', 'MediFuture Pharma'); -- 1
+-- INSERT INTO drug (name, producer) VALUES ('Neuropana', 'Healtheonix'); -- 2
+-- INSERT INTO drug (name, producer) VALUES ('Cardiogard', 'BioPlexus Inc.'); -- 3
+-- INSERT INTO drug (name, producer) VALUES ('Painocept', 'VitaGen Labs'); -- 4
+-- INSERT INTO drug (name, producer) VALUES ('Immunolift', 'NeuroTech Pharmaceuticals'); -- 5
+-- INSERT INTO drug (name, producer) VALUES ('GastroEase', 'CardioLife Sciences'); -- 6
+-- INSERT INTO drug (name, producer) VALUES ('Oncostop', 'GastroMed Solutions'); -- 7
+-- INSERT INTO drug (name, producer) VALUES ('Vitaregen', 'Oncology Innovations Corp.'); -- 8
+-- INSERT INTO drug (name, producer) VALUES ('Sleepwell', 'TranquiMind Pharma'); -- 9
+-- INSERT INTO drug (name, producer) VALUES ('Moodbright', 'Regenix Health'); -- 10
 
--- PRESCRIPTIONS --------------------------------------------------------------------------------------------------------
+-- -- PRESCRIPTIONS --------------------------------------------------------------------------------------------------------
 
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-01', 11); -- 1
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-01', 11); -- 2
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-05', 11); -- 3
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-10', 11); -- 4
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-08-01', 11); -- 5
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-07-23', 12); -- 6
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-02', 12); -- 7
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-03', 12); -- 8
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-04', 13); -- 9
-INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-05', 13); -- 10
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-01', 11); -- 1
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-01', 11); -- 2
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-05', 11); -- 3
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-09-10', 11); -- 4
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-08-01', 11); -- 5
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-07-23', 12); -- 6
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-02', 12); -- 7
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-03', 12); -- 8
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-04', 13); -- 9
+-- INSERT INTO prescription (date_of_issue, patient_id) VALUES ('2023-10-05', 13); -- 10
 
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (1, 1);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (1, 2);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (2, 3);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (2, 4);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (3, 5);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 1);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 2);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 3);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (5, 1);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (5, 3);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 7);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 8);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 9);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (7, 1);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (7, 7);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (8, 4);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 10);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 9);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 4);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 2);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 1);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 4);
-INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 5);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (1, 1);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (1, 2);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (2, 3);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (2, 4);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (3, 5);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 1);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 2);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (4, 3);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (5, 1);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (5, 3);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 7);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 8);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (6, 9);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (7, 1);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (7, 7);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (8, 4);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 10);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 9);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 4);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (9, 2);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 1);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 4);
+-- INSERT INTO prescription_drug_map (prescription_id, drug_id) VALUES (10, 5);
 
 -- PRESCRIPTIONS --------------------------------------------------------------------------------------------------------
 INSERT INTO visit (patient_id, doctor_id, date_of_visit) VALUES (11, 2, '2023-10-05')
