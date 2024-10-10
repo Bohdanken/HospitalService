@@ -1,7 +1,6 @@
 package ua.edu.ukma.medicinesourceservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import ua.edu.ukma.medicinesourceservice.entity.Drug;
 import ua.edu.ukma.medicinesourceservice.service.DrugService;
 
@@ -17,27 +16,32 @@ public class DrugController {
 
     private final DrugService drugService;
 
+    // @GetMapping("/drugs")
+    // public List<Drug> getAllDrugs(@RequestParam(required = false) String name,
+    // @RequestParam(required = false) String producer,
+    // @RequestParam(required = false) String genericName) {
+    // if (name != null) {
+    // return List.of(drugService.getDrugByName(name));
+    // } else if (producer != null) {
+    // return drugService.getDrugsByProducer(producer);
+    // } else if (genericName != null) {
+    // return drugService.getDrugsByGenericName(genericName);
+    // } else {
+    // return drugService.getAllDrugs();
+    // }
+    // }
+
     @GetMapping("/drugs")
-    public List<Drug> getAllDrugs(@RequestParam(required = false) String name,
-            @RequestParam(required = false) String producer,
-            @RequestParam(required = false) String genericName) {
-        if (name != null) {
-            return List.of(drugService.getDrugByName(name));
-        } else if (producer != null) {
-            return drugService.getDrugsByProducer(producer);
-        } else if (genericName != null) {
-            return drugService.getDrugsByGenericName(genericName);
-        } else {
-            return drugService.getAllDrugs();
+    public List<Drug> getAllDrugs(@RequestParam(required = false) List<Long> ids) {
+        if (ids != null) {
+            return drugService.getAllDrugsById(ids);
         }
+
+        return drugService.getAllDrugs();
     }
 
     @PostMapping("/admin/drugs")
-    public String uploadDrugsFromCSV(@RequestParam("file") MultipartFile file, Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            return "Invalid API Key";
-        }
-
+    public String uploadDrugsFromCSV(@RequestParam("file") MultipartFile file) {
         try {
             drugService.saveDrugsFromCSV(file);
             return "File uploaded successfully";
