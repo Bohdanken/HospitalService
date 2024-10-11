@@ -32,15 +32,11 @@ spring:
           auth: true
           starttls:
             enable: true
-#  jms:
-#    broker-url: tcp://activemq-artemis:61616
-#    user: artemis
-#    password: admin
   artemis:
-    mode: native
-    broker-url: tcp://activemq-artemis:61616
+    broker-url: tcp://localhost:61616
     user: artemis
-    password: admin
+    password: artemis
+    mode: native
 
 springdoc:
   swagger-ui:

@@ -16,11 +16,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Service
 @RequiredArgsConstructor
 public class PrescriptionServiceInternal {
   private final PatientService patientService;
   private final MedicineService medicineService;
+  private final ObjectMapper mapper;
 
   @Qualifier("prescriptionServiceClient")
   private final WebClient prescriptionServiceClient;
@@ -76,21 +79,26 @@ public class PrescriptionServiceInternal {
         .drugs(drugs)
         .build();
 
-    jmsTemplate.convertAndSend("prescription-queue", reqBody);
+    try {
+      var reqData = mapper.writeValueAsString(reqBody);
+      jmsTemplate.convertAndSend("prescription-queue", reqData);
+    } catch (Exception e) {
+      throw new BadRequestException("Unable to send request");
+    }
 
-//    try {
-//      return prescriptionServiceClient
-//          .post()
-//          .uri("/api/prescriptions/create")
-//          .contentType(MediaType.APPLICATION_JSON)
-//          .bodyValue(reqBody)
-//          .retrieve()
-//          .toEntity(PrescriptionResponse.class)
-//          .block()
-//          .getBody();
-//    } catch (DataIntegrityViolationException e) {
-//      throw new BadRequestException("Error creating prescription");
-//    }
+    // try {
+    // return prescriptionServiceClient
+    // .post()
+    // .uri("/api/prescriptions/create")
+    // .contentType(MediaType.APPLICATION_JSON)
+    // .bodyValue(reqBody)
+    // .retrieve()
+    // .toEntity(PrescriptionResponse.class)
+    // .block()
+    // .getBody();
+    // } catch (DataIntegrityViolationException e) {
+    // throw new BadRequestException("Error creating prescription");
+    // }
   }
 
   // TODO

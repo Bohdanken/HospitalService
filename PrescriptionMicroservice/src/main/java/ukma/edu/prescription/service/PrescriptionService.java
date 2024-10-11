@@ -3,6 +3,10 @@ package ukma.edu.prescription.service;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 import ukma.edu.prescription.dto.CreatePrescriptionBody;
 import ukma.edu.prescription.dto.PrescriptionDTO;
@@ -20,8 +24,14 @@ import java.util.stream.Stream;
 @RequiredArgsConstructor
 public class PrescriptionService {
     private final PrescriptionRepository prescriptionRepository;
+    private final ObjectMapper mapper;
 
     @JmsListener(destination = "prescription-queue")
+    private void createPrescriptionListener(String msg) throws JsonMappingException, JsonProcessingException {
+        var data = mapper.readValue(msg, CreatePrescriptionBody.class);
+        createPrescription(data);
+    }
+
     public PrescriptionDTO createPrescription(CreatePrescriptionBody body) {
         var patientInfo = "Patient: " + body.getPatientFirstName() + " " + body.getPatientLastName() + "\n";
 
