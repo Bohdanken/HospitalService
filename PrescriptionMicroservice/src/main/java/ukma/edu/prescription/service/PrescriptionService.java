@@ -1,5 +1,6 @@
 package ukma.edu.prescription.service;
 
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.stream.Stream;
 public class PrescriptionService {
     private final PrescriptionRepository prescriptionRepository;
 
+    @JmsListener(destination = "prescription-queue")
     public PrescriptionDTO createPrescription(CreatePrescriptionBody body) {
         var patientInfo = "Patient: " + body.getPatientFirstName() + " " + body.getPatientLastName() + "\n";
 

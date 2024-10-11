@@ -79,6 +79,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail:1.2.0.RELEASE'
 	implementation 'com.sun.mail:jakarta.mail:2.0.1'
 
+	// Message queues
+	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
+	implementation 'org.apache.activemq:activemq-all:5.4.2'
+	implementation 'org.apache.activemq:artemis-jms-client-all:2.37.0'
+
 }
 
 checkstyle {
