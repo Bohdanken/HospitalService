@@ -83,6 +83,9 @@ dependencies {
     // Email
     implementation 'org.springframework.boot:spring-boot-starter-mail:1.2.0.RELEASE'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+    // Message queues
+	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
 }
 
 checkstyle {

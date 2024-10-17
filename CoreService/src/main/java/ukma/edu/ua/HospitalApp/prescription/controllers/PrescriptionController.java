@@ -34,10 +34,11 @@ public class PrescriptionController {
   public static final String DELETE_PRESCRIPTION_PATH = "/{id}";
 
   @PostMapping(CREATE_PRESCRIPTION_PATH)
-  @ResponseStatus(code = HttpStatus.CREATED)
+  @ResponseStatus(code = HttpStatus.ACCEPTED)
   @Operation(summary = "Issue a prescription for a patient")
-  public PrescriptionResponse createPresription(@RequestBody @Valid CreatePresriptionBody body) {
-    return prescriptionService.createPresription(body);
+  public String createPresription(@RequestBody @Valid CreatePresriptionBody body) {
+    prescriptionService.createPresription(body);
+    return "Prescription creation request received";
   }
 
   @GetMapping(GET_PRESCRIPTION_PATH)
