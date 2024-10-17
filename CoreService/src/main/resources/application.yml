@@ -63,3 +63,12 @@ logging:
   level:
     org.springframework: info
     com.myapp: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always

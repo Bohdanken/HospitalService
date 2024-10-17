@@ -86,6 +86,10 @@ dependencies {
 
     // Message queues
 	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
+
+    // Telemetry
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.4'
+
 }
 
 checkstyle {
