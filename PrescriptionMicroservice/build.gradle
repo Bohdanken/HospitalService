@@ -86,7 +86,7 @@ dependencies {
 
 	// Telemetry
 	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.4'
-
+	implementation 'de.codecentric:spring-boot-admin-starter-client:3.3.4'
 }
 
 checkstyle {

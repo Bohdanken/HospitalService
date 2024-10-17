@@ -37,8 +37,10 @@ spring:
     user: artemis
     password: artemis
     mode: native
-
-springdoc:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
   swagger-ui:
     path: /swagger
   api-docs:
