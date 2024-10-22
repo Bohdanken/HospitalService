@@ -41,3 +41,5 @@ out/
 
 ### PROJECT ###
 logs/
+
+*.DS_Store
