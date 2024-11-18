@@ -1,0 +1,8 @@
+rootProject.name = 'HospitalApp'
+include 'grpc-common'
+include 'GatewayService'
+include 'AdminService'
+include 'AuthService'
+include 'VisitService'
+include 'MedicineSourceService'
+include 'PrescriptionService'

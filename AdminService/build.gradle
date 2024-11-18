@@ -2,14 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
-}
-
-group = 'ua.edu.ukma'
-version = '0.0.1-SNAPSHOT'
-
-java {
-	sourceCompatibility = '17'
-	targetCompatibility = '17'
+	id 'io.freefair.lombok' version "8.4"	
 }
 
 configurations {
@@ -18,16 +11,8 @@ configurations {
 	}
 }
 
-repositories {
-	mavenCentral()
-}
-
-ext {
-	set('springBootAdminVersion', "3.3.4")
-}
-
 springBoot {
-	mainClass = 'ua.edu.ukma.adminservice.AdminServiceApplication'
+	mainClass = 'ukma.edu.ua.AdminService.Application'
 }
 
 
@@ -43,7 +28,7 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+		mavenBom "de.codecentric:spring-boot-admin-dependencies:3.3.4"
 	}
 }
 
