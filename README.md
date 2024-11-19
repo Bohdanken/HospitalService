@@ -6,6 +6,7 @@ their visits and doctors to track visits and issue prescriptions.
 There are be 3 roles in this project: admin, doctor, patient.
 
 ### Architecture
+
 ![img.png](architecture.png)
 
 ### Admin
@@ -28,3 +29,15 @@ There are be 3 roles in this project: admin, doctor, patient.
 - Bohdan Shevchenko
 - Maksym Polishuk
 - Ilya Dubov
+
+### Ports for each service
+
+| Service                | port |
+| ---------------------- | ---- |
+| Gateway service        | 8089 |
+| Admin service          | 8090 |
+| Auth service HTTP      | 8091 |
+| Auth service RPC       | 8092 |
+| Visit service          | 8093 |
+| MedicineSource service | 8094 |
+| Prescription service   | 8095 |

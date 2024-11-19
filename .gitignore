@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 lib
+libs
 *.zip
 Link.txt
 config.json

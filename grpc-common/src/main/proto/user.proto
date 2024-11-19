@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package ukma.edu.ua.proto;
+
+import "google/protobuf/timestamp.proto";
+
+message UserId {
+	int64 id = 1;
+}
+
+enum UserRole {
+	UNKNOWN_USER_ROLE = 0;
+	ADMIN = 1;
+	DOCTOR = 2;
+	PATIENT = 3;
+}
+
+enum DoctorType {
+	UNKNOWN_DOCTOR_TYPE = 0;
+	CARDIOLOGIST = 1;
+	THERAPIST = 2;
+	ORTHOPEDIST = 3;
+	DENTIST = 4;
+	COSMETOLOGIST = 5;
+}
+
+message AdminDetails {
+	string firstName = 1;
+	string lastName = 2;
+}
+
+message PatientDetails {
+	string firstName = 1;
+	string lastName = 2;
+	string address = 3;
+	string passportNumber = 4;
+	google.protobuf.Timestamp birthDate = 5;
+}
+
+message DoctorDetails {
+	string firstName = 1;
+	string lastName = 2;
+	google.protobuf.Timestamp birthDate = 3;
+	DoctorType doctorType = 4;
+}
+
+message UserResponse {
+	int64 id = 1;
+	string email = 2;
+	string password = 3;
+	UserRole role = 4;
+
+	oneof userInfo {
+		AdminDetails adminDetails = 5;
+		PatientDetails patientDetails = 6;
+		DoctorDetails doctorDetails = 7;
+	}
+}
+
+service UserService {
+	rpc getById(UserId) returns (UserResponse);
+}

@@ -1,0 +1,91 @@
+server:
+  port: 8093
+
+springdoc:
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    path: /swagger-json
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: VisitService
+  thymeleaf:
+    mode: HTML
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: admin
+    password: admin
+    driverClassName: org.h2.Driver
+  jpa:
+    # defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  sql:
+    init:
+      mode: always
+  devtools:
+    restart:
+      enabled: true
+  mail:
+    host: live.smtp.mailtrap.io
+    port: 587
+    username: api
+    password: aebcccd0ff71fd15786b1aa3a5e92383
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  # artemis:
+  #   broker-url: tcp://localhost:61616
+  #   user: artemis
+  #   password: artemis
+  #   mode: native
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
+  swagger-ui:
+    path: /swagger
+  api-docs:
+    path: /swagger-json
+
+grpc:
+  client:
+    auth:
+      address: static://localhost:8092
+      negotiationType: plaintext
+
+app:
+  prefix: api
+  medicine-source-service:
+    url: http://localhost:8083
+    key: key
+  prescription-service:
+    url: http://localhost:8082
+    key: key
+  jwt:
+    access-token-lifetime: 12000
+    refresh-token-lifetime: 24000
+    # SECRETS HAVE TO BE DEFINED IN .env FILE! THIS IS SENSITIVE INFORMATION
+    access-token-secret: svLos0dT/tCDaw5hqFNKzqg32WrOU9dedOLN0zx6PII=
+    refresh-token-secret: JC+AhCxTbmSU8mgIzeb7ErLJRwk1WE/hDEfuHumgq+M=
+
+logging:
+  level:
+    org.springframework: info
+    com.myapp: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: "always"
