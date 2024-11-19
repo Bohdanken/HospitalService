@@ -69,6 +69,9 @@ dependencies {
 	implementation project(':grpc-common')
 	implementation 'net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE'
 	runtimeOnly 'io.grpc:grpc-netty-shaded:1.68.1'
+
+	// Message queues
+	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
 }
 
 tasks.named('test') {
