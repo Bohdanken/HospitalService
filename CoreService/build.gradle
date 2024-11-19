@@ -88,10 +88,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
 
     // Telemetry
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.4'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'de.codecentric:spring-boot-admin-starter-client:3.3.4'
-    implementation 'io.opentelemetry:opentelemetry-api:1.43.0'
-    implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter:2.9.0'
+//    implementation 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:1.25.0'
+//    implementation 'io.opentelemetry:opentelemetry-sdk-metrics:1.44.1'
+    implementation group: 'io.opentelemetry.instrumentation', name: 'opentelemetry-spring-boot-starter', version: '1.26.0-alpha'
     implementation 'io.micrometer:micrometer-registry-prometheus:1.13.6'
 
 }

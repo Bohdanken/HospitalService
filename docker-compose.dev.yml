@@ -60,6 +60,11 @@ services:
     depends_on:
       - prometheus
 
+networks:
+  hospital-network:
+    driver: bridge
+
+
 volumes:
   hospital-service-pgdata:
   hospital-service-pgadmin-data:

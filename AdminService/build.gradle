@@ -39,8 +39,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'io.opentelemetry:opentelemetry-api:1.43.0'
-	implementation 'io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter:2.9.0'
+	implementation group: 'io.opentelemetry.instrumentation', name: 'opentelemetry-spring-boot-starter', version: '1.26.0-alpha'
 	implementation 'io.micrometer:micrometer-registry-prometheus:1.13.6'
 }
 
