@@ -9,6 +9,7 @@ libs
 *.zip
 Link.txt
 config.json
+*.DS_Store
 ### STS ###
 .apt_generated
 .classpath
