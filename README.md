@@ -38,6 +38,6 @@ There are be 3 roles in this project: admin, doctor, patient.
 | Admin service          | 8090 |
 | Auth service HTTP      | 8091 |
 | Auth service RPC       | 8092 |
-| Visit service          | 8095 |
-| MedicineSource service | 8096 |
-| Prescription service   | 8097 |
+| Visit service          | 8093 |
+| MedicineSource service | 8094 |
+| Prescription service   | 8095 |

@@ -1,32 +1,6 @@
 version: "3"
 name: hospital-service-app-db
 services:
-  postgres:
-    image: postgres
-    container_name: hospital-service-db-pg
-    restart: unless-stopped
-    ports:
-      - 8093:5432
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=main
-    logging:
-      driver: none
-    volumes:
-      - hospital-service-pgdata:/var/lib/postgresql/data
-
-  pgadmin:
-    image: dpage/pgadmin4:8.3
-    container_name: hospital-service-db-pgadmin
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    ports:
-      - 8094:80
-    volumes:
-      - hospital-service-pgadmin-data:/var/lib/pgadmin
-
   activemq-artemis:
     image: apache/activemq-artemis:latest-alpine
     container_name: activemq-artemis
