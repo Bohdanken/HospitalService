@@ -1,20 +1,27 @@
-package ua.edu.ukma.notificationservice.config;
+package ukma.edu.ua.VisitService.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
-import jakarta.jms.ConnectionFactory;
-
 @Configuration
 public class JMSConfig {
+    @Value("${spring.artemis.broker-url}")
+    private String url;
+
+    @Value("${spring.artemis.user}")
+    private String user;
+
+    @Value("${spring.artemis.password}")
+    private String password;
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        return new ActiveMQConnectionFactory("tcp://localhost:61616", "artemis", "artemis");
+        return new ActiveMQConnectionFactory(url, user, password);
     }
 
     @Bean
@@ -31,10 +38,4 @@ public class JMSConfig {
         factory.setPubSubDomain(true);
         return factory;
     }
-
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
 }
-

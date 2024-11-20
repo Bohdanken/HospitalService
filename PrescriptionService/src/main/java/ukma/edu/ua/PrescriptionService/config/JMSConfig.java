@@ -1,4 +1,4 @@
-package ukma.edu.ua.AuthService.config;
+package ukma.edu.ua.PrescriptionService.config;
 
 import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;

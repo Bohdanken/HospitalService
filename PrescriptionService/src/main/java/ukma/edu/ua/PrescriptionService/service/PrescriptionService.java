@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,6 +27,7 @@ import ukma.edu.ua.PrescriptionService.security.User;
 public class PrescriptionService {
 	private final PrescriptionRepository prescriptionRepository;
 	private final UserService userService;
+	private final JmsTemplate jmsTemplate;
 	private final MedicineService medicineService;
 
 	public String createPrescription(CreatePrescriptionBody body) {
@@ -72,7 +74,10 @@ public class PrescriptionService {
 				.build();
 
 		var data = prescriptionRepository.save(prescription);
-		return PrescriptionMapper.INSTANCE.bytesToString(data.getPrescriptionDetails());
+		var prescriptionDetails = PrescriptionMapper.INSTANCE.bytesToString(data.getPrescriptionDetails());
+
+		jmsTemplate.convertAndSend("prescription_created", prescriptionDetails);
+		return prescriptionDetails;
 	}
 
 	public List<PrescriptionDTO> getAllPrecriptionsForPatient() {

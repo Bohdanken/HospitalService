@@ -1,32 +1,30 @@
-package ua.edu.ukma.notificationservice.controller;
+package ukma.edu.ua.NotificationService.service;
 
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Controller;
-import ua.edu.ukma.notificationservice.service.NotificationService;
+import org.springframework.stereotype.Service;
 
-@Controller
+@Service
 @RequiredArgsConstructor
-public class NotificationController {
-    private static final String CONTAINER_FACTORY = "jmsListenerContainerFactory";
-
+public class NotificationListenerService {
     private static final String PRESCRIPTION_CREATED_TOPIC = "prescription_created";
     private static final String USER_CREATED_TOPIC = "user_created";
     private static final String VISIT_CREATED_TOPIC = "visit_created";
 
     private final NotificationService notificationService;
 
-    @JmsListener(destination = PRESCRIPTION_CREATED_TOPIC, containerFactory = CONTAINER_FACTORY)
+    @JmsListener(destination = PRESCRIPTION_CREATED_TOPIC)
     public void handlePrescriptionCreated(String prescription) {
         notificationService.handlePrescriptionCreated(prescription);
     }
 
-    @JmsListener(destination = USER_CREATED_TOPIC, containerFactory = CONTAINER_FACTORY)
+    @JmsListener(destination = USER_CREATED_TOPIC)
     public void handleUserCreated(String userJson) {
         notificationService.handleUserCreated(userJson);
     }
 
-    @JmsListener(destination = VISIT_CREATED_TOPIC, containerFactory = CONTAINER_FACTORY)
+    @JmsListener(destination = VISIT_CREATED_TOPIC)
     public void handleVisitCreated(String visitJson) {
         notificationService.handleVisitCreated(visitJson);
     }

@@ -6,7 +6,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +23,7 @@ import ukma.edu.ua.PrescriptionService.service.PrescriptionService;
 @Tag(name = "Prescriptions", description = "Prescription endopoints")
 @RequiredArgsConstructor
 public class PrescriptionController {
-  private static final String PRESCRIPTION_CREATED_TOPIC = "prescription_created";
-
   private final PrescriptionService prescriptionService;
-  private final JmsTemplate jmsTemplate;
 
   @PostMapping("/create")
   @ResponseStatus(HttpStatus.CREATED)
@@ -35,7 +31,6 @@ public class PrescriptionController {
   @Secured(Roles.DOCTOR)
   public ResponseEntity<String> createPrescription(@RequestBody @Valid CreatePrescriptionBody body) {
     var prescription = prescriptionService.createPrescription(body);
-    jmsTemplate.convertAndSend(PRESCRIPTION_CREATED_TOPIC, prescription);
     return ResponseEntity.ok()
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=prescription.txt")
         .contentType(MediaType.TEXT_PLAIN)

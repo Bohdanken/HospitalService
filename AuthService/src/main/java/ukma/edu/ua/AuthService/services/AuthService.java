@@ -14,21 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import ukma.edu.ua.AuthService.dto.LoginBody;
 import ukma.edu.ua.AuthService.dto.RegisterDoctorBody;
 import ukma.edu.ua.AuthService.dto.RegisterPatientBody;
 import ukma.edu.ua.AuthService.entities.Doctor;
 import ukma.edu.ua.AuthService.entities.Patient;
-import ukma.edu.ua.AuthService.entities.User;
 import ukma.edu.ua.AuthService.entities.User.Role;
 import ukma.edu.ua.AuthService.repositories.DoctorRepository;
 import ukma.edu.ua.AuthService.repositories.PatientRepository;
-import ukma.edu.ua.AuthService.repositories.UserRepository;
 import ukma.edu.ua.AuthService.security.AppUser;
 import ukma.edu.ua.AuthService.services.JWTService.TokenResponse;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
+@Slf4j
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -38,7 +36,6 @@ public class AuthService {
     private final UserDetailsService userDetailsService;
 
     private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
 
@@ -51,65 +48,56 @@ public class AuthService {
     }
 
     public TokenResponse registerPatient(RegisterPatientBody data) {
-        var user = User
-                .builder()
+        var patient = Patient.builder()
                 .email(data.getEmail())
                 .password(passwordEncoder.encode(data.getPassword()))
                 .role(Role.PATIENT)
-                .build();
-
-        try {
-            userRepository.saveAndFlush(user);
-        } catch (DataIntegrityViolationException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with specified credentials already exists");
-        }
-
-        try {
-            jmsTemplate.convertAndSend("user_created", objectMapper.writeValueAsString(user));
-        } catch (JsonProcessingException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failure to convert user object to JSON");
-        }
-
-        var patient = Patient.builder()
-                .id(user.getId())
                 .firstName(data.getFirstName())
                 .lastName(data.getLastName())
                 .address(data.getAddress())
                 .birthDate(data.getBirthDate())
                 .passportNumber(data.getPassportNumber())
-//                .email(user.getEmail())
-//                .password(user.getPassword())
-//                .role(user.getRole())
-                .build();
-        patientRepository.save(patient);
-
-        return jwtService.generateToken(user);
-    }
-
-    public TokenResponse registerDoctor(RegisterDoctorBody data) {
-        var user = User
-                .builder()
-                .email(data.getEmail())
-                .password(passwordEncoder.encode(data.getPassword()))
-                .role(Role.DOCTOR)
                 .build();
 
         try {
-            userRepository.saveAndFlush(user);
+            patientRepository.saveAndFlush(patient);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with specified credentials already exists");
         }
 
-        var doctorDetails = Doctor.builder()
-                .id(user.getId())
+        try {
+            jmsTemplate.convertAndSend("user_created", objectMapper.writeValueAsString(patient));
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        return jwtService.generateToken(patient);
+    }
+
+    public TokenResponse registerDoctor(RegisterDoctorBody data) {
+        var doctor = Doctor.builder()
+                .email(data.getEmail())
+                .password(passwordEncoder.encode(data.getPassword()))
+                .role(Role.DOCTOR)
                 .firstName(data.getFirstName())
                 .lastName(data.getLastName())
                 .birthDate(data.getBirthDate())
                 .doctorType(data.getDoctorType())
                 .build();
-        doctorRepository.save(doctorDetails);
 
-        return jwtService.generateToken(user);
+        try {
+            doctorRepository.saveAndFlush(doctor);
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with specified credentials already exists");
+        }
+
+        try {
+            jmsTemplate.convertAndSend("user_created", objectMapper.writeValueAsString(doctor));
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage(), e);
+        }
+
+        return jwtService.generateToken(doctor);
     }
 
     public AppUser authenticate(String email, String password) {

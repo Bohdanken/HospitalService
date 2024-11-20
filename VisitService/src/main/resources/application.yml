@@ -46,6 +46,8 @@ spring:
     user: artemis
     password: artemis
     mode: native
+  jms:
+    pub-sub-domain: true
   boot:
     admin:
       client:

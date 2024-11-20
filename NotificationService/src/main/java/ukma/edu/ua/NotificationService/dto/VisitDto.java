@@ -1,4 +1,4 @@
-package ua.edu.ukma.notificationservice.dto;
+package ukma.edu.ua.NotificationService.dto;
 
 import lombok.Data;
 
