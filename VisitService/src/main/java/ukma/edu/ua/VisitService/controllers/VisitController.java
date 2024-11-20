@@ -1,5 +1,6 @@
 package ukma.edu.ua.VisitService.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class VisitController {
 
     @PostMapping("/create")
     @Operation(summary = "Allows patient to create a visit")
-    public PatientVisit createVisit(@Valid @RequestBody VisitBody body) {
+    public PatientVisit createVisit(@Valid @RequestBody VisitBody body) throws JsonProcessingException {
         return patientVisitService.createPatientVisit(body);
     }
 

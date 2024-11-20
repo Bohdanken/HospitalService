@@ -1,8 +1,13 @@
 package ukma.edu.ua.VisitService.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ukma.edu.ua.VisitService.entities.PatientVisit;
 import ukma.edu.ua.VisitService.exceptions.BadRequestException;
@@ -12,11 +17,14 @@ import ukma.edu.ua.VisitService.dto.VisitBody;
 import ukma.edu.ua.VisitService.repositories.PatientVisitRepository;
 import ukma.edu.ua.VisitService.security.User;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PatientVisitService {
 	private final PatientVisitRepository patientVisitRepository;
+	private final JmsTemplate jmsTemplate;
 	private final UserService userService;
+	private final ObjectMapper objMapper;
 
 	public PatientVisit createPatientVisit(VisitBody data) {
 		var user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -41,7 +49,14 @@ public class PatientVisitService {
 						patient.getPatientDetails().getFirstName() + " " + patient.getPatientDetails().getLastName())
 				.build();
 
-		return patientVisitRepository.save(patientVisit);
+		var visit = patientVisitRepository.saveAndFlush(patientVisit);
+		try {
+			jmsTemplate.convertAndSend("visit_created", objMapper.writeValueAsString(visit));
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+
+		return visit;
 	}
 
 	public PatientVisit[] getAllPatientVisits() {

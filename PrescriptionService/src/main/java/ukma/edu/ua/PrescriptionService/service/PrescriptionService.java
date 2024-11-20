@@ -4,7 +4,10 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,6 +27,7 @@ import ukma.edu.ua.PrescriptionService.security.User;
 public class PrescriptionService {
 	private final PrescriptionRepository prescriptionRepository;
 	private final UserService userService;
+	private final JmsTemplate jmsTemplate;
 	private final MedicineService medicineService;
 
 	public String createPrescription(CreatePrescriptionBody body) {
@@ -34,7 +38,7 @@ public class PrescriptionService {
 		}
 
 		// Retrieve drugs data
-		var drugIds = body.getDrugs().stream().map(d -> d.getId()).toList();
+		var drugIds = body.getDrugs().stream().map(CreatePrescriptionBody.Drug::getId).toList();
 		var drugs = medicineService.getDrugsByIds(drugIds);
 
 		// Patient info
@@ -53,8 +57,8 @@ public class PrescriptionService {
 					var drugTime = body
 							.getDrugs()
 							.stream()
-							.filter(d -> d.getId() == drug.getId())
-							.map(d -> d.getTimesPerDay())
+							.filter(d -> Objects.equals(d.getId(), drug.getId()))
+							.map(CreatePrescriptionBody.Drug::getTimesPerDay)
 							.findFirst().orElse(0);
 
 					return "\t" + drug.getBrandName() + " - Consume " + drugTime + "times per day";
@@ -70,7 +74,10 @@ public class PrescriptionService {
 				.build();
 
 		var data = prescriptionRepository.save(prescription);
-		return PrescriptionMapper.INSTANCE.bytesToString(data.getPrescriptionDetails());
+		var prescriptionDetails = PrescriptionMapper.INSTANCE.bytesToString(data.getPrescriptionDetails());
+
+		jmsTemplate.convertAndSend("prescription_created", prescriptionDetails);
+		return prescriptionDetails;
 	}
 
 	public List<PrescriptionDTO> getAllPrecriptionsForPatient() {

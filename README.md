@@ -33,7 +33,7 @@ There are be 3 roles in this project: admin, doctor, patient.
 ### Ports for each service
 
 | Service                | port |
-| ---------------------- | ---- |
+| ---------------------- |------|
 | Gateway service        | 8089 |
 | Admin service          | 8090 |
 | Auth service HTTP      | 8091 |
@@ -41,3 +41,4 @@ There are be 3 roles in this project: admin, doctor, patient.
 | Visit service          | 8093 |
 | MedicineSource service | 8094 |
 | Prescription service   | 8095 |
+| Notification service   | 8096 |

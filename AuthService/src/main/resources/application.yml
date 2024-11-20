@@ -13,6 +13,12 @@ springdoc:
   api-docs:
     path: /swagger-json
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 spring:
   application:
     name: AuthService
@@ -37,6 +43,14 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  artemis:
+    broker-url: tcp://localhost:61616
+    user: artemis
+    password: artemis
+    mode: native
+  spring:
+    jms:
+      pub-sub-domain: true
 
 app:
   jwt:

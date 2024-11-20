@@ -41,11 +41,13 @@ spring:
           auth: true
           starttls:
             enable: true
-  # artemis:
-  #   broker-url: tcp://localhost:61616
-  #   user: artemis
-  #   password: artemis
-  #   mode: native
+  artemis:
+    broker-url: tcp://localhost:61616
+    user: artemis
+    password: artemis
+    mode: native
+  jms:
+    pub-sub-domain: true
   boot:
     admin:
       client:

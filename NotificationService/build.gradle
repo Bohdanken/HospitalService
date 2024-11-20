@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+springBoot {
+    mainClass = 'ukma.edu.ua.NotificationService.Application'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.3.4'
+
+    // mq
+    implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
+    implementation 'jakarta.jms:jakarta.jms-api:3.1.0'
+
+    // data
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.0'
+
+    // Telemetry
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.4'
+    implementation 'de.codecentric:spring-boot-admin-starter-client:3.3.4'
+    
+    // tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
