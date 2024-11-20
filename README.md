@@ -41,3 +41,4 @@ There are be 3 roles in this project: admin, doctor, patient.
 | Visit service          | 8093 |
 | MedicineSource service | 8094 |
 | Prescription service   | 8095 |
+| Notification service   | 8096 |

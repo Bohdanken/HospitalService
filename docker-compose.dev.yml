@@ -11,6 +11,4 @@ services:
       - activemq-artemis-data:/var/lib/artemis-instance
 
 volumes:
-  hospital-service-pgdata:
-  hospital-service-pgadmin-data:
   activemq-artemis-data:

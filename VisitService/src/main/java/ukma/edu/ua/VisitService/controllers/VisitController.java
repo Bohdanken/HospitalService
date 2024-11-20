@@ -1,9 +1,12 @@
 package ukma.edu.ua.VisitService.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -18,11 +21,17 @@ import ukma.edu.ua.VisitService.dto.VisitBody;
 @Tag(name = "Visit", description = "Visit endpoints")
 public class VisitController {
     private final PatientVisitService patientVisitService;
+    private final JmsTemplate jmsTemplate;
+    private final ObjectMapper objectMapper;
 
     @PostMapping("/create")
     @Operation(summary = "Allows patient to create a visit")
-    public PatientVisit createVisit(@Valid @RequestBody VisitBody body) {
-        return patientVisitService.createPatientVisit(body);
+    public PatientVisit createVisit(@Valid @RequestBody VisitBody body) throws JsonProcessingException {
+        var createdVisit = patientVisitService.createPatientVisit(body);
+
+        jmsTemplate.convertAndSend("visit_created", objectMapper.writeValueAsString(createdVisit));
+
+        return createdVisit;
     }
 
     @GetMapping("/all")
