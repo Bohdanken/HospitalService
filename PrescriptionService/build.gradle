@@ -17,61 +17,62 @@ springBoot {
 }
 
 dependencies {
-	// Spring Boot
-	implementation 'org.springframework.boot:spring-boot-starter-web:3.3.4'
-	implementation 'org.springframework.boot:spring-boot-starter-security:3.3.4'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux:3.3.4'
-	compileOnly 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
-	compileOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	// Spring Boot Core
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-	// Database
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.3.4'
-	runtimeOnly 'com.h2database:h2:2.2.224'
+	// Database and JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
 
-	// Security
+	// Security and JWT
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
-	implementation 'org.springframework.boot:spring-boot-starter-security:3.3.4'
 
-	// OpenAPI
+	// OpenAPI and Swagger
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 
-  // Thymeleaf
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.3.4'
-	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6', version: '3.1.2.RELEASE'
-	implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.2.RELEASE'
+	// Thymeleaf Templates
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
 
-	// Data
-	implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.4'
+	// Validation and Mapping
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	// Lombok for reducing boilerplate
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'
 
-	// Other
-	implementation group: 'com.google.maps', name: 'google-maps-services', version: '2.2.0'
+	// Google Maps API
+	implementation 'com.google.maps:google-maps-services:2.2.0'
 
-	// Testing
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.4'
-	testImplementation 'org.springframework.security:spring-security-test:6.2.0'
-
-	// Email
-	implementation 'org.springframework.boot:spring-boot-starter-mail:1.2.0.RELEASE'
-	implementation 'com.sun.mail:jakarta.mail:2.0.1'
-
-	// Telemetry
-	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.3.4'
+	// Telemetry and Monitoring
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'de.codecentric:spring-boot-admin-starter-client:3.3.4'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
 
 	// gRPC
 	implementation project(':grpc-common')
 	implementation 'net.devh:grpc-client-spring-boot-starter:3.1.0.RELEASE'
 	runtimeOnly 'io.grpc:grpc-netty-shaded:1.68.1'
 
-	// Message queues
-	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
+	// JMS (Artemis)
+	implementation 'org.springframework.boot:spring-boot-starter-artemis'
+
+	// Spring Cloud and Eureka Client
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '4.1.3'
+
+	// Email
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+	// Testing
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

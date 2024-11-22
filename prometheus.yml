@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s # Інтервал збору метрик
+  evaluation_interval: 15s # Інтервал оцінки правил
+
+scrape_configs:
+  # Monitoring the Spring Boot Admin Client Actuator Endpoints
+  - job_name: 'spring-boot-services'
+    metrics_path: '/actuator/prometheus'  # Path to scrape Prometheus metrics from Spring Boot apps
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+          - host.docker.internal:8090  # AdminService
+          - host.docker.internal:8091  # AuthService
+          - host.docker.internal:8089  # GatewayService
+          - host.docker.internal:8094  # MedicineSourceService
+          - host.docker.internal:8097  # NotificationService
+          - host.docker.internal:8095  # PrescriptionMicroservice
+          - host.docker.internal:8096  # VisitService
+
+  - job_name: 'prometheus'
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+          - localhost:9090  # Prometheus itself
+
+
