@@ -7,3 +7,5 @@ include 'VisitService'
 include 'MedicineSourceService'
 include 'PrescriptionService'
 include 'NotificationService'
+include 'ServiceRegistry'
+
