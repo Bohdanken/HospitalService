@@ -63,6 +63,8 @@ dependencies {
 
 	// Message queues
 	implementation 'org.springframework.boot:spring-boot-starter-artemis:3.3.4'
+        implementation 'org.apache.activemq:artemis-jakarta-client'
+
 
 	//Registry client
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-eureka-client', version: '4.1.3'
